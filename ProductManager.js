@@ -53,15 +53,12 @@ class ProductManager {
     }
   }
 
-  async deleteProduct(id){
+  async deleteProduct(id) {
     let estado = await this.getFile();
-    let newEstado = estado.filter(x => x.id != id)
-    try {
-      fs.writeFile(this.path, newEstado);      
-    } catch (error) {
-      console.log('→ → → DEL Error ! ', error)
-    }
-
+    let newEstado = estado.filter((x) => x.id != id);
+    // console.log(newEstado); // devuelve OK
+      await fs.promises.writeFile(this.path, JSON.stringify(newEstado));
+      console.log(`ID ${id} borrado exitosamente`);
   }
 
   async updateProduct(id, field, value) {
@@ -72,7 +69,6 @@ class ProductManager {
     // console.log(result[field]); // trae OK
     // console.log(value); // trae OK
 
-
     /* if(result){
 
       let editedObjet = ; 
@@ -80,7 +76,7 @@ class ProductManager {
     }else{
       console.log('→ → → UP Error !');
     } */
-   /* switch (field) {    
+    /* switch (field) {    
       case "title":
         field = value;
         console.log("Llegaste ACA 1", value);
@@ -103,20 +99,16 @@ class ProductManager {
         break;
     } */
 
+    //  this.addProduct()
+    //     console.log("Editado Correctamente");
 
-//  this.addProduct()
-//     console.log("Editado Correctamente");
-
-/* 
+    /* 
     if(result[field]){
       fs.writeFile(this.path, JSON.stringify(estado));
     console.log("Editado Correctamente");
     } */
 
-      // fs.writeFile(this.path, JSON.stringify(estado));
-     
-    
-
+    // fs.writeFile(this.path, JSON.stringify(estado));
   }
 
   async #generateID() {
@@ -181,7 +173,7 @@ const objeto3 = {
 async function testeando() {
   // const consultaArchivo = await producto.getFile();
   // console.log(consultaArchivo);
-
+  
   // ### Creo Productos
   // await producto.addProduct(objeto1);
   // await producto.addProduct(objeto2);
@@ -194,7 +186,8 @@ async function testeando() {
   // await producto.updateProduct(3, "title", "Nuevo Titular");
 
   // ### deleteProduct():
-  await producto.deleteProduct(3)
+  // await producto.deleteProduct(3)
+  await producto.deleteProduct(6)
 
   // ### producto.#generateID();
   // console.log( await producto.#generateID()); // → pasar a publica para testear
