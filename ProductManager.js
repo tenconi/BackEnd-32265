@@ -53,6 +53,72 @@ class ProductManager {
     }
   }
 
+  async deleteProduct(id){
+    let estado = await this.getFile();
+    let newEstado = estado.filter(x => x.id != id)
+    try {
+      fs.writeFile(this.path, newEstado);      
+    } catch (error) {
+      console.log('→ → → DEL Error ! ', error)
+    }
+
+  }
+
+  async updateProduct(id, field, value) {
+    let estado = await this.getFile();
+    const result = estado.find((x) => x.id === id);
+
+    // console.log(result.title);// trae titulo
+    // console.log(result[field]); // trae OK
+    // console.log(value); // trae OK
+
+
+    /* if(result){
+
+      let editedObjet = ; 
+
+    }else{
+      console.log('→ → → UP Error !');
+    } */
+   /* switch (field) {    
+      case "title":
+        field = value;
+        console.log("Llegaste ACA 1", value);
+        break;
+      case "description":
+        field = value;
+        console.log("Llegaste ACA 2", value);
+        break;
+      case "price":
+        field = value;
+        console.log("Llegaste ACA 3", value);
+        break;
+      case "code":
+        field = value;
+        console.log("Llegaste ACA 4", value);
+        break;
+      case "stock":
+        result[field] = value;
+        console.log("Llegaste ACA 5", value);
+        break;
+    } */
+
+
+//  this.addProduct()
+//     console.log("Editado Correctamente");
+
+/* 
+    if(result[field]){
+      fs.writeFile(this.path, JSON.stringify(estado));
+    console.log("Editado Correctamente");
+    } */
+
+      // fs.writeFile(this.path, JSON.stringify(estado));
+     
+    
+
+  }
+
   async #generateID() {
     let estado = await this.getFile();
     let id = 1;
@@ -117,12 +183,18 @@ async function testeando() {
   // console.log(consultaArchivo);
 
   // ### Creo Productos
-  await producto.addProduct(objeto1);
-  await producto.addProduct(objeto2);
-  await producto.addProduct(objeto3);
+  // await producto.addProduct(objeto1);
+  // await producto.addProduct(objeto2);
+  // await producto.addProduct(objeto3);
 
   // ### getProductById():
-  await producto.getProductById(0)
+  // await producto.getProductById(1);
+
+  // ### updateProduct():
+  // await producto.updateProduct(3, "title", "Nuevo Titular");
+
+  // ### deleteProduct():
+  await producto.deleteProduct(3)
 
   // ### producto.#generateID();
   // console.log( await producto.#generateID()); // → pasar a publica para testear
