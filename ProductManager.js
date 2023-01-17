@@ -8,9 +8,9 @@ class ProductManager {
   }
 
   async addProduct(prod) {
-    const { id= await this.generateID(), title, description, price, thumbnail, code, stock } = prod;
+    const { title, description, price, thumbnail, code, stock } = prod;
     const producto = {
-      id,
+      id: await this.#generateID(),
       title,
       description,
       price,
@@ -39,7 +39,21 @@ class ProductManager {
     }
   }
 
-  async generateID() {
+  async getProductById(id) {
+    let checkin = await this.#checkId(id);
+    let estado = await this.getFile();
+
+    if (checkin) {
+      return console.log(
+        `→ → → Resultado de ID ${id}:`,
+        estado.find((x) => x.id === id)
+      );
+    } else {
+      console.log("→ → → Error ID Not Found!");
+    }
+  }
+
+  async #generateID() {
     let estado = await this.getFile();
     let id = 1;
     if (estado.length != 0) {
@@ -47,7 +61,7 @@ class ProductManager {
     }
     return id;
 
-  /* try {
+    /* try {
     let estado = await this.getFile();
     let id = 1;
     if (estado.length != 0) {
@@ -58,7 +72,12 @@ class ProductManager {
   } catch (error) {
     console.log(" → → → id ERROR!", error);
   } */
-}
+  }
+
+  async #checkId(id) {
+    let estado = await this.getFile();
+    return estado.find((x) => x.id === id);
+  }
 }
 
 /* ↓ ↓ ↓ TEST ↓ ↓ ↓ */
@@ -97,12 +116,15 @@ async function testeando() {
   // const consultaArchivo = await producto.getFile();
   // console.log(consultaArchivo);
 
-  // # Creo Productos
+  // ### Creo Productos
   await producto.addProduct(objeto1);
   await producto.addProduct(objeto2);
   await producto.addProduct(objeto3);
 
-  // # producto.generateID();
-  // console.log(await producto.generateID());
+  // ### getProductById():
+  await producto.getProductById(0)
+
+  // ### producto.#generateID();
+  // console.log( await producto.#generateID()); // → pasar a publica para testear
 }
 testeando();
