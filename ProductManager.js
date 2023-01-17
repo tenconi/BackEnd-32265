@@ -8,9 +8,9 @@ class ProductManager {
   }
 
   async addProduct(prod) {
-    const { title, description, price, thumbnail, code, stock } = prod;
+    const { id= await this.generateID(), title, description, price, thumbnail, code, stock } = prod;
     const producto = {
-      id: this.generateID(),
+      id,
       title,
       description,
       price,
@@ -40,18 +40,25 @@ class ProductManager {
   }
 
   async generateID() {
-    try {
-      let estado = await this.getFile();
-      let id = 1;
-
-      if (estado != 0) {
-        id = estado[estado.length - 1].id + 1;
-      }
-      return id; // devuelve correctamente
-    } catch (error) {
-      console.log(" → → → id ERROR!", error);
+    let estado = await this.getFile();
+    let id = 1;
+    if (estado.length != 0) {
+      id = estado[estado.length - 1].id + 1;
     }
-  }
+    return id;
+
+  /* try {
+    let estado = await this.getFile();
+    let id = 1;
+    if (estado.length != 0) {
+      id = estado[estado.length - 1].id + 1;
+    }
+    return id;
+
+  } catch (error) {
+    console.log(" → → → id ERROR!", error);
+  } */
+}
 }
 
 /* ↓ ↓ ↓ TEST ↓ ↓ ↓ */
