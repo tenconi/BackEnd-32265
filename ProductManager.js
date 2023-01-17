@@ -22,7 +22,7 @@ class ProductManager {
     const consultoFile = await this.getFile();
     consultoFile.push(producto);
     await fs.promises.writeFile(this.path, JSON.stringify(consultoFile));
-    console.log('→ → → Producto creado correctamente.');
+    console.log("→ → → Producto creado correctamente.");
   }
 
   async getFile() {
@@ -58,29 +58,22 @@ class ProductManager {
     let estado = await this.getFile();
     let newEstado = estado.filter((x) => x.id != id);
     await fs.promises.writeFile(this.path, JSON.stringify(newEstado));
-      console.log(`ID ${id} borrado exitosamente`);
+    console.log(`ID ${id} borrado exitosamente`);
   }
 
   async updateProduct(id, field, value) {
     let estado = await this.getFile();
     const result = estado.find((x) => x.id === id);
-    const restEstado = estado.filter( (x) => x.id != id)
-
-    // console.log(`${result[field]}:${value}`); // trae OK
-    // console.log('result',result, 'resto', restEstado); // ok
-    // console.log('result',result[field] ); 
+    const restEstado = estado.filter((x) => x.id != id);
     result[field] = value;
-    let concatenado =  JSON.stringify(restEstado.push(result))
-    // console.log(concatenado)
+    let concatenado = restEstado.concat(result);
 
-if(!id || !field || !value){
-  console.log('→ → → Error : Deben completarse todos los campos');
-}else{
-  fs.promises.writeFile(this.path, concatenado);
-  console.log(`ID ${id} modificado correctamente`)
-}
-
-    // fs.writeFile(this.path, JSON.stringify(estado));
+    if (!id || !field || !value) {
+      console.log("→ → → Error : Deben completarse todos los campos");
+    } else {
+      fs.promises.writeFile(this.path, JSON.stringify(concatenado));
+      console.log(`ID ${id} modificado correctamente`);
+    }
   }
 
   async #generateID() {
@@ -133,7 +126,7 @@ const objeto3 = {
 async function testeando() {
   // const consultaArchivo = await producto.getFile();
   // console.log(consultaArchivo);
-  
+
   // ### Creo Productos
   // await producto.addProduct(objeto1);
   // await producto.addProduct(objeto2);
@@ -143,7 +136,7 @@ async function testeando() {
   // await producto.getProductById(1);
 
   // ### updateProduct():
-  // await producto.updateProduct(3, "title", "Nuevo Titular");
+  // await producto.updateProduct(3, "title", "Nuevo Titular"); // Lo agrega al final
 
   // ### deleteProduct():
   // await producto.deleteProduct(5)
