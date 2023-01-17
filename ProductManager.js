@@ -22,6 +22,7 @@ class ProductManager {
     const consultoFile = await this.getFile();
     consultoFile.push(producto);
     await fs.promises.writeFile(this.path, JSON.stringify(consultoFile));
+    console.log('→ → → Producto creado correctamente.');
   }
 
   async getFile() {
@@ -56,9 +57,24 @@ class ProductManager {
   async deleteProduct(id) {
     let estado = await this.getFile();
     let newEstado = estado.filter((x) => x.id != id);
+    // const toCompare = newEstado.find ((x) => {x.id === id})
     // console.log(newEstado); // devuelve OK
+
+    /* if(newEstado.find(x=> x.id != id)){
+      
+      console.log('error al borrar');
+    }else{
       await fs.promises.writeFile(this.path, JSON.stringify(newEstado));
       console.log(`ID ${id} borrado exitosamente`);
+    } */
+
+   /*  if(newEstado){
+      await fs.promises.writeFile(this.path, JSON.stringify(newEstado));
+      console.log(`ID ${id} borrado exitosamente`);
+    }else{
+      console.log(`→ → → Error: ID ${id} no encontrado `);
+    } */
+    // console.log(newEstado);
   }
 
   async updateProduct(id, field, value) {
@@ -138,7 +154,7 @@ class ProductManager {
   }
 }
 
-/* ↓ ↓ ↓ TEST ↓ ↓ ↓ */
+/* ↓ ↓ ↓ COMANDS TEST ↓ ↓ ↓ */
 const producto = new ProductManager();
 
 const objeto1 = {
@@ -187,7 +203,7 @@ async function testeando() {
 
   // ### deleteProduct():
   // await producto.deleteProduct(3)
-  await producto.deleteProduct(6)
+  // await producto.deleteProduct(5)
 
   // ### producto.#generateID();
   // console.log( await producto.#generateID()); // → pasar a publica para testear
