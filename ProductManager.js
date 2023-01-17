@@ -57,72 +57,28 @@ class ProductManager {
   async deleteProduct(id) {
     let estado = await this.getFile();
     let newEstado = estado.filter((x) => x.id != id);
-    // const toCompare = newEstado.find ((x) => {x.id === id})
-    // console.log(newEstado); // devuelve OK
-
-    /* if(newEstado.find(x=> x.id != id)){
-      
-      console.log('error al borrar');
-    }else{
-      await fs.promises.writeFile(this.path, JSON.stringify(newEstado));
+    await fs.promises.writeFile(this.path, JSON.stringify(newEstado));
       console.log(`ID ${id} borrado exitosamente`);
-    } */
-
-   /*  if(newEstado){
-      await fs.promises.writeFile(this.path, JSON.stringify(newEstado));
-      console.log(`ID ${id} borrado exitosamente`);
-    }else{
-      console.log(`→ → → Error: ID ${id} no encontrado `);
-    } */
-    // console.log(newEstado);
   }
 
   async updateProduct(id, field, value) {
     let estado = await this.getFile();
     const result = estado.find((x) => x.id === id);
+    const restEstado = estado.filter( (x) => x.id != id)
 
-    // console.log(result.title);// trae titulo
-    // console.log(result[field]); // trae OK
-    // console.log(value); // trae OK
+    // console.log(`${result[field]}:${value}`); // trae OK
+    // console.log('result',result, 'resto', restEstado); // ok
+    // console.log('result',result[field] ); 
+    result[field] = value;
+    let concatenado =  JSON.stringify(restEstado.push(result))
+    // console.log(concatenado)
 
-    /* if(result){
-
-      let editedObjet = ; 
-
-    }else{
-      console.log('→ → → UP Error !');
-    } */
-    /* switch (field) {    
-      case "title":
-        field = value;
-        console.log("Llegaste ACA 1", value);
-        break;
-      case "description":
-        field = value;
-        console.log("Llegaste ACA 2", value);
-        break;
-      case "price":
-        field = value;
-        console.log("Llegaste ACA 3", value);
-        break;
-      case "code":
-        field = value;
-        console.log("Llegaste ACA 4", value);
-        break;
-      case "stock":
-        result[field] = value;
-        console.log("Llegaste ACA 5", value);
-        break;
-    } */
-
-    //  this.addProduct()
-    //     console.log("Editado Correctamente");
-
-    /* 
-    if(result[field]){
-      fs.writeFile(this.path, JSON.stringify(estado));
-    console.log("Editado Correctamente");
-    } */
+if(!id || !field || !value){
+  console.log('→ → → Error : Deben completarse todos los campos');
+}else{
+  fs.promises.writeFile(this.path, concatenado);
+  console.log(`ID ${id} modificado correctamente`)
+}
 
     // fs.writeFile(this.path, JSON.stringify(estado));
   }
@@ -134,18 +90,6 @@ class ProductManager {
       id = estado[estado.length - 1].id + 1;
     }
     return id;
-
-    /* try {
-    let estado = await this.getFile();
-    let id = 1;
-    if (estado.length != 0) {
-      id = estado[estado.length - 1].id + 1;
-    }
-    return id;
-
-  } catch (error) {
-    console.log(" → → → id ERROR!", error);
-  } */
   }
 
   async #checkId(id) {
@@ -202,7 +146,6 @@ async function testeando() {
   // await producto.updateProduct(3, "title", "Nuevo Titular");
 
   // ### deleteProduct():
-  // await producto.deleteProduct(3)
   // await producto.deleteProduct(5)
 
   // ### producto.#generateID();
