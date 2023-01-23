@@ -1,7 +1,6 @@
-// CLASE 5 = Manejo de archivos en JavaScript
+// CLASE 7 = Servidores
 // Alumno: Daniel Tenconi
-
-const fs = require("fs");
+import fs from 'fs'
 
 export default class ProductManager {
   constructor() {
@@ -26,12 +25,17 @@ export default class ProductManager {
     console.log("→ → → Producto creado correctamente.");
   }
 
-  async getFile() {
+  async getFile(query) {
+    let {limit} = query;
+    console.log(limit);
+
     try {
       if (fs.existsSync(this.path)) {
         const productos = await fs.promises.readFile(this.path, "utf-8");
-        const productosJS = JSON.parse(productos);
-        // return console.log(productosJS[1].id);
+        const productosJS = JSON.parse(productos);   
+          if(limit){
+            return productosJS.slice(0, parseInt(limit))
+          }
         return productosJS;
       } else {
         return [];
@@ -93,8 +97,10 @@ export default class ProductManager {
 }
 
 
+
 /* ↓ ↓ ↓ COMANDS TEST ↓ ↓ ↓ */
-/* const producto = new ProductManager();
+/* 
+const producto = new ProductManager();
 
 const objeto1 = {
   title: "Producto Uno",
@@ -122,11 +128,9 @@ const objeto3 = {
     "https://st3.depositphotos.com/1654249/13060/i/450/depositphotos_130607128-stock-photo-3d-gold-number-one-isolated.jpg",
   code: "code003",
   stock: 4,
-}; */
+};
 
 
-
-/* 
 async function testeando() {
   // const consultaArchivo = await producto.getFile();
   // console.log(consultaArchivo);
@@ -150,5 +154,3 @@ async function testeando() {
 }
 testeando();
  */
-
-
