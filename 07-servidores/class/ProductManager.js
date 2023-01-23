@@ -25,18 +25,20 @@ export default class ProductManager {
     console.log("→ → → Producto creado correctamente.");
   }
 
-  async getFile(query) {
-    let {limit} = query;
-    console.log(limit);
+  async getFile(/* query */) {
+    /* let {limit} = query;
+    console.log(limit); */
 
     try {
       if (fs.existsSync(this.path)) {
         const productos = await fs.promises.readFile(this.path, "utf-8");
         const productosJS = JSON.parse(productos);   
-          if(limit){
+          /* if(limit){
             return productosJS.slice(0, parseInt(limit))
-          }
-        return productosJS;
+          } */
+                      
+          return productosJS;
+
       } else {
         return [];
       }
@@ -47,7 +49,8 @@ export default class ProductManager {
 
   async getProductById(id) {
     let checkin = await this.#checkId(id);
-    let estado = await this.getFile();
+
+    let estado = await this.getFile(); // ¿?
 
     if (checkin) {
       return console.log(

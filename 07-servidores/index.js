@@ -29,15 +29,10 @@ app.post('/products', async (req, res)=>{
 // Producto seleccionado:
 app.get('/products/:pid', async (req, res)=>{
     const {pid} = req.params;
-    const prod = await prodManager.getProductById(parseInt(pid));
-    res.json({message: `ID ${prod.id} encontrados.`});
+    const file = await prodManager.getProductById(parseInt(pid));
+    res.json({message: 'Id ${pid} encontrado'});
 })
 
-
-/* app.get('/', (req, res)=>{
-    res.send('');
-})
- */
 
 
 // # LISTENER:
