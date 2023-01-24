@@ -1,6 +1,7 @@
 // CLASE 7 = Servidores
 // Alumno: Daniel Tenconi
 import fs from 'fs'
+import { parse } from 'path';
 
 export default class ProductManager {
   constructor() {
@@ -26,17 +27,16 @@ export default class ProductManager {
   }
 
   async getFile(/* query */) {
-    /* let {limit} = query;
-    console.log(limit); */
-
+    /* const {limit} = query;
+    const limite = parseInt(limit)
+    console.log(limite); */
     try {
       if (fs.existsSync(this.path)) {
         const productos = await fs.promises.readFile(this.path, "utf-8");
         const productosJS = JSON.parse(productos);   
-          /* if(limit){
-            return productosJS.slice(0, parseInt(limit))
-          } */
-                      
+         /*  if(limit){
+            return productosJS.slice(0, parseInt(limite))
+          }                */       
           return productosJS;
 
       } else {
@@ -53,10 +53,8 @@ export default class ProductManager {
     let estado = await this.getFile(); // ¿?
 
     if (checkin) {
-      return console.log(
-        `→ → → Resultado de ID ${id}:`,
-        estado.find((x) => x.id === id)
-      );
+      return `→ → → Resultado de ID ${id}:`,
+        estado.find((x) => x.id === id)     ;
     } else {
       console.log("→ → → Error ID Not Found!");
     }
