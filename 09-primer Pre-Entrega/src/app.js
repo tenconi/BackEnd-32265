@@ -34,11 +34,12 @@ app.put('/:pid', (req, res)=>{
     const  newValor = req.body;
     const field = Object.keys(newValor).toString(); // lo paso a string xq me llega como array
     const value = Object.values(newValor).toString(); // lo paso a string xq me llega como array
-    const prodEdit = prodMan.updateProduct(pid, field, value); // id, campo , nuevoValor // `"${field}"` , `"${value}"`
+    const prodEdit = prodMan.updateProduct(parseInt(pid), field, value); // id, campo , nuevoValor // `"${field}"` , `"${value}"`
+    
     res.json({message:'Producto editado correctamente', prodEdit})
-    console.log(Object.keys(newValor), Object.values(newValor));
-    console.log(prodEdit);
-    console.log(pid, field, value);
+    // console.log(Object.keys(newValor), Object.values(newValor));
+    // console.log(prodEdit);
+    // console.log(pid, field, value);
 })
 
 

@@ -60,12 +60,24 @@ export default class ProductManager {
     const result = estado.find((x) => x.id === id);
     const restEstado = estado.filter((x) => x.id != id);
 
-    console.log(id, field, value); // ls valores llegan OK
-
     result[field] = value;
     let concatenado = restEstado.concat(result);
-    // console.log('concatenado', concatenado);
-    /* try {
+
+    console.log('concatenado', concatenado);
+
+    if (!id || !field || !value) {
+      console.log("→ Error : Deben completarse todos los campos");
+    } else {
+      fs.writeFileSync(this.path, JSON.stringify(concatenado));
+      console.log(`ID ${id} modificado correctamente`);
+    }
+
+    // console.log(id, field, value); // ls valores llegan OK
+
+    /* result[field] = value;
+    let concatenado = restEstado.concat(result);
+    console.log('concatenado', concatenado);
+    try {
       if (!id || !field || !value) {
         console.log("→ Error : Deben completarse todos los campos");
       } else {
@@ -92,7 +104,7 @@ export default class ProductManager {
   }
 }
 
-/* const prod = new Products();
+/* const prod = new ProductManager();
 const prod1 = {
   title: "Producto Uno",
   description: "Esto es un producto listo para usarse.",
@@ -109,4 +121,4 @@ const prod1 = {
 // prod.getProductById(3)
 // prod.addProduct(prod1)
 // prod.deleteProduct(3)
-//prod.updateProduct(1, 'title', 'NUEVO TITULO' ); //agrega al final
+// prod.updateProduct(1, 'title', 'NUEVO TITULO' ); //agrega al final
