@@ -1,41 +1,49 @@
 import { Router } from "express";
 const router = Router();
 
-import PM from './../src/prodManager.js'
-const prodMan = new PM('./files/Productos.json')
+import PM from "./../src/prodManager.js";
+const prodMan = new PM("./files/Productos.json");
 
-router.get('/', (req, res)=>{
-    const file = prodMan.getFile();
-    res.json(file)
-})
+router.get("/", (req, res) => {
+  const { limit } = req.query;
+  console.log(limit);
+  let file = prodMan.getFile();
 
-router.post('/', (req, res)=>{
-    const prod = req.body;
-    prodMan.addProduct(prod);
-    res.json({message:`→ Producto creado exitosamente:`, prod})
-})
+  if (limit && !isNaN(limit)) {
+    file = file.slice(0, limit);
+  }
+  res.json(file);
+});
 
-router.get('/:pid', (req, res)=>{
-    const {pid} = req.params;
-    const product = prodMan.getProductById(parseInt(pid));
-    res.json({ message: `→ Resultado de su busqueda : ${pid} encontrado`, product })
-})
+router.post("/", (req, res) => {
+  const prod = req.body;
+  prodMan.addProduct(prod);
+  res.json({ message: `→ Producto creado exitosamente:`, prod });
+});
 
-router.put('/:pid', (req, res)=>{
-    const {pid} = req.params;
-    const  newValor = req.body;
-    const field = Object.keys(newValor).toString(); // lo paso a string xq me llega como array
-    const value = Object.values(newValor).toString(); // lo paso a string xq me llega como array
-    const prodEdit = prodMan.updateProduct(parseInt(pid), field, value); // id, campo , nuevoValor // `"${field}"` , `"${value}"`
+router.get("/:pid", (req, res) => {
+  const { pid } = req.params;
+  const product = prodMan.getProductById(parseInt(pid));
+  res.json({
+    message: `→ Resultado de su busqueda : ${pid} encontrado`,
+    product,
+  });
+});
 
-    res.json({message:'Producto editado correctamente', prodEdit})
-    
-})
+router.put("/:pid", (req, res) => {
+  const { pid } = req.params;
+  const newValor = req.body;
+  const field = Object.keys(newValor).toString(); // lo paso a string xq me llega como array
+  const value = Object.values(newValor).toString(); // lo paso a string xq me llega como array
+  const prodEdit = prodMan.updateProduct(parseInt(pid), field, value); // id, campo , nuevoValor // `"${field}"` , `"${value}"`
 
-router.delete('/:pid', (req, res)=>{
-    const {pid} = req.params;
-    const del = prodMan.deleteProduct(parseInt(pid))
-    res.json({message:`Producto con ID ${pid} eliminado correctamente.`})
-})
+  res.json({ message: "Producto editado correctamente", prodEdit });
+});
+
+router.delete("/:pid", (req, res) => {
+  const { pid } = req.params;
+  const del = prodMan.deleteProduct(parseInt(pid));
+  res.json({ message: `Producto con ID ${pid} eliminado correctamente.` });
+});
 
 export default router;

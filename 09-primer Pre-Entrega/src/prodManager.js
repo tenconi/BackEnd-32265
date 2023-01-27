@@ -2,7 +2,7 @@ import fs from "fs";
 
 export default class ProductManager {
   constructor(path) {
-    this.path = path;
+    this.path = /* path */ 'ARCH.JSON';
   }
 
   getFile() {
@@ -68,10 +68,22 @@ export default class ProductManager {
   #generateId() {
     let estado = this.getFile();
     let id = 1;
+    let searchMaxId =  estado.map(element => {
+      return element.id
+    });
+    let maxId = Math.max(...searchMaxId)
+
+    if(maxId == 0 || maxId == null || maxId == -Infinity){
+      return id = 1
+    }else if(maxId){
+      return id= maxId + 1
+    }
+
+    /* // codigo incicial: seguia secuencia pero repetia los ids cuando se editaba
     if (estado.length != 0) {
       id = estado[estado.length - 1].id + 1;
     }
-    return id;
+    return id; */
   }
 
   #checkId(id) {
@@ -80,7 +92,7 @@ export default class ProductManager {
   }
 }
 
-/* const prod = new ProductManager();
+ const prod = new ProductManager();
 const prod1 = {
   title: "Producto Uno",
   description: "Esto es un producto listo para usarse.",
@@ -89,12 +101,19 @@ const prod1 = {
     "https://st3.depositphotos.com/1654249/13060/i/450/depositphotos_130607128-stock-photo-3d-gold-number-one-isolated.jpg",
   code: "code007",
   stock: 6,
-}; */
+};
 
-/* --- --- */
+
+// ### COMANDS TESTS:
 // console.log(prod.getFile());
 // console.log(prod.getProductById(3));
 // prod.getProductById(3)
 // prod.addProduct(prod1)
 // prod.deleteProduct(3)
-// prod.updateProduct(1, 'title', 'NUEVO TITULO' ); //agrega al final
+// prod.updateProduct(5, 'title', 'NUEVO TITULO' ); //agrega al final
+// prod.#checkId()
+// console.log(prod.generateId())
+
+
+
+

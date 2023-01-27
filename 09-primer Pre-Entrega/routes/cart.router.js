@@ -5,5 +5,9 @@ router.get('/', (req, res)=>{
 
     res.json({message:' Carrito de compras'})
 })
+router.get('/:pid', (req, res)=>{
+
+    res.json({message:' Carrito de compras'})
+})
 
 export default router;
