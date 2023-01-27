@@ -20,18 +20,10 @@ export default class ProductManager {
   }
 
   addProduct(prod) {
-    const { title, description, code, price, status=true, stock, category, thumbnail} = prod;
+    const {
+      title, description, code, price, status = true, stock, category, thumbnail } = prod;
     prod = {
-      id: this.#generateId(),
-      title,
-      description,
-      code,
-      price,
-      status,
-      category, 
-      stock,
-      thumbnail,
-    };
+      id: this.#generateId(), title, description, code, price, status, category, stock, thumbnail };
     const consultoFile = this.getFile();
     consultoFile.push(prod);
     fs.writeFileSync(this.path, JSON.stringify(consultoFile));
@@ -63,7 +55,7 @@ export default class ProductManager {
     result[field] = value;
     let concatenado = restEstado.concat(result);
 
-    console.log('concatenado', concatenado);
+    console.log("concatenado", concatenado);
 
     if (!id || !field || !value) {
       console.log("→ Error : Deben completarse todos los campos");
@@ -71,22 +63,6 @@ export default class ProductManager {
       fs.writeFileSync(this.path, JSON.stringify(concatenado));
       console.log(`ID ${id} modificado correctamente`);
     }
-
-    // console.log(id, field, value); // ls valores llegan OK
-
-    /* result[field] = value;
-    let concatenado = restEstado.concat(result);
-    console.log('concatenado', concatenado);
-    try {
-      if (!id || !field || !value) {
-        console.log("→ Error : Deben completarse todos los campos");
-      } else {
-        fs.writeFileSync(this.path, JSON.stringify(concatenado));
-        console.log(`ID ${id} modificado correctamente`);
-      }
-    } catch (error) {
-      throw error;
-    } */
   }
 
   #generateId() {

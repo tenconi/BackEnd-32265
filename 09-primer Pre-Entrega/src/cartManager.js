@@ -1,0 +1,5 @@
+class CartManager {
+    construct()
+
+    addCart(){}
+}
