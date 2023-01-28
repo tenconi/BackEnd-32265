@@ -2,7 +2,7 @@ import fs from "fs";
 
 export default class ProductManager {
   constructor(path) {
-    this.path = /* path */ 'ARCH.JSON';
+    this.path = path
   }
 
   getFile() {
@@ -92,7 +92,11 @@ export default class ProductManager {
   }
 }
 
- const prod = new ProductManager();
+
+
+// ### COMANDS TESTS:
+
+/*  const prod = new ProductManager();
 const prod1 = {
   title: "Producto Uno",
   description: "Esto es un producto listo para usarse.",
@@ -101,10 +105,8 @@ const prod1 = {
     "https://st3.depositphotos.com/1654249/13060/i/450/depositphotos_130607128-stock-photo-3d-gold-number-one-isolated.jpg",
   code: "code007",
   stock: 6,
-};
+}; */
 
-
-// ### COMANDS TESTS:
 // console.log(prod.getFile());
 // console.log(prod.getProductById(3));
 // prod.getProductById(3)
