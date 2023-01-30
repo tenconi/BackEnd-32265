@@ -6,7 +6,6 @@ const prodMan = new PM("./files/Productos.json");
 
 router.get("/", (req, res) => {
   const { limit } = req.query;
-  console.log(limit);
   let file = prodMan.getFile();
 
   if (limit && !isNaN(limit)) {
@@ -42,7 +41,7 @@ router.put("/:pid", (req, res) => {
 
 router.delete("/:pid", (req, res) => {
   const { pid } = req.params;
-  const del = prodMan.deleteProduct(parseInt(pid));
+  prodMan.deleteProduct(parseInt(pid));
   res.json({ message: `Producto con ID ${pid} eliminado correctamente.` });
 });
 
