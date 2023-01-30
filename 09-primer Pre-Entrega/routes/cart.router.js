@@ -8,17 +8,26 @@ const cartMan = new KT();
 router.get('/', (req, res)=>{
     let cart =  cartMan.getPurchases();
     // res.json({message:' Carrito de compras', read})
+
     res.json(cart)
 })
 
 router.post('/:pid', (req, res)=>{
     let {pid} = req.params;
-    cartMan.addToCart(parseInt(pid))
+    let cart = cartMan.addToCart(parseInt(pid))
+    res.json(cart)
 })
 
 router.get('/:pid', (req, res)=>{
+    let {pid} = req.params;
+    let purch = cartMan.getPurchaseById(parseInt(pid));
+    res.json(purch)
+})
 
-    res.json({message:' Carrito de compras'})
+router.delete(('/:pid'), (req, res)=>{
+    let {pid} = req.params;
+    let del = cartMan.deletePurchase(parseInt(pid))
+    res.json(del)
 })
 
 export default router;
