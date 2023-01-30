@@ -8,18 +8,27 @@ export default class CartManager {
   addToCart(id) {
     const getProds = this.#getProds()
     let getItem = getProds.find((x)=>x.id === id);
-    let getCart = this.getPurchases();
-    // let getItemJS = JSON.stringify(getItem)
-    // this.cart.push(getItem)
-    getCart.push(getItem);
-    fs.writeFileSync('./files/Cart.json', JSON.stringify(getCart))
-    return `Producto agregado correctamente: ${JSON.stringify(getItem)}`;
+    let getCart = this.getPurchases(); 
 
-    /* if(fs.existsSync('./files/Cart.json')){
-        fs.writeFileSync('./files/Cart.json', getItem, 'utf-8')
+    let purch = {
+        id :getItem.id,
+        title : getItem.title,
+        amount: 1
+    }
+    
+    const getCartProd = getCart.find((x)=>x.id === id); 
+
+    if(getCartProd){
+        const getCartRest = getCart.filter((x) => x.id != id); // consigo los restantes
+        purch.amount = getCartProd.amount + 1;
+        let concatenados = getCartRest.concat(purch);
+        fs.writeFileSync('./files/Cart.json', JSON.stringify(concatenados));
+        return `Producto agregado Anteriormente. Se sumó una Unidad.`;
     }else{
-        return []
-    } */
+        getCart.push(purch);
+        fs.writeFileSync('./files/Cart.json', JSON.stringify(getCart))
+        return `Producto agregado correctamente:`;
+    }
 
   }
 
