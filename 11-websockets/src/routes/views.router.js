@@ -1,11 +1,12 @@
-import { Router } from "express";
+/* import { Router } from "express";
 // import { socketServer } from "../server.js";
 
 const router = Router();
 
 router.get('/', (req, res)=>{
 
-    res.render('vista1')
+    res.render('home');
+
 })
 
-export default router;
+export default router; */

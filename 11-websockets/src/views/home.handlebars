@@ -1,0 +1,27 @@
+<h2>HOME</h2>
+<h3>todos los productos</h3>:
+<br>
+<br>
+{{#if file}}
+
+<div class="portaCards">
+  
+  {{#each file}}
+  
+    <div class="card">
+
+      {{#each thumbnail}}
+        <img src={{thumbnail}} />
+      {{/each}}
+      <h2>{{title}}</h2>
+      <p>{{description}}</p>
+      <p><strong>$ {{price}}</strong></p>
+
+    </div>
+  {{/each}}
+  
+</div>
+
+{{else}}
+  <p>Lamentablemente no hay Productos para listar.</p>
+{{/if}}

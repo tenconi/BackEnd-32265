@@ -1,0 +1,68 @@
+
+<h2>Real Time Products</h2>
+
+<br>
+<br>
+{{#if file}}:
+<h3>Todos los productos:</h3>
+ <br>
+    <div class="portaCards">  
+        {{#each file}}
+        
+            <div class="card">
+                {{#each thumbnail}}
+                    <img src={{thumbnail}} />
+                {{/each}}
+                <h2>{{title}}</h2>
+                <p>{{description}}</p>
+                <p><strong>$ {{price}}</strong></p>
+            </div>
+        {{/each}} 
+    </div>
+        
+        {{else if product}}
+        <h3>ID <u>{{product.id}}</u> Seleccionado::</h3>
+        <br>
+        <div class="portaCards">
+        <div class="card">
+                {{#each product.thumbnail}}
+                    <img src={{product.thumbnail}} />
+                {{/each}}
+                <h2>{{product.title}}</h2>
+                <p>{{product.description}}</p>
+                <p><strong>$ {{product.price}}</strong></p>
+            </div>
+        </div>
+
+        {{else}}
+        <p>Lamentablemente no hay Productos para listar.</p>
+    
+
+
+    
+{{/if}}
+  
+
+
+{{!-- {{#if product}}
+<div class="portaCards">
+    <div class="card">
+
+      {{#each product.thumbnail}}
+        <img src={{product.thumbnail}} />
+      {{/each}}
+      <h2>{{product.title}}</h2>
+      <p>{{product.description}}</p>
+      <p><strong>$ {{product.price}}</strong></p>
+
+    </div>
+</div>
+{{else}}
+  <p>Lamentablemente no hay Productos para listar.</p>
+{{/if}} --}}
+
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/index.js"></script>

@@ -1,8 +1,9 @@
 import { Router } from "express";
+import { __dirname } from "../utils.js";
 const router = Router();
 
 import PM from "../prodManager.js";
-const prodMan = new PM("./files/Productos.json");
+const prodMan = new PM(__dirname+'/files/Productos.json');
 
 router.get("/", (req, res) => {
   const { limit } = req.query;
@@ -12,7 +13,8 @@ router.get("/", (req, res) => {
     file = file.slice(0, limit);
   }
   // res.json(file);
-  res.render('prods')
+  // console.log();
+  res.render('realtimeproducts', {file})
 });
 
 router.post("/", (req, res) => {
@@ -24,10 +26,12 @@ router.post("/", (req, res) => {
 router.get("/:pid", (req, res) => {
   const { pid } = req.params;
   const product = prodMan.getProductById(parseInt(pid));
-  res.json({
+  /* res.json({
     message: `→ Resultado de su busqueda : ${pid} encontrado`,
     product,
-  });
+  }); */
+  console.log(product);
+  res.render('realtimeproducts', {product})
 });
 
 router.put("/:pid", (req, res) => {
