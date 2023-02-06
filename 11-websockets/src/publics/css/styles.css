@@ -1,0 +1,39 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+body{
+    background: linear-gradient(lightgray, silver);    
+}
+.container{
+    width: 90%;
+    margin: auto;
+    min-height:calc(100vh - 50px) ;
+    padding-top: 40px;
+}
+footer{
+    height: 50px;
+    display: grid;
+    place-items: center;
+    background: #454545;
+    font-size: 14px;
+    color:whitesmoke;
+}
+
+.btn{
+    display: inline-grid;
+    place-items: center;
+    padding:10px 20px;
+    background: lightblue;
+    color:white;
+    text-decoration: none;
+    font-weight: 600;
+    min-width: 150px;
+}
+.btn__prod{
+background: orange ;
+}
+.btn__cart{
+    background: green ;
+}
