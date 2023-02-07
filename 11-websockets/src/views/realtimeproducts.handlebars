@@ -50,12 +50,16 @@
 {{#if file}}
 <h3>Todos los productos:</h3>
     <div class="portaCards">  
+       
         {{#each file}}
         
             <div class="card">
-                {{#each thumbnail}}
+                <div class="portaImg">
+                   {{#each thumbnail}}
                     <img src={{thumbnail}} />
-                {{/each}}
+                {{/each}} 
+                </div>
+                
                 <div class="cardInfo">
                     <h2>{{title}}</h2>
                     <p>{{description}}</p>
@@ -70,12 +74,16 @@
         <br>
         <div class="portaCards">
         <div class="card">
+             <div class="portaImg">
                 {{#each product.thumbnail}}
                     <img src={{product.thumbnail}} />
                 {{/each}}
-                <h2>{{product.title}}</h2>
-                <p>{{product.description}}</p>
-                <p><strong>$ {{product.price}}</strong></p>
+                </div>
+                <div class="cardInfo">
+                    <h2>{{product.title}}</h2>
+                    <p>{{product.description}}</p>
+                    <p><strong>$ {{product.price}}</strong></p>
+                </div>
             </div>
         </div>
 
@@ -84,22 +92,6 @@
 {{/if}} 
 
 
-{{!-- {{#if product}}
-<div class="portaCards">
-    <div class="card">
-
-      {{#each product.thumbnail}}
-        <img src={{product.thumbnail}} />
-      {{/each}}
-      <h2>{{product.title}}</h2>
-      <p>{{product.description}}</p>
-      <p><strong>$ {{product.price}}</strong></p>
-
-    </div>
-</div>
-{{else}}
-  <p>Lamentablemente no hay Productos para listar.</p>
-{{/if}} --}}
 
 
 
