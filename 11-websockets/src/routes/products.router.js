@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { __dirname } from "../utils.js";
+
 const router = Router();
 
 import PM from "../prodManager.js";
@@ -49,5 +50,6 @@ router.delete("/:pid", (req, res) => {
   prodMan.deleteProduct(parseInt(pid));
   res.json({ message: `Producto con ID ${pid} eliminado correctamente.` });
 });
+
 
 export default router;

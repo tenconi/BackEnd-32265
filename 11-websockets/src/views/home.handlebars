@@ -1,13 +1,19 @@
-<h2>HOME</h2>
-<h3>todos los productos</h3>:
+<h3>Home : todos los productos:</h3>
+<br>
+<a href="/realtimeproducts">en tiempo Real → </a>
 <br>
 <br>
+
+
+{{!-- 
+<p>{{ejemplo}}</p>
+
+
 {{#if file}}
 
 <div class="portaCards">
   
-  {{#each file}}
-  
+  {{#each file}}  
     <div class="card">
 
       {{#each thumbnail}}
@@ -25,3 +31,7 @@
 {{else}}
   <p>Lamentablemente no hay Productos para listar.</p>
 {{/if}}
+ --}}
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/index.js"></script>

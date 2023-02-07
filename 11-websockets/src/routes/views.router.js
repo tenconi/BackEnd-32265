@@ -1,7 +1,8 @@
-/* import { Router } from "express";
+import { Router } from "express";
 // import { socketServer } from "../server.js";
 
 const router = Router();
+
 
 router.get('/', (req, res)=>{
 
@@ -9,4 +10,10 @@ router.get('/', (req, res)=>{
 
 })
 
-export default router; */
+/* router.get('/realtimeproducts', (req, res)=>{
+
+    res.render('realtimeproducts');
+
+}) */
+
+export default router;

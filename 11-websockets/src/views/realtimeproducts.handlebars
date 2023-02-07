@@ -1,11 +1,54 @@
 
 <h2>Real Time Products</h2>
+<br>
+<a href="/">← volver</a>
+<br><br>
+
+
+<form id="formulario" class="formulario">
+    <h3>Agregar productos:</h3>
+    <br>
+    <input type="text" name="title" id="title" placeholder="Tile">
+    <input type="text" name="description" id="description" placeholder="Description">
+    <input type="text" name="code" id="code" placeholder="Code">
+    <input type="number" name="price" id="price" placeholder="Price" >
+    <label for="status">Status:
+        <input type="checkbox" name="status" id="status" checked>
+    </label>
+    <label for="category">category: 
+        <select name="category" id="category">
+            <option disabled selected>Choose one</option>
+            <option value="tech">tech</option>
+            <option value="hogar">hogar</option>
+        </select>
+    </label>
+    <input type="number" name="stock" id="stock" placeholder="stock">
+    <input type="url" name="thumbnail" id="thumbnail" placeholder="url thumbnail">
+    <input type="submit" value="Cargar producto" class="btn">
+</form>
+
+{{!--<div id="portaCards" class="portaCards" ></div>
+ 
+<div id="portaCards" class="portaCards" >
+    {{#each file}}
+        
+            <div class="card">
+                {{#each thumbnail}}
+                    <img src={{thumbnail}} />
+                {{/each}}
+                <h2>{{file.title}}</h2>
+                <p>{{file.description}}</p>
+                <p><strong>$ {{file.price}}</strong></p>
+            </div>
+        {{/each}} 
+</div> --}}
+
+
 
 <br>
 <br>
-{{#if file}}:
+{{#if file}}
 <h3>Todos los productos:</h3>
- <br>
     <div class="portaCards">  
         {{#each file}}
         
@@ -13,9 +56,11 @@
                 {{#each thumbnail}}
                     <img src={{thumbnail}} />
                 {{/each}}
-                <h2>{{title}}</h2>
-                <p>{{description}}</p>
-                <p><strong>$ {{price}}</strong></p>
+                <div class="cardInfo">
+                    <h2>{{title}}</h2>
+                    <p>{{description}}</p>
+                    <p><strong>$ {{price}}</strong></p>
+                </div>
             </div>
         {{/each}} 
     </div>
@@ -35,13 +80,8 @@
         </div>
 
         {{else}}
-        <p>Lamentablemente no hay Productos para listar.</p>
-    
-
-
-    
-{{/if}}
-  
+        <p>Lamentablemente no hay Productos para listar.</p>    
+{{/if}} 
 
 
 {{!-- {{#if product}}
@@ -64,5 +104,6 @@
 
 
 
+
 <script src="/socket.io/socket.io.js"></script>
-<script src="js/index.js"></script>
+<script src="js/realProds.js"></script>

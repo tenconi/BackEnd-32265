@@ -19,6 +19,7 @@ footer{
     background: #454545;
     font-size: 14px;
     color:whitesmoke;
+    margin-top: 3.6rem;
 }
 
 .btn{
@@ -41,15 +42,49 @@ background: orange ;
 .portaCards{
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin: 1.5rem auto;
 }
-.card{
-    padding:1.4rem;
-    border-radius: .5rem;
+.card{    
+    border-radius: .3rem;
     background: whitesmoke;
     box-shadow: 2px 2px 15px rgba(0,0,0,0.1);
+}
+.portaImg{
+    width: 100%;
+    height: 250px ;
+    max-height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+.portaImg img{
+    width: 100%;
+}
+.cardInfo{
+    padding:1.4rem;
 }
 u{
     background: yellow;
     padding: 5px;
+}
+
+.formulario{
+    background: lightgreen;
+    width: 100%;
+    max-width: 420px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    border-radius: .3rem;
+}
+input, label{
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+
+}
+.btn{
+    background: green;
 }
