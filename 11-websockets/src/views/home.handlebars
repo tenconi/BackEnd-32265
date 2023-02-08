@@ -4,8 +4,6 @@
 <br>
 <br>
 
-
-{{!-- 
 <p>{{ejemplo}}</p>
 
 
@@ -16,13 +14,17 @@
   {{#each file}}  
     <div class="card">
 
-      {{#each thumbnail}}
+      {{!-- {{#each thumbnail}}
         <img src={{thumbnail}} />
-      {{/each}}
-      <h2>{{title}}</h2>
-      <p>{{description}}</p>
-      <p><strong>$ {{price}}</strong></p>
-
+      {{/each}} --}}
+      <div class="portaImg">
+        <img src={{thumbnail.[0]}} />
+      </div>
+      <div class="cardInfo">
+        <h2>{{title}}</h2>
+        <p>{{description}}</p>
+        <p><strong>$ {{price}}</strong></p>
+      </div>
     </div>
   {{/each}}
   
@@ -31,7 +33,6 @@
 {{else}}
   <p>Lamentablemente no hay Productos para listar.</p>
 {{/if}}
- --}}
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="js/index.js"></script>

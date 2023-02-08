@@ -3,7 +3,8 @@ import { __dirname } from "./utils.js";
 import handlebars from "express-handlebars";
 import { Server } from "socket.io";
 
-import viewsRouter from "./routes/views.router.js";
+// import viewsRouter from "./routes/views.router.js";
+import realTimeRouter from "./routes/realtime.router.js";
 import productsRouter from "./routes/products.router.js";
 import cartRouter from "./routes/cart.router.js";
 
@@ -19,10 +20,10 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
 // rutas
-app.use("/", viewsRouter);
-app.use("/realtimeproducts", productsRouter);
-app.use("/api/products", productsRouter);
-app.use("/api/cart", cartRouter);
+app.use("/", productsRouter);
+app.use("/realtimeproducts", realTimeRouter);
+// app.use("/api/products", productsRouter);
+// app.use("/api/cart", cartRouter);
 
 
 

@@ -84,3 +84,6 @@ formulario.onsubmit = (e) =>{
 /* socketProds.on('mensajeGral', algo=>{
     console.log(algo); // recibo OK de server.js
 }) */
+socketProds.on('fileList', (esto)=>{
+    console.log('esto', esto);
+})

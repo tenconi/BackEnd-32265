@@ -1,6 +1,5 @@
 import { Router } from "express";
-import { Server } from "socket.io";
-import ProductManager from "../clases/ProductManager.js";
+import PM from "../prodManager.js";
 import { socketServer } from "../server.js";
 
 import { __dirname } from "../utils.js";
@@ -16,7 +15,8 @@ realtimeproducts.get("/", (req, res) => {
   if (limit && !isNaN(limit)) {
     file = file.slice(0, limit);
   }
-  res.render("realtimeproducts", { file });
+  socketServer.emit('fileList', {file})
+  res.render("realtimeproducts", {file});
 });
 
 realtimeproducts.post("/", (req, res) => {

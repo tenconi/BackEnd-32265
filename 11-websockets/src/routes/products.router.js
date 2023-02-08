@@ -5,7 +5,6 @@ import PM from "../prodManager.js";
 const router = Router();
 const prodMan = new PM(__dirname+'/files/Productos.json');
 
-import { socketServer } from "../server.js";
 
 
 router.get("/", (req, res) => {
@@ -17,7 +16,7 @@ router.get("/", (req, res) => {
   }
   // res.json(file);
   // console.log();
-  res.render('realtimeproducts', {file})
+  res.render('home', {file})
  
 });
 
@@ -34,7 +33,7 @@ router.get("/:pid", (req, res) => {
     message: `→ Resultado de su busqueda : ${pid} encontrado`,
     product,
   }); */
-  console.log(product);
+  // console.log(product);
   res.render('realtimeproducts', {product})
 });
 
