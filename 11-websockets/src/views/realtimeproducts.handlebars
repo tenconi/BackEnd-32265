@@ -1,32 +1,40 @@
-
 <h2>Real Time Products</h2>
-<br>
+<br />
 <a href="/">← volver</a>
-<br><br>
-
-
+<br /><br />
+{{!-- 
 <form id="formulario" class="formulario">
-    <h3>Agregar productos:</h3>
-    <br>
-    <input type="text" name="title" id="title" placeholder="Tile">
-    <input type="text" name="description" id="description" placeholder="Description">
-    <input type="text" name="code" id="code" placeholder="Code">
-    <input type="number" name="price" id="price" placeholder="Price" >
-    <label for="status">Status:
-        <input type="checkbox" name="status" id="status" checked>
-    </label>
-    <label for="category">category: 
-        <select name="category" id="category">
-            <option disabled selected>Choose one</option>
-            <option value="tech">tech</option>
-            <option value="hogar">hogar</option>
-        </select>
-    </label>
-    <input type="number" name="stock" id="stock" placeholder="stock">
-    <input type="url" name="thumbnail" id="thumbnail" placeholder="url thumbnail">
-    <input type="submit" value="Cargar producto" class="btn">
+  <h3>Agregar productos:</h3>
+  <br />
+  <input type="text" name="title" id="title" placeholder="Tile" />
+  <input
+    type="text"
+    name="description"
+    id="description"
+    placeholder="Description"
+  />
+  <input type="text" name="code" id="code" placeholder="Code" />
+  <input type="number" name="price" id="price" placeholder="Price" />
+  <label for="status">Status:
+    <input type="checkbox" name="status" id="status" checked />
+  </label>
+  <label for="category">category:
+    <select name="category" id="category">
+      <option disabled selected>Choose one</option>
+      <option value="tech">tech</option>
+      <option value="hogar">hogar</option>
+    </select>
+  </label>
+  <input type="number" name="stock" id="stock" placeholder="stock" />
+  <input
+    type="url"
+    name="thumbnail"
+    id="thumbnail"
+    placeholder="url thumbnail"
+  />
+  <input type="submit" value="Cargar producto" class="btn" />
 </form>
-
+ --}}
 {{!--<div id="portaCards" class="portaCards" ></div>
  
 <div id="portaCards" class="portaCards" >
@@ -43,59 +51,54 @@
         {{/each}} 
 </div> --}}
 
-
-
-<br>
-<br>
+<br />
+<br />
 {{#if file}}
-<h3>Todos los productos:</h3>
-    <div class="portaCards">  
+  <h3>Todos los productos:</h3>
+  <div class="portaCards">
+
+    {{#each file}}
+
+      <div class="card">
+        <div class="portaImg">
+          {{!-- {{#each file.thumbnail}}
+            <img src={{thumbnail}} />
+          {{/each}} --}}
        
-        {{#each file}}
-        
-            <div class="card">
-                <div class="portaImg">
-                   {{#each thumbnail}}
-                    <img src={{thumbnail}} />
-                {{/each}} 
-                </div>
-                
-                <div class="cardInfo">
-                    <h2>{{title}}</h2>
-                    <p>{{description}}</p>
-                    <p><strong>$ {{price}}</strong></p>
-                </div>
-            </div>
-        {{/each}} 
-    </div>
-        
-        {{else if product}}
-        <h3>ID <u>{{product.id}}</u> Seleccionado::</h3>
-        <br>
-        <div class="portaCards">
-        <div class="card">
-             <div class="portaImg">
-                {{#each product.thumbnail}}
-                    <img src={{product.thumbnail}} />
-                {{/each}}
-                </div>
-                <div class="cardInfo">
-                    <h2>{{product.title}}</h2>
-                    <p>{{product.description}}</p>
-                    <p><strong>$ {{product.price}}</strong></p>
-                </div>
-            </div>
+           <img src={{thumbnail.[0]}} />
         </div>
 
-        {{else}}
-        <p>Lamentablemente no hay Productos para listar.</p>    
-{{/if}} 
+        <div class="cardInfo">
+          <h2>{{title}}</h2>
+          <p>{{description}}</p>
+          <p><strong>$ {{price}}</strong></p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
 
+{{else if product}}
+  <h3>Producto con ID <u>{{product.id}}</u> seleccionado:</h3>
+  <br />
+  <div class="portaCards">
+    <div class="card">
+      <div class="portaImg">
+       {{!--  {{#each product.thumbnail}}
+          <img src={{product.thumbnail}} />
+        {{/each}} --}}
+        <img src={{product.thumbnail.[0]}} />
+      </div>
+      <div class="cardInfo">
+        <h2>{{product.title}}</h2>
+        <p>{{product.description}}</p>
+        <p><strong>$ {{product.price}}</strong></p>
+      </div>
+    </div>
+  </div>
 
-
-
-
-
+{{else}}
+  <p>Lamentablemente no hay Productos para listar.</p>
+{{/if}}
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="js/realProds.js"></script>

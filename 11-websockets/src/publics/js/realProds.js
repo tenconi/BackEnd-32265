@@ -1,5 +1,6 @@
-const socketProds = io();
+const socketProds = io(); 
 
+/* 
 const formulario = document.getElementById('formulario');
 const title = document.getElementById('title');
 const description = document.getElementById('description');
@@ -12,9 +13,6 @@ const stock = document.getElementById('stock');
 const thumbnail = document.getElementById('thumbnail');
 
 const portaCards = document.getElementById('portaCards');
-
-
-
 
 formulario.onsubmit = (e) =>{
     e.preventDefault();
@@ -32,7 +30,9 @@ formulario.onsubmit = (e) =>{
     console.log(product)
     socketProds.emit('newProduct', product);
     formulario.reset()
-}
+} */
+
+
 
 /* socketProds.on('listado', ()=>{
     console.log('file');
@@ -84,8 +84,3 @@ formulario.onsubmit = (e) =>{
 /* socketProds.on('mensajeGral', algo=>{
     console.log(algo); // recibo OK de server.js
 }) */
-
-
-/* socketProds.on('listaProds', algo=>{
-    console.log('es algo',algo); // NO
-})  */

@@ -1,10 +1,12 @@
 import { Router } from "express";
 import { __dirname } from "../utils.js";
+import PM from "../prodManager.js";
 
 const router = Router();
-
-import PM from "../prodManager.js";
 const prodMan = new PM(__dirname+'/files/Productos.json');
+
+import { socketServer } from "../server.js";
+
 
 router.get("/", (req, res) => {
   const { limit } = req.query;
@@ -16,6 +18,7 @@ router.get("/", (req, res) => {
   // res.json(file);
   // console.log();
   res.render('realtimeproducts', {file})
+ 
 });
 
 router.post("/", (req, res) => {
