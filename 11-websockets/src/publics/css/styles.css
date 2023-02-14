@@ -107,3 +107,12 @@ input, label{
     color:royalblue;
     font-weight: 600;
 }
+
+.card-update{
+    animation:3s infinite animCard;
+}
+@keyframes animCard {
+    0%{background: whitesmoke;color:goldenrod}
+    50%{background: lightgreen;color:#333}
+    100%{background: whitesmoke;color:goldenrod}
+}
