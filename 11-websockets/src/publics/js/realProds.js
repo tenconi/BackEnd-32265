@@ -1,4 +1,15 @@
-const socketProds = io(); 
+const socketClient = io(); 
+
+console.log('Hola desde realProds.js');
+
+socketClient.on('saludo', (saludo)=>{ // viene de server.js
+        console.log(saludo);
+})
+socketClient.emit('emision', 'Este es una EMISION desde //realProds.js')
+
+socketClient.on('fileList', fileList =>{
+    console.log('fileList',fileList); // NO LEVANTA
+})
 
 /* 
 const formulario = document.getElementById('formulario');
@@ -84,6 +95,3 @@ formulario.onsubmit = (e) =>{
 /* socketProds.on('mensajeGral', algo=>{
     console.log(algo); // recibo OK de server.js
 }) */
-socketProds.on('fileList', (esto)=>{
-    console.log('esto', esto);
-})

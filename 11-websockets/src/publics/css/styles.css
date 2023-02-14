@@ -43,19 +43,19 @@ background: orange ;
 .portaCards{
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     margin: 1.5rem auto;
 }
 .card{    
     border-radius: .3rem;
     background: whitesmoke;
-    box-shadow: 2px 2px 15px rgba(0,0,0,0.1);
+    box-shadow: 2px 5px 20px #aaa;
     max-width: 420px;
     overflow: hidden;
 }
 .portaImg{
     width: 100%;
-    height: 250px ;
+    height: 270px ;
     max-height: 400px;
     overflow: hidden;
     position: relative;
@@ -94,4 +94,16 @@ input, label{
 }
 .btn{
     background: green;
+}
+.selected{
+    font-weight: 400;
+    border-bottom: 1px solid #454545;
+    padding-bottom: 5px;
+    max-width: 420px;
+    margin-top: 2rem;
+    
+}
+.green{
+    color:royalblue;
+    font-weight: 600;
 }

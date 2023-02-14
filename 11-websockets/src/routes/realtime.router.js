@@ -1,12 +1,12 @@
 import { Router } from "express";
 import PM from "../prodManager.js";
+import { __dirname } from "../utils.js";
 import { socketServer } from "../server.js";
 
-import { __dirname } from "../utils.js";
 
 const realtimeproducts = Router();
-const prodMan = new PM(__dirname+'/files/Productos.json');
 
+const prodMan = new PM(__dirname+'/files/Productos.json');
 
 realtimeproducts.get("/", (req, res) => {
   const { limit } = req.query;
@@ -15,8 +15,10 @@ realtimeproducts.get("/", (req, res) => {
   if (limit && !isNaN(limit)) {
     file = file.slice(0, limit);
   }
-  socketServer.emit('fileList', {file})
-  res.render("realtimeproducts", {file});
+  
+  socketServer.emit('fileList', 'mensaje desde realtime.router')
+
+  res.render("realtimeproducts", file); 
 });
 
 realtimeproducts.post("/", (req, res) => {
@@ -24,7 +26,7 @@ realtimeproducts.post("/", (req, res) => {
   prodMan.addProduct(prod);
   res.json({ message: `→ Producto creado exitosamente:`, prod });
   
-  socketServer.sockets.emit("sendProduct", prod);
+  // socketServer.sockets.emit("sendProduct", prod);
 
   res.redirect("/realtimeproducts");
 });

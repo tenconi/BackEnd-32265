@@ -20,7 +20,7 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
 // rutas
-app.use("/", productsRouter);
+app.use("/products", productsRouter);
 app.use("/realtimeproducts", realTimeRouter);
 // app.use("/api/products", productsRouter);
 // app.use("/api/cart", cartRouter);
@@ -40,8 +40,15 @@ socketServer.on("connection", (socket) => {
   socket.on("disconnect", (mensaje) => {
     console.log("Usuario desconectado");
   });
+
+
   
-  socket.emit("saludo", "Bienvenido a SOCKET");
+  socket.emit("saludo", "Bienvenido a SOCKET // enviado desde server.js");
+
+  socket.on('emision', (contenido)=>{
+    console.log(contenido); // llega ok desde realProds.js
+  })
+
 
  /* socket.on("respuestaSaludo", (mensaje) => {
     console.log(mensaje);

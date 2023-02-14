@@ -34,7 +34,7 @@ router.get("/:pid", (req, res) => {
     product,
   }); */
   // console.log(product);
-  res.render('realtimeproducts', {product})
+  res.render('home', {product})
 });
 
 router.put("/:pid", (req, res) => {

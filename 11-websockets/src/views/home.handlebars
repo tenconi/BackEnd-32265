@@ -1,5 +1,3 @@
-<h3>Home : todos los productos:</h3>
-<br>
 <a href="/realtimeproducts">en tiempo Real → </a>
 <br>
 <br>
@@ -8,30 +6,45 @@
 
 
 {{#if file}}
+<h3>Home : todos los productos:</h3>
+  <div class="portaCards">
+    {{#each file}}  
+      <div class="card">
+        {{!-- {{#each thumbnail}}
+          <img src={{thumbnail}} />
+        {{/each}} --}}
+        <div class="portaImg">
+          <img src={{thumbnail.[0]}} />
+        </div>
+        <div class="cardInfo">
+          <h2>{{title}}</h2>
+          <p>{{description}}</p>
+          <p><strong>$ {{price}}</strong></p>
+        </div>
+      </div>
+    {{/each}}  
+  </div>
 
-<div class="portaCards">
-  
-  {{#each file}}  
+  {{else if product}}
+  <h3 class="selected">Producto con ID <span class="green">{{product.id}}</span> seleccionado:</h3>
+  <div class="portaCards">
     <div class="card">
-
-      {{!-- {{#each thumbnail}}
-        <img src={{thumbnail}} />
-      {{/each}} --}}
       <div class="portaImg">
-        <img src={{thumbnail.[0]}} />
+       {{!--  {{#each product.thumbnail}}
+          <img src={{product.thumbnail}} />
+        {{/each}} --}}
+        <img src={{product.thumbnail.[0]}} />
       </div>
       <div class="cardInfo">
-        <h2>{{title}}</h2>
-        <p>{{description}}</p>
-        <p><strong>$ {{price}}</strong></p>
+        <h2>{{product.title}}</h2>
+        <p>{{product.description}}</p>
+        <p><strong>$ {{product.price}}</strong></p>
       </div>
     </div>
-  {{/each}}
-  
-</div>
+  </div>
 
-{{else}}
-  <p>Lamentablemente no hay Productos para listar.</p>
+  {{else}}
+    <p>Lamentablemente no hay Productos para listar.</p>
 {{/if}}
 
 <script src="/socket.io/socket.io.js"></script>
