@@ -1,11 +1,11 @@
-<a href="/realtimeproducts">en tiempo Real → </a>
-<br>
-<br>
 
 <p>{{ejemplo}}</p>
 
 
 {{#if file}}
+<a href="/realtimeproducts">en tiempo Real → </a>
+<br>
+<br>
 <h3>Home : todos los productos:</h3>
   <div class="portaCards">
     {{#each file}}  
@@ -26,6 +26,9 @@
   </div>
 
   {{else if product}}
+  <a href="/products">← volver</a>
+<br>
+<br>
   <h3 class="selected">Producto con ID <span class="green">{{product.id}}</span> seleccionado:</h3>
   <div class="portaCards">
     <div class="card">
@@ -48,4 +51,3 @@
 {{/if}}
 
 <script src="/socket.io/socket.io.js"></script>
-<script src="js/index.js"></script>

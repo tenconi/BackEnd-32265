@@ -11,6 +11,9 @@ socketClient.on('fileList', fileList =>{
     console.log('fileList',fileList); // NO LEVANTA
 })
 
+socketClient.on('contenido', contenido=>{
+})
+
 /* 
 const formulario = document.getElementById('formulario');
 const title = document.getElementById('title');

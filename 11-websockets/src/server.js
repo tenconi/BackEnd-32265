@@ -49,6 +49,11 @@ socketServer.on("connection", (socket) => {
     console.log(contenido); // llega ok desde realProds.js
   })
 
+  socket.on('fileList', (contenido)=>{
+    console.log('fileList',contenido);
+    socket.emit('contenido',contenido)
+  })
+
 
  /* socket.on("respuestaSaludo", (mensaje) => {
     console.log(mensaje);
