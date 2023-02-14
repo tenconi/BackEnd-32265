@@ -18,7 +18,7 @@ realtimeproducts.get("/", (req, res) => {
   
   socketServer.emit('fileList', 'mensaje desde realtime.router')
 
-  res.render("realtimeproducts", file); 
+  res.render("realtimeproducts", {file}); // renderizo
 });
 
 realtimeproducts.post("/", (req, res) => {
