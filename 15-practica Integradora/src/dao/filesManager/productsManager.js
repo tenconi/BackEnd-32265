@@ -46,30 +46,37 @@ export default class ProductManager {
         } else {
             return `El id ${id} no se encuentra listado.`    
         }
-
-        // return `Ud. ha eliminado ${delSelect.name} con id ${delSelect.id} `;
-
     }
 
     updateProduct(id){
-
+        
     }
-    deleteFile(){
 
+    async deleteFile(){
+        if(fs.existsSync(path)){
+            try {
+                await fs.promises.unlink(path);
+                return 'El archivo ha sido eliminado satisfactoriamente. No hay vuelta atras.' ;
+            } catch (error) {
+                return error;
+            }            
+        }else{
+            return 'No existe archivo para eliminar.';
+        }
     }
 
     async #generateId() {
         let estado = await this.getAllProducts();
         let id = 1;
         let searchMaxId =  estado.map(element => {
-          return element.id
+          return element.id;
         });
-        let maxId = Math.max(...searchMaxId)
+        let maxId = Math.max(...searchMaxId);
     
         if(maxId == 0 || maxId == null || maxId == -Infinity){
-          return id = 1
+          return id = 1;
         }else if(maxId){
-          return id= maxId + 1
+          return id= maxId + 1;
         }
       }
 

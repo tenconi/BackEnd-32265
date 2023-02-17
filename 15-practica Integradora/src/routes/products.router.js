@@ -37,5 +37,9 @@ router.delete('/:id', async (req , res) => {
     res.json({message : delProd });
 })
 
+router.delete('/', async (req , res) => {
+    const delFile = await productManager.deleteFile();
+    res.json({message : delFile });
+})
 
 export default router
