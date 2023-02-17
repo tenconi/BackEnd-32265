@@ -26,14 +26,23 @@ router.get('/:id', async (req , res) => {
 
 router.post('/', async (req, res) => {
     const prod = req.body;
-    const newProduct = await productManager.addProduct(prod)
-    res.json({message : 'Products agregado correctamente', prod})
+    const newProduct = await productManager.addProduct(prod);
+    res.json({message : 'Products agregado correctamente', prod});
+})
+
+router.put('/:id', async  (req, res) => {
+    const {id} = req.params;
+    const newValue = req.body; 
+    const field = Object.keys(newValue).toString(); // lo paso a string xq me llega como array
+    const value = Object.values(newValue).toString(); // lo paso a string xq me llega como array
+
+    const editProd = await productManager.updateProduct( parseInt(id) , field , value );
+    res.json({message: editProd}) ;
 })
 
 router.delete('/:id', async (req , res) => {
     const {id} = req.params;
     const delProd = await productManager.deleteProduct(parseInt(id));
-
     res.json({message : delProd });
 })
 

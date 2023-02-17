@@ -48,8 +48,20 @@ export default class ProductManager {
         }
     }
 
-    updateProduct(id){
-        
+    async updateProduct(id, field, value){
+        const getProduct = await this.getAllProducts();
+        const prodToEdit = getProduct.find((x) => x.id === id);
+        const prodRestantes = getProduct.filter((x) => x.id != id);
+
+        prodToEdit[ field ] = value;
+        let concatenado = prodRestantes.concat(prodToEdit);
+
+        if( !id || !field || !value){
+            return 'Deben completarse todos los campos, por ej:   "campo" : "valor_a_modificar"';
+        } else {            
+            await fs.promises.writeFile(path, JSON.stringify( concatenado ));
+            return `Producto con id ${id} editado correctamente. Su nuevo ${field} es ${value}.`;
+        } 
     }
 
     async deleteFile(){
