@@ -1,0 +1,41 @@
+import { Router } from "express";
+import ProductManager from '../dao/filesManager/productsManager.js'
+
+const router = Router();
+
+const productManager = new ProductManager()
+
+router.get('/', async (req, res) => {
+    const products = await productManager.getAllProducts();
+    if (products.length === 0) {
+        res.json({message : 'No hay productos listados'});        
+    } else {
+        res.json({message : 'Listado de productos: ', products: products});        
+    }
+})
+
+router.get('/:id', async (req , res) => {
+    const {id} = req.params;
+    const product = await productManager.getProductById(parseInt(id));
+    if (product) {
+        res.json({message : 'Resultado de su seleccion: ', product: product});
+    } else {
+        res.json({message : `Lamentablemente el Id ${id} no se encuentra listado.`});
+    }
+})
+
+router.post('/', async (req, res) => {
+    const prod = req.body;
+    const newProduct = await productManager.addProduct(prod)
+    res.json({message : 'Products agregado correctamente', prod})
+})
+
+router.delete('/:id', async (req , res) => {
+    const {id} = req.params;
+    const delProd = await productManager.deleteProduct(parseInt(id));
+
+    res.json({message : delProd });
+})
+
+
+export default router
