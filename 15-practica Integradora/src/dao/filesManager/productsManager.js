@@ -1,4 +1,3 @@
-import { json } from 'express';
 import fs from 'fs';
 import { __dirname } from '../../utils.js';
 
@@ -57,7 +56,7 @@ export default class ProductManager {
         let concatenado = prodRestantes.concat(prodToEdit);
 
         if( !id || !field || !value){
-            return 'Deben completarse todos los campos, por ej:   "campo" : "valor_a_modificar"';
+            return `Deben completarse todos los campos, por ej:  { "campo" : "valor_a_modificar" }`;
         } else {            
             await fs.promises.writeFile(path, JSON.stringify( concatenado ));
             return `Producto con id ${id} editado correctamente. Su nuevo ${field} es ${value}.`;
