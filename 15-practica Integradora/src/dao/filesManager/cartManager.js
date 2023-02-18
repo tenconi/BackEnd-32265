@@ -5,10 +5,6 @@ const path = __dirname + '/Cart.json' ;
 const productsPath = __dirname + '/Products.json';
 
 export default class CartManager {
-  construct() {
-    // this.cart = [];
-    // this.path=path;
-  }
 
   async addToCart(id) {
     const getProds = await this.#getProds();
@@ -27,14 +23,14 @@ export default class CartManager {
     if ( getCartProd ) {
       const getCartRest = getCart.filter((x) => x.id != id); // consigo los restantes
       purch.quantity = getCartProd.quantity + 1;
-      let concatenados = getCartRest.concat(purch);
+      let concatenados = getCartRest.concat( purch );
 
       await fs.promises.writeFile( path, JSON.stringify( concatenados ));
-      return `Producto agregado Anteriormente. Se sumó una Unidad.`;
+      return `Se sumó una Unidad. Producto agregado Anteriormente. `;
     } else {
-      getCart.push(purch);
-      await fs.promises.writeFile(path, JSON.stringify(getCart));
-      return `Producto agregado correctamente:`;
+      getCart.push( purch );
+      await fs.promises.writeFile(path, JSON.stringify( getCart ));
+      return purch;
     }
   }
 
@@ -48,8 +44,8 @@ export default class CartManager {
     }
   }
 
-  getPurchaseById(id) {
-    const getProds = this.getPurchases();
+  async getPurchaseById(id) {
+    const getProds = await this.getPurchases();
     const searchId = getProds.find((x) => x.id === id);
     if (searchId) {
       return searchId;
@@ -58,13 +54,13 @@ export default class CartManager {
     }
   }
 
-  deletePurchase(id) {
-    const getProds = this.getPurchases(id);
+  async deletePurchase(id) {
+    const getProds = await this.getPurchases(id);
     let validation = getProds.find((x) => x.id == id);
 
-    if (validation) {
+    if ( validation ) {
       let searchOthers = getProds.filter((x) => x.id != id);
-      fs.writeFileSync(path, JSON.stringify(searchOthers));
+      await fs.promises.writeFile(path, JSON.stringify( searchOthers ));
       return `Elemento con id: ${id} eliminado correctamente.`;
     } else {
       return `Elemento con id: ${id} no encontrado`;
