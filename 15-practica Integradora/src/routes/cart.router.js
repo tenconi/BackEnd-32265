@@ -1,12 +1,19 @@
 import { Router } from "express";
-import CartManager from "../dao/filesManager/cartManager.js";
+// import CartManager from "../dao/filesManager/cartManager.js"; // files
+import CartManager from "../dao/mongoManager/cartManager.js"; // bbdd
 
 const router = Router();
 const cartManager = new CartManager();
 
 router.get('/', async (req, res) => {
     const cart = await cartManager.getPurchases();
-    res.json({message : 'Productos en carro: ', cart: cart})
+    if(!cart.length){
+        res.json({message : 'No se han seleccionado productos: ', cart: cart})
+
+    }else{
+        res.json({message : 'Productos en carro: ', cart: cart})
+
+    }
 })
 
 router.get('/:id', async (req, res) => {
@@ -17,7 +24,8 @@ router.get('/:id', async (req, res) => {
 
 router.post('/:id', async (req, res) => {
     const {id} = req.params;
-    const purchase = await cartManager.addToCart( parseInt(id) );
+    // const purchase = await cartManager.addToCart( parseInt(id) ); // para usar con files
+    const purchase = await cartManager.addToCart( id ); // para usar con ddbb
     res.json({message : 'Producto agregado correctamente.' ,product:purchase })
 })
 

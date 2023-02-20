@@ -1,4 +1,3 @@
-import { urlencoded } from "express";
 import mongoose from "mongoose";
 
 const productsSchema = mongoose.Schema({
