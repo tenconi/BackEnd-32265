@@ -1,3 +1,4 @@
+import { urlencoded } from "express";
 import mongoose from "mongoose";
 
 const productsSchema = mongoose.Schema({
@@ -33,7 +34,7 @@ const productsSchema = mongoose.Schema({
         require : true,
     },
     thumbnail:{
-        type: URL,
+        type: Array,
         require : true,
     }, 
     

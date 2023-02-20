@@ -1,5 +1,6 @@
 import { Router } from "express";
-import ProductManager from '../dao/filesManager/productsManager.js'; //file
+// import ProductManager from '../dao/filesManager/productsManager.js'; // file
+import ProductManager from "../dao/mongoManager/productsManager.js"; // BBDD
 
 const router = Router();
 
@@ -16,7 +17,10 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req , res) => {
     const {id} = req.params;
-    const product = await productManager.getProductById(parseInt(id));
+    // const product = await productManager.getProductById(parseInt(id)); // usar con Files
+    const product = await productManager.getProductById(id); // usar con bbdd
+
+
     if (product) {
         res.json({message : 'Resultado de su seleccion: ', product: product});
     } else {
@@ -36,13 +40,15 @@ router.put('/:id', async  (req, res) => {
     const field = Object.keys(newValue).toString(); // lo paso a string xq me llega como array
     const value = Object.values(newValue).toString(); // lo paso a string xq me llega como array
 
-    const editProd = await productManager.updateProduct( parseInt(id) , field , value );
+    // const editProd = await productManager.updateProduct( parseInt(id) , field , value ); // usar con Files
+    const editProd = await productManager.updateProduct( id , field , value ); // usar con bbdd
     res.json({message: editProd}) ;
 })
 
 router.delete('/:id', async (req , res) => {
     const {id} = req.params;
-    const delProd = await productManager.deleteProduct(parseInt(id));
+    // const delProd = await productManager.deleteProduct(parseInt(id));
+    const delProd = await productManager.deleteProduct(id);
     res.json({message : delProd });
 })
 
