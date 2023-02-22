@@ -1,15 +1,15 @@
 <a href="/products">← productos</a>
 <br/><br/>
 <h3>Real Time Products:</h3>
-
-
+<div class="portaCards"></div>
+{{!-- 
 {{#if file}}
   <div class="portaCards">
     {{#each file}}  
       <div class="card card-update">
         {{!-- {{#each thumbnail}}
           <img src={{thumbnail}} />
-        {{/each}} --}}
+        {{/each}} 
         <div class="portaImg">
           <img src={{thumbnail.[0]}} />
         </div>
@@ -21,9 +21,8 @@
       </div>
     {{/each}}  
   </div>
-
   {{else}}
     <p>Lamentablemente no hay Productos para listar.</p>
-{{/if}}
+{{/if}} - --}}
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/realProds.js"></script>

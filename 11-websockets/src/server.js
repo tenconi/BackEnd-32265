@@ -8,6 +8,13 @@ import realTimeRouter from "./routes/realtime.router.js";
 import productsRouter from "./routes/products.router.js";
 import cartRouter from "./routes/cart.router.js";
 
+// *** Paso "productos" para mostrar desde esta importación, ya que me resultó imposible pasar desde "realProds.js" a "index.js"
+import ProductManager from "./prodManager.js";
+const PM = new ProductManager( __dirname + '/files/Productos.json');
+
+const prodsRealTime = PM.getFile();
+// console.log(prodsRealTime); // muestra OK
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -41,16 +48,23 @@ socketServer.on("connection", (socket) => {
     console.log("Usuario desconectado");
   });
 
-  socket.on('fileList', esto=>{
-    console.log('esto',esto);
-  })
+  socket.emit('realProds', prodsRealTime);
 
-
-  // lo envio desde 'js/realProds.js' - NO LEvanta
+  // lo envio desde 'js/realProds.js' -
   socket.on('delCliente', (esto) =>{
     console.log(`"Levanto en server.js"`, esto); // ok
   })
 
+
+  socket.on('delIndex', (aquello) =>{
+    console.log(`"Levanto en server.js"`, aquello); // ok
+  })
+
+  socket.on('fileList', sera => {
+    console.log(sera);
+  })
+
+  
 
   /* socket.on('newProduct', nuevoProd =>{
     // console.log( nuevo);

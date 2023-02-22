@@ -3,7 +3,7 @@ const socketProds = io();
     console.log(`"Levanto desde index.js"`, esto);
 }) */
 console.log('Hey desde Index.js');
-socketProds.emit('delIndex', 'Mens enviado desde Index.js')
+socketProds.emit('delIndex', 'Mens enviado desde Index.js'); // ok - se muestra por consola
 
 /* socketProds.on('saludo', (mensaje)=>{
     console.log('El servidor envio este mensaje:', file);

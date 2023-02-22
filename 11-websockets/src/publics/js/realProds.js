@@ -3,10 +3,30 @@ const socketClient = io();
 // console.log(socketClient);
 console.log('Hola desde realProds.js');
 
-socketClient.emit('delCliente', 'mensaje Emitido desde el CLIENTE realProds.js') // se muestra opr consola
+/* socketClient.emit('delCliente', 'mensaje Emitido desde el CLIENTE realProds.js') // ok - se muestra por consola
 
 socketClient.on('delIndex', mostrar => {
     console.log('Levanto en realProds.js', mostrar);
+})
+ */
+
+
+    socketClient.on('realProds', (realProds) => {
+    // console.log(realProds); //ok
+   const despliege = realProds.map( P => {
+    return  `<div class="card card-update">
+            <div class="portaImg">
+             <img src=${P.thumbnail[0]} />
+            </div>
+            <div class="cardInfo">
+            <h2>${P.title}</h2>
+            <p>${P.description}</p>
+            <p><strong>$ ${P.price}</strong></p>
+            </div>
+        </div>`
+   })
+   const portaCards = document.querySelector('.portaCards');
+    portaCards.innerHTML += despliege
 })
 
 
