@@ -4,10 +4,10 @@ import { productsModel } from "../models/product.models.js"; //productos
 export default class CartManager {
     async addToCart( id ) {        
         try {
-            const getProd = await productsModel.find({ '_id' : id }); // traigo elemento de "productos"
+            const getProd = await productsModel.find({ '_id' : id }); // traigo elemento de "productos". Este id es "idProd" en el cart != al id del cart.
             // return 'seleccionaste', getProd[0].name; // me devuelve array con un objeto
 
-            const compare = await cartModel.find({ 'idProd' : id}); // busca OK
+            const compare = await cartModel.find({ 'idProd' : id}); // busca en en "cart"
                 
             if (compare.length === 0) {
                 const adding = await cartModel.insertMany({"idProd": getProd[0]._id, "name": getProd[0].name, "quantity":1 }); // agrego nuevo
@@ -41,7 +41,8 @@ export default class CartManager {
 
     async deletePurchase( id ) {
         try {
-            
+           const delProd = await cartModel.deleteOne({'_id': id});
+           return 'Producto eliminado'
         } catch (error) {
             return error
         }

@@ -32,7 +32,8 @@ router.post('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     const {id} = req.params;
-    const delPurchase = await cartManager.deletePurchase( parseInt(id) );
+    // const delPurchase = await cartManager.deletePurchase( parseInt(id) ); // para usar con files
+    const delPurchase = await cartManager.deletePurchase( id ); // para usar con ddbb
     res.json({message : delPurchase })
 })
 
