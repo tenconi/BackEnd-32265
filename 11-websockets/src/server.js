@@ -50,30 +50,5 @@ socketServer.on("connection", (socket) => {
 
   socket.emit('realProds', prodsRealTime);
 
-  // lo envio desde 'js/realProds.js' -
-  socket.on('delCliente', (esto) =>{
-    console.log(`"Levanto en server.js"`, esto); // ok
-  })
-
-
-  socket.on('delIndex', (aquello) =>{
-    console.log(`"Levanto en server.js"`, aquello); // ok
-  })
-
-  socket.on('fileList', sera => {
-    console.log(sera);
-  })
-
-  
-
-  /* socket.on('newProduct', nuevoProd =>{
-    // console.log( nuevo);
-    arrayProds.push(nuevoProd)
-    socket.broadcast.emit('listadoProds', arrayProds)
-  }) */
-
-//   socket.emit('mensajeGral', 'Este es un mensaje general que ebiera ser recibido en todos los sockets')
-
-
 });
 
