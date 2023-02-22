@@ -2,22 +2,20 @@ import { cartModel } from "../models/cart.models.js";
 import { productsModel } from "../models/product.models.js"; //productos
 
 export default class CartManager {
-    async addToCart( id ) {
+    async addToCart( id ) {        
         try {
             const getProd = await productsModel.find({ '_id' : id }); // traigo elemento de "productos"
             // return 'seleccionaste', getProd[0].name; // me devuelve array con un objeto
 
-            /* let purch = {
-                id: getProd[0]._id,
-                name: getProd[0].name,
-                quantity: 1,
-            } */
-
-            let quantity = 1
-
-            const adding = await cartModel.insert({"id": getProd[0]._id, "name": getProd[0].name, "quantity":1 })
-            return 'se ha añadido', adding
-
+            const compare = await cartModel.find({ 'idProd' : id}); // busca OK
+                
+            if (compare.length === 0) {
+                const adding = await cartModel.insertMany({"idProd": getProd[0]._id, "name": getProd[0].name, "quantity":1 }); // agrego nuevo
+                return {adding};
+            } else {
+                await cartModel.updateOne({ 'idProd' : id}, {$inc: {quantity : +1}}); // sumo uno
+                return ' Se agregó una unidad.';
+            }
         } catch (error) {
             return error
         }
@@ -34,7 +32,8 @@ export default class CartManager {
 
     async getPurchaseById( id ) {
         try {
-            
+            const getPurchasesById = await cartModel.find({ '_id' : id });
+            return getPurchasesById;
         } catch (error) {
             return error
         }

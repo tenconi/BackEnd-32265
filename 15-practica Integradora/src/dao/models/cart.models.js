@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
-
-/* const cartSchema = mongoose.Schema ({
+/* 
+const cartSchema = mongoose.Schema ({
     purchase : {
         type: Array,
         name:{
             type: String,
         },
-        id:{
+        idProd:{
             type: String,
             require : true,
         },
@@ -19,13 +19,11 @@ import mongoose from "mongoose";
             require : true,
         }
     }
-}) 
- */
+})  */
+
+
 const cartSchema = mongoose.Schema ({
-        name:{
-            type: String,
-        },
-        id:{
+        idProd:{
             type: String,
             require : true,
         },
@@ -37,7 +35,8 @@ const cartSchema = mongoose.Schema ({
             type: Number,
             require : true,
         }
-}) 
+    }
+) 
 
 
 export const cartModel = mongoose.model( 'Cart' , cartSchema)

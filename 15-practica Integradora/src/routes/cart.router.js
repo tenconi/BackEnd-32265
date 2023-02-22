@@ -18,7 +18,8 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const {id} = req.params;
-    const cart = await cartManager.getPurchaseById( parseInt(id) );
+    // const cart = await cartManager.getPurchaseById( parseInt(id) ); // para usar con files
+    const cart = await cartManager.getPurchaseById( id ); // para usar con ddbb
     res.json({message : `Resultado de su consulta con id ${id}: `, result : cart})
 })
 
@@ -26,7 +27,7 @@ router.post('/:id', async (req, res) => {
     const {id} = req.params;
     // const purchase = await cartManager.addToCart( parseInt(id) ); // para usar con files
     const purchase = await cartManager.addToCart( id ); // para usar con ddbb
-    res.json({message : 'Producto agregado correctamente.' ,product:purchase })
+    res.json({message : 'Producto agregado correctamente.' , purchase })
 })
 
 router.delete('/:id', async (req, res) => {
