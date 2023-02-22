@@ -1,17 +1,22 @@
-const socketClient = io(); 
+const socketProds = io(); 
+/* socketProds.on('delCliente', (esto) => {
+    console.log(`"Levanto desde index.js"`, esto);
+}) */
+console.log('Hey desde Index.js');
+socketProds.emit('delIndex', 'Mens enviado desde Index.js')
 
-/* socketClient.on('saludo', (mensaje)=>{
+/* socketProds.on('saludo', (mensaje)=>{
     console.log('El servidor envio este mensaje:', file);
 
-    socketClient.emit('respuestaSaludo', 'RS: Muchas gracias');
+    socketProds.emit('respuestaSaludo', 'RS: Muchas gracias');
     
 }) */
 
 /* 
-socketClient.emit('test',()=>{
+socketProds.emit('test',()=>{
     return 'Hola Perri'; 
 }) */
 
-/* socketClient.on('mensajeGral', estoNuevo =>{
+/* socketProds.on('mensajeGral', estoNuevo =>{
     console.log(estoNuevo);
 }) */

@@ -41,23 +41,16 @@ socketServer.on("connection", (socket) => {
     console.log("Usuario desconectado");
   });
 
-
-  
-  socket.emit("saludo", "Bienvenido a SOCKET // enviado desde server.js");
-
-  socket.on('emision', (contenido)=>{
-    console.log(contenido); // llega ok desde realProds.js
-  })
-
-  socket.on('fileList', (contenido)=>{
-    console.log('fileList',contenido);
-    socket.emit('contenido',contenido)
+  socket.on('fileList', esto=>{
+    console.log('esto',esto);
   })
 
 
- /* socket.on("respuestaSaludo", (mensaje) => {
-    console.log(mensaje);
-  });   */
+  // lo envio desde 'js/realProds.js' - NO LEvanta
+  socket.on('delCliente', (esto) =>{
+    console.log(`"Levanto en server.js"`, esto); // ok
+  })
+
 
   /* socket.on('newProduct', nuevoProd =>{
     // console.log( nuevo);
@@ -66,8 +59,6 @@ socketServer.on("connection", (socket) => {
   }) */
 
 //   socket.emit('mensajeGral', 'Este es un mensaje general que ebiera ser recibido en todos los sockets')
-
-
 
 
 });

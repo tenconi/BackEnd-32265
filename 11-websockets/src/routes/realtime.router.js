@@ -3,7 +3,7 @@ import PM from "../prodManager.js";
 import { __dirname } from "../utils.js";
 
 import { socketServer } from "../server.js";
-
+// const prodSocket = io();
 
 const realtimeproducts = Router();
 
@@ -23,12 +23,13 @@ realtimeproducts.get("/", (req, res) => {
 });
 
 realtimeproducts.post("/", (req, res) => {
-    const prod = req.body;
+    const file = req.body;
   prodMan.addProduct(prod);
-  res.json({ message: `→ Producto creado exitosamente:`, prod });
+  res.json({ message: `→ Producto creado exitosamente:`, file });
   
   // socketServer.sockets.emit("sendProduct", prod);
 
+  res.render("realtimeproducts", {file});
   res.redirect("/realtimeproducts");
 });
 

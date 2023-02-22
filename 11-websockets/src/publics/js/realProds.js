@@ -1,18 +1,20 @@
 const socketClient = io(); 
 
+// console.log(socketClient);
 console.log('Hola desde realProds.js');
 
+socketClient.emit('delCliente', 'mensaje Emitido desde el CLIENTE realProds.js') // se muestra opr consola
+
+socketClient.on('delIndex', mostrar => {
+    console.log('Levanto en realProds.js', mostrar);
+})
+
+
+// socketClient.on('delCliente', 'mensaje desde el CLIENTE') // se muestra opr consola
+/* 
 socketClient.on('saludo', (saludo)=>{ // viene de server.js
-        console.log(saludo);
-})
-socketClient.emit('emision', 'Este es una EMISION desde //realProds.js')
-
-socketClient.on('fileList', fileList =>{
-    console.log('fileList',fileList); // NO LEVANTA
-})
-
-socketClient.on('contenido', contenido=>{
-})
+        console.log(saludo);    
+}) */
 
 /* 
 const formulario = document.getElementById('formulario');
