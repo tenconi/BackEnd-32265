@@ -8,6 +8,7 @@ import {Server} from 'socket.io';
 //data base:
 import './dao/dbConfig.js'
 
+
 const app = express();
 const PORT = process.env.POST || 3000; //variable de entorno, este es el puerto local.
 
@@ -17,7 +18,7 @@ app.use(express.urlencoded({extended : true}));
 app.use(express.static(__dirname + '/public'));
 // setup handlebars:
 app.engine('handlebars', handlebars.engine());
-app.set('views' , __dirname + 'views');
+app.set('views' , __dirname + '/views');
 app.set('view engine' , 'handlebars');
 // set up routes
 app.use( '/cart' , cartRouter );
@@ -27,6 +28,21 @@ app.use( '/products' , productsRouter );
 
 
 
-app.listen(PORT, ()=>{
+
+const httpServer = app.listen(PORT, ()=>{
     console.log(`Escuchando puerto : ${PORT}`);
+})
+
+// websocket:
+export const socketServer = new Server(httpServer);
+
+const messages = []; // vuelco mensajes
+
+socketServer.on( 'connection' , (socket) => {
+    console.log( `# Conected User: ${ socket.id }` );
+
+    socket.on( 'disconnected' , ( msg ) => {
+        console.log( '# Desconnected User.' );
+    })
+
 })

@@ -1,0 +1,49 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    background: #eee;
+    color: #222;
+}
+h1{
+    margin: 1rem 0 2rem;
+    color:royalblue;
+}
+.container{
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+.chatForm{
+    font-size: 18px;
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    align-items: center;
+    gap: 1rem;
+}
+.chatForm label {
+    text-align: right;
+}
+.chatField, .chatBtn {
+    padding: 0.5rem;
+    outline: none;
+    border-radius: 0.3rem;
+}
+.chatBtn{
+    background: lightgreen;
+    border-color: green;
+    cursor: pointer;
+}
+.chatBtn:hover{
+    background: limegreen;
+    color:#ffffff;    
+}
+.chatBox{
+    padding: 1rem;
+    width: 100%;
+    background-color: #efffff;
+    border-radius: 0.3rem;
+}
