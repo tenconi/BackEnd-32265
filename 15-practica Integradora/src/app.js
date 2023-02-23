@@ -36,13 +36,22 @@ const httpServer = app.listen(PORT, ()=>{
 // websocket:
 export const socketServer = new Server(httpServer);
 
-const messages = []; // vuelco mensajes
+const infoMessages = []; // vuelco mensajes
 
 socketServer.on( 'connection' , (socket) => {
     console.log( `# Conected User: ${ socket.id }` );
 
     socket.on( 'disconnected' , ( msg ) => {
         console.log( '# Desconnected User.' );
+    })
+
+    socket.on( 'newUser' , (usuario) => {
+        socket.broadcast.emit( 'broadcast' , usuario); // emite a todos menos al nuevo
+    })
+
+    socket.on( 'mensaje' , ( info ) => {
+        infoMessages.push( info );
+        socketServer.emit( 'chat' , infoMessages)
     })
 
 })
