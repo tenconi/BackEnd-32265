@@ -8,9 +8,9 @@ const productManager = new ProductManager()
 // ↓ le agrego "mongoosePagination" ↓
 router.get('/', async (req, res) => {
 
-    const {page, limit} = req.query;        
+    const {limit , page} = req.query;        
     // * ej:  http://localhost:3000/products?limit=2&page=1
-    const products = await productManager.getAllProducts({page , limit});
+    const products = await productManager.getAllProducts({limit , page});
     if (products.length === 0) {
         res.json({message : 'No hay productos listados'});        
     } else { 

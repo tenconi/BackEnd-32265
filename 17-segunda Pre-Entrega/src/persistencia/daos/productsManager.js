@@ -1,9 +1,10 @@
 import { productsModel } from "../models/product.models.js";
 
 export default class ProductsManager {
-    async getAllProducts({limit , page}) {
+    async getAllProducts( {limit , page}) {
         try {
-            const getProds = await productsModel.paginate({}, {page, limit} );
+            let getProds = await productsModel.paginate( {}, {limit , page});
+            console.log(getProds)
             return getProds ;
         } catch (error) {
             return error;

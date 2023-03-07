@@ -27,8 +27,6 @@ app.use( '/products' , productsRouter );
 
 
 
-
-
 const httpServer = app.listen(PORT, ()=>{
     console.log(`Escuchando puerto : ${PORT}`);
 })
