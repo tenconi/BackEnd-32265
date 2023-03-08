@@ -8,15 +8,17 @@ const productManager = new ProductManager()
 // ↓ le agrego "mongoosePagination" ↓
 router.get('/', async (req, res) => {
 
-    const {limit , page} = req.query;        
+    const {limit=20 , page=1} = req.query; // por defecto muestro 20 productos de la primer pagina.        
     // * ej:  http://localhost:3000/products?limit=2&page=1
-    const products = await productManager.getAllProducts({limit , page});
+    const products = await productManager.getAllProducts( limit , page );
+    console.log(limit , page);
+    
     if (products.length === 0) {
         res.json({message : 'No hay productos listados'});        
     } else { 
-        const next = products.hasNextPage ? `http://localhost:3000/products?limit=${products.limit}&page=${products.nextPage}` : null;
-        const prev = products.hasPrevPage ? `http://localhost:3000/products?limit=${products.limit}&page=${products.prevPage}` : null;
-        res.json({message : 'Listado de productos: ', products: products.docs , PrevPág: prev , PróxPág: next});        
+        const next = products.hasNextPage ? `http://localhost:3000/products?limit=${products.limit}&page=${products.nextPage}` : 'null';
+        const prev = products.hasPrevPage ? `http://localhost:3000/products?limit=${products.limit}&page=${products.prevPage}` : 'null';
+        res.json({message : 'Listado de productos: ', products: products.docs , PrevPág: prev , PróxPág: next , Página : `${products.page} / ${products.totalPages}`});        
     }
 })
 
