@@ -10,8 +10,8 @@ router.get('/', async (req, res) => {
 
     const {limit=20 , page=1} = req.query; // por defecto muestro 20 productos de la primer pagina.        
     // * ej:  http://localhost:3000/products?limit=2&page=1
+
     const products = await productManager.getAllProducts( limit , page );
-    console.log(limit , page);
     
     if (products.length === 0) {
         res.json({message : 'No hay productos listados'});        
@@ -47,6 +47,7 @@ router.put('/:id', async  (req, res) => {
     const value = Object.values(newValue).toString(); // lo paso a string xq me llega como array
 
     const editProd = await productManager.updateProduct( id , field , value ); 
+    
     res.json({message: editProd}) ;
 })
 

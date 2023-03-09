@@ -6,6 +6,7 @@ const productsSchema = mongoose.Schema({
         type: String,
         require : true,
         unique:true,
+        index:true
     }, 
     description: {
         type: String,
@@ -15,6 +16,7 @@ const productsSchema = mongoose.Schema({
         type: String,
         require : true,
         unique:true,
+        index:true
     }, 
     price:{
         type: Number,
