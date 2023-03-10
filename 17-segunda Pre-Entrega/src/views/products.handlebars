@@ -1,0 +1,20 @@
+<h2 class="titulo">Listado de productos</h2>
+
+{{!-- {{products.docs.[0]}} --}}
+
+{{#if products.length}}
+<p class="notification">
+    <img src="https://pngimg.com/uploads/attention/attention_PNG60.png" alt="notification">
+    De momento dejo esto así porque no encontré maneara de de extraer la info, fui y vine entre los archivos y no pude encontrara el problema.<br> No tuve inconvenientes con los ejemplos de clase y otras prácticas pero no entiendo por que no logro resolverlo en este view.
+</p>
+    {{!-- <p>{{products}}</p> --}}
+        <ul>
+            {{#each products}}
+            <li>{{products.name}}</li>
+            {{/each}}
+        </ul>
+  
+  {{else}}  
+    <p>No hay Nada</p>
+
+{{/if}}

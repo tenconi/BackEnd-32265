@@ -17,7 +17,7 @@ h1{
     max-width: 1200px;
     margin: 0 auto;
 }
-.portaUser{
+.portaUser, .titulo{
     font-size: 20px;
     font-weight: 400;
     display: flex; 
@@ -88,4 +88,21 @@ footer{
     font-size: 14px;
     color:whitesmoke;
     margin-top: 50px;
+}
+
+/* ----- */
+.notification{
+    width: 100%;
+    margin: auto;
+    padding: 1rem;
+    border:4px solid  red;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+.notification img {
+    width: 75px;
+    margin-right: 1rem;
 }

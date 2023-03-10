@@ -4,10 +4,13 @@ export default class ProductsManager {
     async getAllProducts( limit , page) {
         try {
             const getProds = await productsModel.paginate( {} , {limit, page});
-            return getProds ;
+            // const getProds = await productsModel.find( {});
+            // console.log(getProds)
+            return getProds.docs ;
         } catch (error) {
             return error;
         }
+
     }
     
     
@@ -34,6 +37,7 @@ export default class ProductsManager {
 
         try {
             // const editProd = productsModel.updateMany( { '_id' : id }, {$set:{ field : value}} ); // NO LEVANTA field :(
+
                 if(field === "name"){
                     const editProd = productsModel.updateOne( { '_id' : id }, {$set:{ "name" : value } }); 
                     return editProd
@@ -74,7 +78,6 @@ export default class ProductsManager {
                     return editProd
                 }
 
-                // console.log(id, field, value);
             return 'prod editado ok ', editProd
         } catch (error) {
             return error;
