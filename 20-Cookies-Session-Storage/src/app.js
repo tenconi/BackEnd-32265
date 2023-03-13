@@ -1,13 +1,16 @@
 import express from 'express';
-import handlebars from 'express-handlebars';
-import cookieParser from 'cookie-parser';  // guardo la sesion de session por cookie 
 import { __dirname } from './utils.js';
+import handlebars from 'express-handlebars';
+import cookieParser from 'cookie-parser';  // guardo la sesion de session por cookie .
+import FileStore from 'session-file-store'; // para guardar la info de sesion en archivo/bbdd.
 // views
 import productsRouter from './routes/products.router.js';
 import cartRouter from './routes/cart.router.js';
 import usersRouter from './routes/users.router.js';
 import chatRouter from './routes/chat.router.js';
 import viewsRouter from './routes/views.router.js';
+// conecto a BBDD
+import './persistencia/dbConfig.js'
 
 
 const app = express();
