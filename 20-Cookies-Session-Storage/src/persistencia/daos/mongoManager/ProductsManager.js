@@ -8,7 +8,7 @@ export default class ProductsManager {
             const getProds = await productsModel.aggregatePaginate({}, { limit, page });
             // const getProds = await productsModel.find( {});
             // console.log(getProds.docs);
-            return getProds.docs;
+            return getProds;
         } catch (error) {
             return error
         }

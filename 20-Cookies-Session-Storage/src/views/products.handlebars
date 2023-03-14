@@ -2,8 +2,7 @@
 <div class="portaCards">
 {{#if products}}
 
-
-{{#each products}}
+{{#each products.docs}}
 <div class="card">
     <div class="card__img">
         <img src={{thumbnail.[0]}} alt="">
@@ -21,7 +20,27 @@
 
 {{/each}}
 
+
+
 {{else}}
 <p>No llega nada</p>
 
 {{/if}}</div>
+
+
+
+<div class="cards__pagination">
+
+    {{#if products.hasPrevPage}}
+        <a href=/products/todos?limit={{products.limit}}&page={{products.prevPage}}>anterior</a>
+    {{/if}}
+
+        
+    <p class="pagina">Pág: {{products.page}} de {{products.totalPages}}</p> 
+
+        
+
+    {{#if products.hasNextPage}}
+        <a href=/products/todos?limit={{products.limit}}&page={{products.nextPage}}>siguiente</a>
+    {{/if}}
+</div>

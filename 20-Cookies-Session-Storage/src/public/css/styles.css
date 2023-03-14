@@ -38,9 +38,9 @@ nav ul li a {
 }
 .container{
     width: 90%;
-    min-height:calc(100vh - 19rem) ;
+    min-height:calc(100vh - 20rem) ;
     max-width: 1920px;
-    margin: 1.5rem auto;
+    margin: 1.5rem auto 2.5rem;
 }
 footer{
     height: 7rem;
@@ -98,9 +98,16 @@ overflow: hidden;
     color:royalblue;
 }
 .card .btn_comprar{
+    margin: 0 1rem;    
+}
+.cards__pagination{
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    margin-top: 1.5rem;
+    background: silver;
+}
+.cards__pagination a{
     margin: 0 1rem;
-    /* justify-self: flex-end; */
-    /* place-self: flex-end; */
-    /* align-self: flex-end; */
-    
 }
