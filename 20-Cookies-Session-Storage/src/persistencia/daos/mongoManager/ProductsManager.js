@@ -5,21 +5,38 @@ export default class ProductsManager {
     async getAllProducts(limit, page) {
         try {
             const getProds = await productsModel.aggregatePaginate({}, { limit, page });
-            // const getProds = await productsModel.find( {});
-            // console.log(getProds.docs);
             return getProds;
         } catch (error) {
-            return error
+            return error;
         }
     }
 
     async getProductById(id) {
         try {
-            const getProdById = await productsModel.find({'_id' : id});
+            const getProdById = await productsModel.find({ '_id': id });
             // console.log(getProdById);
-            return getProdById
+            return getProdById;
         } catch (error) {
-            return error
+            return error;
         }
     }
+
+    async addProduct(prod) {
+        try {
+            const newProd = await productsModel.create(prod);
+            return newProd;
+        } catch (error) {
+            return error;
+        }
+    }
+
+    async deleteProduct(id){
+        try {
+            const delProd = await productsModel.deleteOne({ '_id' : id})
+            return 'Producto eliminado correctamente.'
+        } catch (error) {
+            return error;
+        }
+    }
+
 }

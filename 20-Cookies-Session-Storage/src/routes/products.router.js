@@ -18,14 +18,30 @@ router.get('/todos', async (req, res) => { // → si dejo solo el "/" No levanta
 
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
-    const singleProduct = await productManager.getProductById( id );
-    
+    const singleProduct = await productManager.getProductById(id);
+
     if (singleProduct) {
-        res.render('products', {singleProduct} );
+        res.render('products', { singleProduct });
         // console.log(singleProduct);
     } else {
         res.send(`Lamentablemente el Id ${id} no se encuentra listado.`);
     }
+})
+
+router.post('/agregar', async (req, res) => {
+    const prod = req.body;
+    try {
+        const newProduct = await productManager.addProduct(prod);
+        res.render('agregarProducto')
+    } catch (error) {
+        res.redirect('error');
+    }
+})
+
+router.delete('/:id' , async (req, res)=>{
+    const {id} = req.params;
+    const delProd = await productManager.deleteProduct(id);
+    res.json({message : delProd });
 })
 
 export default router

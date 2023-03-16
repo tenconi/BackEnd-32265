@@ -10,6 +10,10 @@ router.get( '/products' , (req, res) => {
     res.render('products')
 })
 
+router.get( '/products/agregar' , (req, res) => {
+    res.render('agregarProducto')
+})
+
 router.get( '/cart' , (req, res) => {
     res.render('cart')
 })

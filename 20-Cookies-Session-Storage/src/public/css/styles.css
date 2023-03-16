@@ -30,12 +30,31 @@ nav ul {
 }
 nav ul li{
     padding: 0.5rem 1rem;
+    position: relative;
+}
+nav ul li > span{
+    transform: rotate(90deg);
+    display: inline-block;
+    font-size: 10px;
 }
 nav ul li a {
     padding:0;
     color:white;
     text-decoration: none;
 }
+
+nav ul li ul{
+    padding: 0.5rem 1rem;
+    display: none;
+    position: absolute;
+    background: lightskyblue;    
+    top:100%;
+    left: 0;
+}
+nav ul li:hover > ul{
+    display: block;    
+}
+
 .container{
     width: 90%;
     min-height:calc(100vh - 20rem) ;
@@ -142,4 +161,11 @@ overflow: hidden;
     color:grey;
     text-transform: uppercase;
     margin: 1.5rem 0 1rem;
+}
+
+/*  */
+.form__add{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:1rem
 }
