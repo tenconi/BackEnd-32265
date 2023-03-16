@@ -6,33 +6,33 @@ const router = Router();
 const usersManager = new UsersManager(); // instancio
 
 
-router.post("/registro", async (req, res) => {
+router.post("/users/session/registro", async (req, res) => {
   const newUser = await usersManager.createUser(req.body);
   if (newUser) {
-    res.redirect("/views");
+    res.redirect("/users/sessions");
   } else {
-    res.redirect("/views/errorRegistro");
+    res.redirect("/users/sessions/errorRegistro");
   }
 });
 
-router.post("/login", async (req, res) => {
+router.post("/users/session", async (req, res) => {
   const { email, password } = req.body;
   const user = await usersManager.loginUser(req.body);
   if (user) {
     req.session.email = email;
     req.session.password = password;
-    res.redirect("/views/perfil");
+    res.redirect("/sessions/perfil");
   } else {
-    res.redirect("/views/errorLogin");
+    res.redirect("/sessions/errorLogin");
   }
 });
 
-router.get("/logout", (req, res) => {
+router.get("/users/session/logout", (req, res) => {
   req.session.destroy((error) => {
     if (error) {
       console.log(error);
     } else {
-      res.redirect("/views");
+      res.redirect("/users/sessions");
     }
   });
 });

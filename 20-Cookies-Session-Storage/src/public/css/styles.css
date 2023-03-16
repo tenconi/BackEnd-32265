@@ -9,13 +9,27 @@ body{
 }
 header {
     height: 5rem;
-    display: grid;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     margin: 0px 5%;
 }
 h1{
     margin: 0px;
 }
+/*  users links */
+.users{
+    display: flex;
+    list-style: none;
+}
+.users li:first-child{
+    margin-right: 1rem;
+}
+.users li a {
+    text-decoration: none;
+    padding:0.5rem;
+}
+/* nav */
 nav{
     background: royalblue;
     color:white;
