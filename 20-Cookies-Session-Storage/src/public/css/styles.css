@@ -55,12 +55,14 @@ input:not(input[type="submit"]){
     padding:0.5rem 1rem;
     margin-bottom: 0.5rem;
 }
-input[type="submit"], button{
+input[type="submit"], button, .btn_comprar{
     font-size: 16px;
     background: green;
     color:whitesmoke;
     padding:0.5rem 1rem;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
 }
 
 /*  cards */
@@ -69,7 +71,7 @@ input[type="submit"], button{
     grid-template-columns: repeat(auto-fit, minmax(300px , 1fr));
     gap:2rem;
 }
-.card{
+.card, .single-card{
     overflow: hidden;
     background: whitesmoke;
     border-radius: 0.5rem;
@@ -91,7 +93,7 @@ overflow: hidden;
 .card__info{
     padding:1rem 1rem 1.5rem;
 }
-.card .price{
+.card .price, .single-card .price{
     font-size: 24px;
     font-weight: 600;
     margin-top: 1.5rem;
@@ -110,4 +112,34 @@ overflow: hidden;
 }
 .cards__pagination a{
     margin: 0 1rem;
+}
+
+
+/* single card */
+.single-card:nth-child(1),
+.single-card:nth-child(2) {
+    display: none;
+}
+.single-card{
+    display: flex;
+    padding-bottom: 0;
+}
+.single-card__info {
+    padding: 1.5rem;
+}
+.single-card__info  h3{
+    margin-bottom: 1rem;
+}
+.sigle__category{
+    font-size: 10px;
+    color:royalblue;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.sigle__stock{
+    font-size: 10px;
+    color:grey;
+    text-transform: uppercase;
+    margin: 1.5rem 0 1rem;
 }
