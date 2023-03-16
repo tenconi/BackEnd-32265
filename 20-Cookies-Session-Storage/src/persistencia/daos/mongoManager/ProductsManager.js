@@ -5,6 +5,7 @@ export default class ProductsManager {
     async getAllProducts(limit, page) {
         try {
             const getProds = await productsModel.aggregatePaginate({}, { limit, page });
+            // console.log(getProds);
             return getProds;
         } catch (error) {
             return error;

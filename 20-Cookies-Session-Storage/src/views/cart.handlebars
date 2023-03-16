@@ -1,1 +1,19 @@
 <h2>Cart:</h2>
+
+{{!-- todos lso carritos // solo imprimo para no ir a ls bbd a consultar--}}
+{{#if allCarts}}
+    <p>{{allCarts}}</p>
+
+    {{#each allCarts.allCarts}}
+    <p>id: {{_id}}</p>
+    {{!-- <p>id: <strong>{{allCarts._id}}</strong></p>
+    <p>Productos: {{productList}}</p> --}}
+    {{/each}}
+{{/if}}
+
+
+{{!-- carrito x id --}}
+{{#if getCart}}
+<p>Productos Seleccionados:</p>
+{{productList}}
+{{/if}}
