@@ -22,37 +22,26 @@ router.get( '/chat' , (req, res) => {
     res.render('chat')
 })
 
-router.get( '/login' , (req, res) => {
-    res.render('login')
-})
-
-router.get( '/register' , (req, res) => {
-    res.render('register')
-})
-
-router.get( '/perfil' , (req, res) => {
-    res.render('perfil')
-})
 
 /* vistas  users */
 
-router.get('/users/session' , (req, res)=>{
+router.get('/users/login' , (req, res)=>{
     res.render('login');
 })
 
-router.get('/users/session/registro' , (req, res)=>{
+router.get('/users/registro' , (req, res)=>{
     res.render('registro');
 })
 
-router.get('/users/session/errorRegistro' , (req, res)=>{
+router.get('/users/errorRegistro' , (req, res)=>{
     res.render('errorRegistro');
 })
 
-router.get('/users/session/errorLogin' , (req, res)=>{
+router.get('/users/errorLogin' , (req, res)=>{
     res.render('errorLogin');
 })
 
-router.get('/users/session/perfil' , (req, res)=>{
+router.get('/users/perfil' , (req, res)=>{
     res.render('perfil');
 })
 

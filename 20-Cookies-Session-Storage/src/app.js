@@ -3,6 +3,8 @@ import { __dirname } from './utils.js';
 import handlebars from 'express-handlebars';
 import cookieParser from 'cookie-parser';  // guardo la sesion de session por cookie .
 import FileStore from 'session-file-store'; // para guardar la info de sesion en archivo/bbdd.
+import session from 'express-session';
+import mongoStore from 'connect-mongo';
 // views
 import productsRouter from './routes/products.router.js';
 import cartRouter from './routes/cart.router.js';
@@ -28,6 +30,18 @@ app.use(cookieParser())
 app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
+
+// mongo Sessions
+const fileStore = FileStore( session )
+app.use(session({
+    secret: 'seccionKey',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000}, //seteo las cookies para guardar el sessionId en cookies x ej
+    store: new mongoStore({ // store: para guardar en BBDD
+        mongoUrl: 'mongodb+srv://tenco:Bonetaso16@cluster0.5xmnrmy.mongodb.net/ecommerce?retryWrites=true&w=majority', // dnd se van a guardar las sesiones de los usuarios === configConect
+    }),
+}));
 
 // routes
 app.use('/', viewsRouter);

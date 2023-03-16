@@ -6,6 +6,7 @@
 body{
     background: #eee;
     color: #222;
+    font-family: Arial, Helvetica, sans-serif;
 }
 header {
     height: 5rem;
