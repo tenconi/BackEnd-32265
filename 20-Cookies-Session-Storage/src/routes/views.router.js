@@ -34,4 +34,26 @@ router.get( '/perfil' , (req, res) => {
     res.render('perfil')
 })
 
+/* vistas  users */
+
+router.get('/session' , (req, res)=>{
+    res.render('login');
+})
+
+router.get('/session/registro' , (req, res)=>{
+    res.render('registro');
+})
+
+router.get('/session/errorRegistro' , (req, res)=>{
+    res.render('errorRegistro');
+})
+
+router.get('/session/errorLogin' , (req, res)=>{
+    res.render('errorLogin');
+})
+
+router.get('/session/perfil' , (req, res)=>{
+    res.render('perfil');
+})
+
 export default router
