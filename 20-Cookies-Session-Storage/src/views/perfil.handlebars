@@ -1,10 +1,10 @@
 <h2>Perfil</h2>
 <div>
     {{#each user}}
-<p class="saludo">Bienvenido <strong>{{first_name}}</strong></p>
-<p>nombre: {{first_name}}</p>
-<p>apellido: {{last_name}}</p>
-<p>email: {{email}}</p>
+        <p class="saludo"><strong>¡Bienvenido {{first_name}}!</strong></p>
+        <p>nombre: {{first_name}}</p>
+        <p>apellido: {{last_name}}</p>
+        <p>email: {{email}}</p>
 {{/each}}
 </div>
 <button onclick="location.href='/users/logout'">Logout</button>

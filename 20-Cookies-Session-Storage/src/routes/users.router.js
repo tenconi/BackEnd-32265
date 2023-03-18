@@ -25,8 +25,8 @@ router.post("/login", async (req, res) => {
     req.session.email = email;
     req.session.password = password;
     // console.log(user);
-    res.redirect('/users/perfil');
-    // res.render('perfil', { user })
+    // res.redirect('/users/perfil');
+    res.render('perfil', { user });
   } else {
     res.redirect('/users/errorLogin');
   }

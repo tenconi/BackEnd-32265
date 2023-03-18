@@ -28,8 +28,10 @@ export default class UsersManager {
   async loginUser(user) {
     const { email, password } = user;
     const usuario = await usersModel.findOne({ email}); // [usuario]
+    
     if (usuario) {
-      const isPassword = comparePassword(password, usuario.password); //le paso el pass plano y el pass de la bbdd
+      const isPassword = await comparePassword(password, usuario.password); //le paso el pass plano y el pass de la bbdd
+      console.log('isPassword',isPassword)
       if (isPassword) {
         // console.log(usuario)
         return usuario;
