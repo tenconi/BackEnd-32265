@@ -32,7 +32,8 @@ router.post('/agregar', async (req, res) => {
     const prod = req.body;
     try {
         const newProduct = await productManager.addProduct(prod);
-        res.render('agregarProducto')
+        // res.render('agregarProducto')
+        res.redirect('/products/todos'); //luego de que lo cargo redirecciono a productos
     } catch (error) {
         res.redirect('error');
     }

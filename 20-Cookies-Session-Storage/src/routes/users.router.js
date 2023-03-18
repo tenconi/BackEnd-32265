@@ -20,12 +20,13 @@ router.post("/registro", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await usersManager.loginUser(req.body);
+
   if (user) {
     req.session.email = email;
     req.session.password = password;
-    console.log(user);
-    // res.redirect("/users/perfil");
-    res.render('perfil', { user })
+    // console.log(user);
+    res.redirect('/users/perfil');
+    // res.render('perfil', { user })
   } else {
     res.redirect('/users/errorLogin');
   }

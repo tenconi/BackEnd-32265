@@ -8,7 +8,7 @@ export default class UsersManager {
     try {
       // verifico si existe usuario:
       const existeUsuario = await usersModel.find({ email });
-      console.log('EXISTE', existeUsuario);
+      // console.log('EXISTE', existeUsuario);
       if (existeUsuario.length === 0) {
         const hashNewPassword = await hashPassword(password); // hasheo el pass que envia el usuario
         //si no existe: lo creo
@@ -27,8 +27,8 @@ export default class UsersManager {
 
   async loginUser(user) {
     const { email, password } = user;
-    const usuario = await usersModel.findOne({ email }); // [usuario]
-    if (usuario.length !== 0) {
+    const usuario = await usersModel.findOne({ email}); // [usuario]
+    if (usuario) {
       const isPassword = comparePassword(password, usuario.password); //le paso el pass plano y el pass de la bbdd
       if (isPassword) {
         // console.log(usuario)
