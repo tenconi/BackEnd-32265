@@ -8,10 +8,12 @@ const usersManager = new UsersManager(); // instancio
 
 router.post("/registro", async (req, res) => {
   const newUser = await usersManager.createUser(req.body);
+
   if (newUser) {
-    res.redirect("/users/login");
+    res.redirect('/users/login');
   } else {
-    res.redirect("/users/errorRegistro");
+    res.redirect('/users/errorRegistro');
+    // res.send("redirect errorRegistro");
   }
 });
 
@@ -21,9 +23,11 @@ router.post("/login", async (req, res) => {
   if (user) {
     req.session.email = email;
     req.session.password = password;
-    res.redirect("/users/perfil" , {user});
+    console.log(user);
+    // res.redirect("/users/perfil");
+    res.render('perfil', { user })
   } else {
-    res.redirect("/users/errorLogin");
+    res.redirect('/users/errorLogin');
   }
 });
 
@@ -37,4 +41,8 @@ router.get("/logout", (req, res) => {
   });
 });
 
+/* router.get('/perfil' , (res, req) => {
+  req.session()
+})
+ */
 export default router;
