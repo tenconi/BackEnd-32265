@@ -45,4 +45,9 @@ router.get('/users/perfil' , (req, res)=>{
     res.render('perfil');
 })
 
+
+router.get('/users/notAuthorized' , (req, res)=>{
+    res.render('rolDenied');
+})
+
 export default router

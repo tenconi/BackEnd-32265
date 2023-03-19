@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         require: true
+    },
+    rol: {
+        type: String,
+        require : true
     }
 })
 

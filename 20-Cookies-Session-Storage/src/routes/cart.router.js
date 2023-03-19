@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import CartManager from '../persistencia/daos/mongoManager/CartManager.js';
+// middleware de credenciales: status / user
+import { userPermision } from '../persistencia/middlewares/userRol.js';
 
 const router = Router();
 
@@ -11,7 +13,7 @@ router.post( '/' , async (req, res) => {
     // res.status(200).render('cart', {createNewCart})
 })
 
-router.get( '/todos' , async (req, res) => {
+router.get( '/todos' , userPermision, async (req, res) => { // * * * middleware de status
     const allCarts = await cartManager.getAllCarts({});
     // console.log(allCarts)
     res.render('cart', {allCarts})

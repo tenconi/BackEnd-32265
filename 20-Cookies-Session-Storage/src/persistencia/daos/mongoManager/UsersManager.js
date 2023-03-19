@@ -2,7 +2,7 @@ import { usersModel } from "../../models/users.models.js";
 import { hashPassword, comparePassword } from "../../../utils.js";
 
 export default class UsersManager {
-  
+
   async createUser(user) {
     const { email, password } = user;
     try {
@@ -12,7 +12,7 @@ export default class UsersManager {
       if (existeUsuario.length === 0) {
         const hashNewPassword = await hashPassword(password); // hasheo el pass que envia el usuario
         //si no existe: lo creo
-        const newUser = { ...user, password: hashNewPassword }
+        const newUser = { ...user, password: hashNewPassword , rol: 'user'}
         await usersModel.create(newUser);
         return newUser;
       } else {
@@ -27,11 +27,11 @@ export default class UsersManager {
 
   async loginUser(user) {
     const { email, password } = user;
-    const usuario = await usersModel.findOne({ email}); // [usuario]
-    
+    const usuario = await usersModel.findOne({ email }); // [usuario]
+
     if (usuario) {
       const isPassword = await comparePassword(password, usuario.password); //le paso el pass plano y el pass de la bbdd
-      console.log('isPassword',isPassword)
+
       if (isPassword) {
         // console.log(usuario)
         return usuario;
