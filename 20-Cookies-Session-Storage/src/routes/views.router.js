@@ -42,7 +42,7 @@ router.get('/users/errorLogin' , (req, res)=>{
 })
 
 router.get('/users/perfil' , (req, res)=>{
-    res.render('perfil');
+    res.render('perfil', {req});
 })
 
 

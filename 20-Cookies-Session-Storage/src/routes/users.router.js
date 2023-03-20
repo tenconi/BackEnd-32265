@@ -3,6 +3,7 @@ import passport from "passport";
 import UsersManager from "../persistencia/daos/mongoManager/UsersManager.js";
 // session
 import session from "express-session";
+import cookieParser from 'cookie-parser';
 
 const router = Router();
 
@@ -36,8 +37,9 @@ router.post("/login", async (req, res) => {
     req.session.email = email;
     req.session.password = password;
     // console.log(user);
-    // res.redirect('/users/perfil');
-    res.render('perfil'/* , { user } */);
+    res.cookie('userInfo', user)
+    res.redirect('/users/perfil');
+    // res.render('perfil', { user });
   } else {
     res.redirect('/users/errorLogin');
   }
@@ -55,8 +57,10 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/perfil" , (res, req) => {
-  const datos = req;
-  console.log(session);
+  // const datos = req;
+  // console.log(req.session);
+  const {usuario} = req.cookie
+  console.log(usuario.first_name);
 })
 
 

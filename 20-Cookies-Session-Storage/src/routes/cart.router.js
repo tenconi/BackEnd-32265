@@ -16,17 +16,20 @@ router.post('/', async (req, res) => {
     res.redirect('/cart/todos')
 })
 
-router.get('/todos', /* userPermision, */ async (req, res) => { // * * * middleware de status
+router.get('/todos', userPermision, async (req, res) => { // * * * middleware de status
     const allCarts = await cartManager.getAllCarts({});
-    // console.log(req.session)
+    // console.log(cookie)
     res.render('cart', { allCarts })
 })
+    // **** USER CON ROL AMIN
+    // email: tenco@tenco.com.ar
+    // password: 123456 
+
 
 router.get('/:cid', async (req, res) => {
     const { cid } = req.params;
     const getCart = await cartManager.getCartById(cid);
     // res.status(200).json({ message : `Carrito id n° ${cid} seleccionado.` , getCart})
-    console.log(getCart);
     res.status(200).render('cart', { getCart })
 })
 

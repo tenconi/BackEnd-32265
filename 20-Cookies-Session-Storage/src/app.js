@@ -23,11 +23,13 @@ import './passport/passportStrategies.js'; //indico arch con fx de serializar/de
 const app = express();
 const PORT = 8080;
 
+
+// const cookieKey = 'cookiePASS';
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
-app.use(cookieParser())
+app.use(cookieParser(/* cookieKey */));
 
 // handlebars
 app.engine('handlebars', handlebars.engine());
@@ -40,7 +42,7 @@ app.use(session({
     secret: 'seccionKey',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 30000}, //seteo las cookies para guardar el sessionId en cookies x ej
+    cookie: { maxAge: 60000}, //seteo las cookies para guardar el sessionId en cookies x ej
     store: new mongoStore({ // store: para guardar en BBDD
         mongoUrl: 'mongodb+srv://tenco:Bonetaso16@cluster0.5xmnrmy.mongodb.net/ecommerce?retryWrites=true&w=majority', // dnd se van a guardar las sesiones de los usuarios === configConect
     }),
