@@ -27,7 +27,7 @@
             </form>
 
             <br>
-            <p class="notification">Este view o pantalla solo fue representado para poder visualizar todos los "carts" creados y poder acceder a los productos seleccioandos desde estos mismos.</p>
+            <p class="notification">Este view o pantalla solo fue representado para poder visualizar todos los "carts" creados y poder acceder a los productos seleccioandos desde estos mismos. <br><u>Sección para rol: <strong>admin</strong></u></p>
         </div>        
     </div>
      {{/if}}
@@ -47,7 +47,8 @@
             </div>
         {{/each}}
 
-    {{#else}}
-    <p>VACIO / EMPTY :NO se han seleccionados productos:</p>
-    {{/else}}
+    {{/if}}
+
+    {{#if notif}}
+    <p>No se han agragado productos</p>
     {{/if}}

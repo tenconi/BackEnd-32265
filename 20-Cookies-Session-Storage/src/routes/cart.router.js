@@ -30,7 +30,14 @@ router.get('/:cid', async (req, res) => {
     const { cid } = req.params;
     const getCart = await cartManager.getCartById(cid);
     // res.status(200).json({ message : `Carrito id n° ${cid} seleccionado.` , getCart})
-    res.status(200).render('cart', { getCart })
+    // console.log(getCart.length)
+    const notif = 'No se han seleccionado productos';
+    if(getCart.length === 0){
+        res.status(200).render('cart', {notif})
+    } else {
+        res.status(200).render('cart', { getCart })
+
+    }
 })
 
 router.post('/:cid/products/:pid', async (req, res) => {
