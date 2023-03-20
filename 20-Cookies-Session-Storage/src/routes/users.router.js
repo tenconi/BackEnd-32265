@@ -1,6 +1,8 @@
 import { Router } from "express";
 import passport from "passport";
 import UsersManager from "../persistencia/daos/mongoManager/UsersManager.js";
+// session
+import session from "express-session";
 
 const router = Router();
 
@@ -35,7 +37,7 @@ router.post("/login", async (req, res) => {
     req.session.password = password;
     // console.log(user);
     // res.redirect('/users/perfil');
-    res.render('perfil', { user });
+    res.render('perfil'/* , { user } */);
   } else {
     res.redirect('/users/errorLogin');
   }
@@ -52,9 +54,10 @@ router.get("/logout", (req, res) => {
   res.redirect("/users/login");
 });
 
-/* router.get('/perfil' , (res, req) => {
-  req.session()
+router.get("/perfil" , (res, req) => {
+  const datos = req;
+  console.log(session);
 })
- */
+
 
 export default router;

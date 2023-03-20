@@ -105,7 +105,7 @@ input[type="submit"], button, .btn_comprar{
     grid-template-columns: repeat(auto-fit, minmax(300px , 1fr));
     gap:2rem;
 }
-.card, .single-card{
+.card, .single-card, .cart__card, .purch__card{
     overflow: hidden;
     background: whitesmoke;
     border-radius: 0.5rem;
@@ -232,4 +232,40 @@ overflow: hidden;
 }
 .swal2-styled.swal2-confirm {
     background: green!important;
+}
+/*  */
+.cart__card{
+    padding: 1rem;
+    opacity: 0.5;
+}
+.cart__card:hover{
+    opacity: 1;
+}
+.portacarts{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.col-8{
+    display: grid;
+    gap:1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px , 1fr));
+    width: 80%;
+}
+.col-4{
+    width: 17%;
+}
+.purch__card{padding: 1rem;margin-bottom: 1rem;}
+.purch__card--id{font-size: 14px;}
+.purch__card--name{font-size: 16px; font-weight: 600;}
+.purch__card--cant{font-size: 12x;}
+
+
+/*  */
+.notification{
+    padding: 1rem;
+    color:red;
+    border: solid 2px red;
+    border-radius: .5rem;
+    font-size: 12px;
 }

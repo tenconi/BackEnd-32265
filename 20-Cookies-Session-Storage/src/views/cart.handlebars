@@ -1,19 +1,53 @@
-<h2>Cart:</h2>
-
-{{!-- todos lso carritos // solo imprimo para no ir a ls bbd a consultar--}}
-{{#if allCarts}}
-    <p>{{allCarts}}</p>
-
-    {{#each allCarts.allCarts}}
-    <p>id: {{_id}}</p>
-    {{!-- <p>id: <strong>{{allCarts._id}}</strong></p>
-    <p>Productos: {{productList}}</p> --}}
-    {{/each}}
-{{/if}}
 
 
-{{!-- carrito x id --}}
-{{#if getCart}}
-<p>Productos Seleccionados:</p>
-{{productList}}
-{{/if}}
+
+
+    {{#if allCarts}}
+    <h2>Listado de Carts:</h2>
+    <br>
+    <div class="portacarts">
+        <div class="col-8">
+        {{!-- todos lso carritos // solo imprimo para no ir a ls bbd a consultar--}}
+            {{#each allCarts}}
+            <div class="cart__card">
+                <a href={{_id}}>
+                    <p>Cart ID: {{_id}}</p>
+                </a>
+            </div>
+            {{!-- <p>id: <strong>{{allCarts._id}}</strong></p>
+            <p>Productos: {{productList}}</p> --}}
+            {{/each}}
+       
+        </div>
+
+
+        <div class="col-4">
+            <form action="/cart" method="post">
+            <input type="submit" value="Crear Carrito"{{!--  onclick="location.href='/cart/todos'" --}}>
+            </form>
+
+            <br>
+            <p class="notification">Este view o pantalla solo fue representado para poder visualizar todos los "carts" creados y poder acceder a los productos seleccioandos desde estos mismos.</p>
+        </div>        
+    </div>
+     {{/if}}
+
+
+
+    {{!-- carrito x id --}}
+    {{#if getCart}}
+    <h2>Carts seleccionado:</h2>
+    <h3>Productos Listados:</h3>
+    <br>
+        {{#each getCart}}
+            <div class="purch__card">
+                <p class="purch__card--id">ID: {{productId}}</p>
+                <p class="purch__card--name">PROD: {{productName}}</p>
+                <p class="purch__card--cant">CANT: {{quantity}}</p>
+            </div>
+        {{/each}}
+
+    {{#else}}
+    <p>VACIO / EMPTY :NO se han seleccionados productos:</p>
+    {{/else}}
+    {{/if}}

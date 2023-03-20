@@ -12,7 +12,7 @@ export default class UsersManager {
       if (existeUsuario.length === 0) {
         const hashNewPassword = await hashPassword(password); // hasheo el pass que envia el usuario
         //si no existe: lo creo
-        const newUser = { ...user, password: hashNewPassword , rol: 'user'}
+        const newUser = { ...user, password: hashNewPassword , rol: 'user'}; // x defecto son user
         await usersModel.create(newUser);
         return newUser;
       } else {
