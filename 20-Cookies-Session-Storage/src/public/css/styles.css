@@ -19,16 +19,19 @@ h1{
     margin: 0px;
 }
 /*  users links */
+.porta-users{
+text-align: right;
+}
 .users{
     display: flex;
     list-style: none;
+    margin-top: 0.5rem;
 }
-.users li:first-child{
-    margin-right: 1rem;
-}
+
 .users li a {
     text-decoration: none;
     padding:0.5rem;
+    font-size: 13px;
 }
 /* nav */
 nav{

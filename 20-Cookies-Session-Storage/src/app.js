@@ -85,4 +85,8 @@ socketServer.on('connection', (socket) => {
         socketServer.emit('chat', infoMessages)
     })
 
+    socket.on('userFile', esto => {
+        console.log(esto);
+    })
+
 })

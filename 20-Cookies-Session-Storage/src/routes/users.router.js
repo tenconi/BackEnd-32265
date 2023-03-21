@@ -4,6 +4,8 @@ import UsersManager from "../persistencia/daos/mongoManager/UsersManager.js";
 // session
 import session from "express-session";
 import cookieParser from 'cookie-parser';
+// middleware de conected: 
+import { isLogged } from "../persistencia/middlewares/connection.js";
 
 const router = Router();
 
@@ -32,7 +34,7 @@ router.post("/registro", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await usersManager.loginUser(req.body);
-
+  
   if (user) {
     req.session.email = email;
     req.session.password = password;
@@ -46,6 +48,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
+  res.clearCookie('userInfo'); // elimino la cookie con los datos de la sesion 
   req.session.destroy((error) => {
     if (error) {
       console.log(error);
@@ -56,11 +59,17 @@ router.get("/logout", (req, res) => {
   res.redirect("/users/login");
 });
 
-router.get("/perfil" , (res, req) => {
-  // const datos = req;
+router.get("/perfil", (res, req) => {
+  // const datos = req.cookie.userInfo;
+  const {usuario} = req.cookie.userInfo
+  if(usuario){
+    console.log('hay Datos');
+  } else{
+    console.log('No hay nada');
+  }
   // console.log(req.session);
-  const {usuario} = req.cookie
-  console.log(usuario.first_name);
+  // console.log(req);
+  // console.log(usuario.first_name);
 })
 
 

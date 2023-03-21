@@ -14,18 +14,18 @@
   <body>
     <header><h1>Clase 20: Cookies, Session & Storage</h1>
     
-    <ul class="users">
-      <li><strong>Usuarios:</strong></li>
+    <div class="porta-users">
+      <p id="saludo"><strong>¡Hola {{req.cookies.userInfo.first_name}} !</strong></p>
 
+      <ul class="users">
           <li><a href="/users/login">login</a></li>
           <li><a href="/users/registro">registro</a></li>
           <li><a href="/users/perfil">perfil</a></li>
-          <li><a href="/users/logout">logout</a></li>
-      
-      </li>
-      
+          <li><a href="/users/logout">logout</a></li>      
+      </li>      
     </ul>
-    
+    </div>
+
     </header>
     
     <nav>
