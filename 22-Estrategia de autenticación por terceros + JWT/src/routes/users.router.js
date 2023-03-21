@@ -10,24 +10,24 @@ const router = Router();
 const usersManager = new UsersManager(); // instancio
 
 // * * * registro sin passport
-router.post("/registro", async (req, res) => {
-  const newUser = await usersManager.createUser(req.body);
+// router.post("/registro", async (req, res) => {
+//   const newUser = await usersManager.createUser(req.body);
 
-  if (newUser) {
-    res.redirect('/users/login');
-  } else {
-    res.redirect('/users/errorRegistro');
-    // res.send("redirect errorRegistro");
-  }
-});
+//   if (newUser) {
+//     res.redirect('/users/login');
+//   } else {
+//     res.redirect('/users/errorRegistro');
+//     // res.send("redirect errorRegistro");
+//   }
+// });
 
 // * * * registro con passport
-// router.post("/registro", 
-//   passport.authenticate('registro', {
-//     failureRedirect: '/users/errorRegistro', 
-//     successRedirect: '/users/perfil',
-//     passReqToCallback: true, // middleware - que nos pase todo lo que venga en reques al cb  le digo true
-// }));
+router.post("/registro", 
+  passport.authenticate('registro', {
+    failureRedirect: '/users/errorRegistro', 
+    successRedirect: '/users/perfil',
+    passReqToCallback: true, // middleware - que nos pase todo lo que venga en reques al cb  le digo true
+}));
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
