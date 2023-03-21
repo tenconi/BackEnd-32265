@@ -1,0 +1,64 @@
+<h2>Products:</h2>
+<div class="portaCards">
+{{#if products}}
+    {{#each products.docs}}
+        <div class="card">
+            <div class="card__img">
+                <img src={{thumbnail.[0]}} alt="">
+            </div>
+
+            <div class="card__info">
+            <h3>{{name}}</h3>
+                <p>{{description}}</p> 
+                <p class="price">&euro; {{price}}</p>
+            </div>
+            
+            <a class="btn_comprar" href=/products/{{_id}} >Ver Producto</a>
+            
+        </div>
+    {{/each}}
+
+    {{!-- {{else}}
+    <p>Lamentablemente no hay productos listados.</p> --}}
+{{/if}}</div>
+
+{{#if products}}
+    <div class="cards__pagination">
+        {{#if products.hasPrevPage}}
+            <a href=/products/todos?limit={{products.limit}}&page={{products.prevPage}}>anterior</a>
+        {{/if}}
+
+        <p class="pagina">Pág: {{products.page}} de {{products.totalPages}}</p> 
+
+        {{#if products.hasNextPage}}
+            <a href=/products/todos?limit={{products.limit}}&page={{products.nextPage}}>siguiente</a>
+        {{/if}}
+    </div>
+{{/if}}
+
+
+
+
+
+{{#if singleProduct.[0]}}
+{{!-- En todos los casos me repite  // lo "resolvi / emparche " con CSS--}}
+<div class="portaCards">
+   {{#each singleProduct.[0]}}
+    <div class="single-card">
+            <img src={{thumbnail.[0]}} alt="">
+
+            <div class="single-card__info">
+                <p class="sigle__category">{{category}}</p>
+                <h3>{{name}}</h3>
+                <p>{{description}}</p>
+                <p class="sigle__stock">stock: <strong>{{stock}}</strong> unidades</p>
+                <p class="price">&euro; {{price}}</p>
+            </div>
+    </div>
+   {{/each}}
+   
+{{/if}}
+    </div>
+
+
+
