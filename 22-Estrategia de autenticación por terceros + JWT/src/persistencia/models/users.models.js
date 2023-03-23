@@ -22,9 +22,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    rol: {
+    rol:{
         type: String,
-        require : true
+        require: true,
+    },
+    isGithub: {
+        type: Boolean,
+        require: true,
+        default:false
     }
 })
 

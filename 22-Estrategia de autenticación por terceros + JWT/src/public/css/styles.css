@@ -18,6 +18,9 @@ header {
 h1{
     margin: 0px;
 }
+h2{
+    margin-bottom: 1.5rem;
+}
 /*  users links */
 .porta-users{
 text-align: right;
@@ -87,10 +90,26 @@ footer{
     font-size: 14px;
     color:whitesmoke;
 }
+.reg_forms{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem;
+}
+.option{
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: solid 1px grey;
+}
 input:not(input[type="submit"]){
     font-size: 14px;
     padding:0.5rem 1rem;
     margin-bottom: 0.5rem;
+}
+.check-option{
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: solid 1px grey;
+    margin: 1rem 0;
 }
 input[type="submit"], button, .btn_comprar{
     font-size: 16px;

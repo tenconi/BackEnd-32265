@@ -1,9 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import UsersManager from "../persistencia/daos/mongoManager/UsersManager.js";
-// session
-import session from "express-session";
-import cookieParser from 'cookie-parser';
+
 
 const router = Router();
 
@@ -28,6 +26,15 @@ router.post("/registro",
     successRedirect: '/users/perfil',
     passReqToCallback: true, // middleware - que nos pase todo lo que venga en reques al cb  le digo true
 }));
+
+// * * * registro con GitHub
+router.get('/registroGitHub', passport.authenticate('github', { scope: [ 'user:email' ] }) )// endpoint q viaja a GitHub
+router.get('/github', passport.authenticate('github'), (req, res)=>{
+  // console.log(req);
+  // req.session.email = req.user.email; // si quiero guardar la info del email
+  req.session.first_name = req.user.first_name; 
+  res.redirect('/users/perfil')
+})
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -60,7 +67,8 @@ router.get("/logout", (req, res) => {
 
 router.get("/perfil", (req , res) => { // * * * middleware de status
   // const datos = req.cookie.userInfo;
-    const {usuario} = req.cookies.userInfo
+    const {usuario} = req.cookies.userInfo;
+
     /*
      
   if(usuario){

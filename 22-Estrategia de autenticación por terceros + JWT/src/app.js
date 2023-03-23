@@ -47,7 +47,8 @@ app.use(session({
         mongoUrl: 'mongodb+srv://tenco:Bonetaso16@cluster0.5xmnrmy.mongodb.net/ecommerce?retryWrites=true&w=majority', // dnd se van a guardar las sesiones de los usuarios === configConect
     }),
 }));
-//passport
+
+// passport
 app.use(passport.initialize()); //inicializar passport
 app.use(passport.session()); //le indico que trabaje con session
 
