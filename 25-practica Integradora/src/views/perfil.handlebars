@@ -1,0 +1,32 @@
+<h2>Perfil</h2>
+<br /><br />
+{{#if req.cookies.userInfo}}
+  <div class="card__user">
+    <div class="card__user--img">
+    <img src={{req.cookies.userInfo.picture}} alt="">
+    </div>
+    <div>
+      <p class="saludo"><strong>¡Bienvenido {{req.cookies.userInfo.first_name}}!</strong></p>
+      <p>nombre: {{req.cookies.userInfo.first_name}}</p>
+      <p>apellido: {{req.cookies.userInfo.last_name}}</p>
+      <p>email: {{req.cookies.userInfo.email}}</p>
+      <p>edad: {{req.cookies.userInfo.age}}</p>
+      <p>ROL: <strong>{{req.cookies.userInfo.rol}}</strong></p>  
+
+      <br /><br />
+      <button onclick="location.href='/users/logout'">Logout</button> 
+    </div>
+
+  </div>
+
+  {{else}}
+  <h3>Favor de iniciar sesion</h3>
+  <br />
+  <br />
+  <button onclick="location.href='/users/login'">Login</button> 
+{{/if}}
+
+
+    
+
+

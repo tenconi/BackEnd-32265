@@ -1,0 +1,40 @@
+<h2>Agregar producto:</h2>
+<form action="/products/agregar" method="post" class="form__add">
+  <div>
+    Nombre:<br />
+    <input type="text" name="name" id="name" />
+  </div>
+
+  <div>
+    Descripción:<br />
+    <input type="text" name="description" id="description" />
+  </div>
+
+  <div>
+    Code:<br />
+    <input type="text" min="0" name="code" id="code" /><br />
+  </div>
+
+  <div>
+    Precio:<br />
+    <input type="number" min="0" name="price" id="price" value="10" /><br />
+  </div>
+
+  <div>
+    Categoria:<br />
+    <input type="text" name="category" id="category" /><br />
+  </div>
+
+  <div>
+    Stock:<br />
+    <input type="number" min="0" name="stock" id="stock" value="1" /><br />
+  </div>
+
+  <div>
+    Thumbnail:<br />
+    <input type="url" name="thumbnail" id="thumbnail" /><br />
+  </div>
+
+  <input type="submit" value="Agregar" />
+
+</form>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Tenconi</title>
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+  </head>
+
+  <body>
+    <header><h1>Clase 22: Estrategia de autenticación por terceros + JWT</h1>
+    
+    <div class="porta-users">
+      <p id="saludo"><strong>¡Hola {{req.cookies.userInfo.first_name}} !</strong></p>
+
+      <ul class="users">
+          <li><a href="/users/login">login</a></li>
+          <li><a href="/users/registro">registro</a></li>
+          <li><a href="/users/perfil">perfil</a></li>
+          <li><a href="/users/logout">logout</a></li>      
+      </li>      
+    </ul>
+    </div>
+
+    </header>
+    
+    <nav>
+      <ul>
+        <li><a href="/">home</a></li>
+        
+        <li>productos <span>►</span>
+          <ul>
+            <li><a href="/products/todos">todos</a></li>
+            <li><a href="/products/agregar">agregar</a></li>
+          </ul>
+        </li>
+        <li><a href="/cart/todos">cart</a></li>
+        <li><a href="/chat">chat</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      {{{body}}}
+    </div>
+
+    <footer>
+      Clase 20: Cookies, Session & Storage II ~ Alumno: Daniel Tenconi
+    </footer>
+
+  </body>
+</html>
