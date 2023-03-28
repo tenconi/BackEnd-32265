@@ -4,7 +4,10 @@ import bcrypt from 'bcrypt';
 
 export const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// hashPassword
+export const hashData = async (password) => {
+  return bcrypt.hash(password, 10);
+};
 
-
-// comparePassword
+export const comparePassword = async (password, passwordBD) => {
+  return bcrypt.compare(password, passwordBD); // compare: metodo de bcrypt - arroja true/false
+};

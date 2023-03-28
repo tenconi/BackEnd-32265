@@ -7,12 +7,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: #333;
 }
-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    height: 150px;
+h3 {
+  margin-bottom: 15px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  height: 150px;
 }
 nav,
 footer {
@@ -56,60 +59,138 @@ nav ul li a:hover {
   background: rgba(40, 56, 102, 0.7);
   transition: all 0.15s ease-in-out;
 }
-footer{
-    text-align: center;
-    height: 150px;
-    display: grid;
-    align-items: center;
+footer {
+  text-align: center;
+  height: 150px;
+  display: grid;
+  align-items: center;
 }
-.userNav{
-    display: flex;
-    position: relative;
+.userNav {
+  display: flex;
+  position: relative;
 }
-.userNav__avatar{
-    background: lightblue;
-    height: 75px;
-    width: 75px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor:pointer
+.userNav__avatar {
+  background: lightblue;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
-.userNav li{
-    display: block;
+.userNav li {
+  display: block;
 }
-.userNav li ul{
-    display: none;
+.userNav li ul {
+  display: none;
 }
-.userNav li:hover > ul{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    background: lightblue;
-    width: 100%;
-    transition: all 0.25s ease-in-out;
+.userNav li:hover > ul {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background: lightblue;
+  width: 100%;
+  transition: all 0.25s ease-in-out;
 }
-.userNav li ul li a{
-    color:#333;
-    text-align: center;
-    display: block;
-    padding: 5px 10px;
-    text-decoration: none;
+.userNav li ul li a {
+  color: #333;
+  text-align: center;
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
 }
-.userNav :hover > .userNav__avatar{
-    border: 3px solid royalblue;
-    transition: all 0.15s ease-in-out;
+.userNav :hover > .userNav__avatar {
+  border: 3px solid royalblue;
+  transition: all 0.15s ease-in-out;
 }
-.userNav li ul li a:hover{
-    background: rgba(40, 56, 102, 0.7);
-    color:white
+.userNav li ul li a:hover {
+  background: rgba(40, 56, 102, 0.7);
+  color: white;
 }
-.container{
-    width: 90%;
-    padding:25px 0 35px;
-    max-width: 2200px;
-    margin: auto;
-    min-height: calc(100vh - 340px);
+.container {
+  width: 90%;
+  padding: 25px 0 35px;
+  max-width: 2200px;
+  margin: auto;
+  min-height: calc(100vh - 340px);
+}
+/* form */
+input,
+button {
+  padding: 7px 15px;
+  border-radius: 3px;
+}
+input[type='submit'],
+button {
+  background: greenyellow;
+}
+input[type='submit']:hover,
+button:hover {
+  color: white;
+  background: limegreen;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+}
+.form__reg {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid silver;
+  padding: 25px 25px 35px;
+  border-radius: 5px;
+}
+.form__reg input:not(:last-child) {
+  margin-bottom: 15px;
+}
+.form__reg--option {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 25px;
+}
+.form__reg--option label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 5px 15px;
+}
+.container__registros {
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  gap: 30px;
+}
+.form__op {
+  display: grid;
+  gap: 30px;
+}
+.form__op h3 {
+  text-align: center;
+}
+.form__op--option {
+  border: 1px solid silver;
+  padding: 25px 25px 35px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.notification {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 400px);
+}
+.notification p {
+  color: orange;
+  font-size: 24px;
+  text-align: center;
+}
+.notification p:first-child {
+  font-size: 36px;
+}
+.notification button {
+  margin-top: 20px;
 }
