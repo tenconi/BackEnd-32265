@@ -11,6 +11,7 @@ import passport from 'passport';
 import './passport/passportStrategies.js';
 import session from 'express-session';
 import mongoStore from 'connect-mongo';
+import { log } from 'console';
 
 const app = express();
 const PORT = 8080;

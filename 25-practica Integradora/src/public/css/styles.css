@@ -79,6 +79,7 @@ footer {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border: 3px solid royalblue;
 }
 .userNav li {
   display: block;
@@ -101,9 +102,11 @@ footer {
   padding: 5px 10px;
   text-decoration: none;
 }
-.userNav :hover > .userNav__avatar {
-  border: 3px solid royalblue;
-  transition: all 0.15s ease-in-out;
+.userNav:hover {
+ background: lightblue;
+ border-radius: 50% 50% 0 0;
+ transition: all 0.1s ease-in-out;
+
 }
 .userNav li ul li a:hover {
   background: rgba(40, 56, 102, 0.7);
@@ -194,3 +197,78 @@ button:hover {
 .notification button {
   margin-top: 20px;
 }
+/*  cards */
+.portaCards{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px , 1fr));
+  gap:2rem;
+}
+.card, .single-card, .cart__card, .purch__card, .card__user{
+  overflow: hidden;
+  background: whitesmoke;
+  border-radius: 0.5rem;
+  box-shadow: 0 1rem 1.5rem silver;
+  padding-bottom: 1.5rem;
+  display: grid;
+}
+.card__img{
+overflow: hidden;
+  aspect-ratio: 16/9;
+  -webkit-aspect-ratio: 16/9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card__img img{
+  width: 100%;
+}
+.card__info{
+  padding:1rem 1rem 1.5rem;
+}
+.card .price, .single-card .price{
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  color:royalblue;
+}
+.card .btn_comprar{
+  margin: 0 1rem;    
+}
+.cards__pagination{
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  background: silver;
+}
+.cards__pagination a{
+  margin: 0 1rem;
+}
+
+/*  */
+.cart__card{
+  padding: 1rem;
+  opacity: 0.5;
+}
+.cart__card:hover{
+  opacity: 1;
+}
+.portacarts{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.col-8{
+  display: grid;
+  gap:1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px , 1fr));
+  width: 80%;
+}
+.col-4{
+  width: 17%;
+}
+.purch__card{padding: 1rem;margin-bottom: 1rem;}
+.purch__card--id{font-size: 14px;}
+.purch__card--name{font-size: 16px; font-weight: 600;}
+.purch__card--cant{font-size: 12x;}

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import passport from 'passport';
 
+
 const router = Router();
 
 // registro con passport
@@ -13,10 +14,30 @@ router.post(
   })
 );
 
-router.get('/login', (req, res) => {});
+router.post(
+  '/login',
+  passport.authenticate('login', {
+    failureRedirect: '/user/errorLogin',
+    successRedirect: '/user/profile',
+    passReqToCallback: true,
+  })
+);
 
-router.get('/login', (req, res) => {});
+router.get('/profile', (req, res) => {
+    console.log('aca tamos');
+});
 
-router.get('/logout', (req, res) => {});
+router.get('/logout', (req, res) => {
+  res.clearCookie('userInfo');
+
+  req.session.destroy((error) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.redirect('/user/login');
+    }
+  });
+  res.redirect('/user/login');
+});
 
 export default router;
