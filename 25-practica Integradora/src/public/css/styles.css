@@ -27,6 +27,7 @@ nav ul {
   display: flex;
   list-style: none;
   justify-content: center;
+  z-index: 1;
 }
 nav ul li {
   position: relative;
@@ -219,7 +220,7 @@ button:hover, .btn_comprar:hover {
   overflow: hidden;
   background: whitesmoke;
   border-radius: 0.5rem;
-  box-shadow: 0 1rem 1.5rem silver;
+  box-shadow: 0 1rem 1rem silver;
   padding-bottom: 1.5rem;
   display: grid;
 }
@@ -295,23 +296,36 @@ button:hover, .btn_comprar:hover {
 }
 
 /*  */
-.cart__card {
+.cart__card{
+  padding-bottom: 0px;
+}
+.cart__card a{
   padding: 1rem;
-  opacity: 0.5;
+  text-decoration: none;
+  text-align: center;
+  color:#333
+  /* opacity: 0.5; */
 }
 .cart__card:hover {
-  opacity: 1;
+  /* opacity: 0.5; */
+  background: lightblue;
 }
 .portacarts {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+.advice{
+  color:orangered;
+  font-size: 12px;
+  line-height: 1.2;
+}
 .col-8 {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   width: 80%;
+  z-index: 0;
 }
 .col-4 {
   width: 17%;
