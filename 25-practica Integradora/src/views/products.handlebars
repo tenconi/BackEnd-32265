@@ -1,5 +1,3 @@
-<h2>Products</h2>
-
 <div class="portaCards">
 {{#if products}}
     {{#each products.docs}}
@@ -48,11 +46,13 @@
             <img src={{thumbnail.[0]}} alt="">
 
             <div class="single-card__info">
-                <p class="sigle__category">{{category}}</p>
+                <p class="sigle__category">category: {{category}}</p>
                 <h3>{{name}}</h3>
                 <p>{{description}}</p>
                 <p class="sigle__stock">stock: <strong>{{stock}}</strong> unidades</p>
                 <p class="price">&euro; {{price}}</p>
+
+                <button class="btn__add">add to Carrito</button>
             </div>
     </div>
    {{/each}}

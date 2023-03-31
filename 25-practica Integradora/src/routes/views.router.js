@@ -35,10 +35,16 @@ router.get('/user/errorAuthorization', (req, res) => {
 
 /* router.get('/products/all', (req, res)=>{
   res.render('products')
-})
+}) */
 
 router.get('/products/add', (req, res)=>{
-  res.render('products')
-}) */
+  res.render('addProduct')
+})
+
+router.get('/chat', (req, res)=>{
+  res.render('chat')
+})
+
+
 
 export default router;

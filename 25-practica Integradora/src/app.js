@@ -11,7 +11,7 @@ import passport from 'passport';
 import './passport/passportStrategies.js';
 import session from 'express-session';
 import mongoStore from 'connect-mongo';
-import { log } from 'console';
+import { Server } from 'socket.io'; // chat
 
 const app = express();
 const PORT = 8080;
@@ -54,6 +54,32 @@ app.use('/products', productsRouter);
 app.use('/user', userRouter);
 
 // server
-app.listen(PORT, () => {
+const httpServer = app.listen(PORT, () => {
   console.log(`Escuchando puerto ${PORT}`);
+});
+
+// websockets
+export const socketServer = new Server(httpServer);
+
+const infoMessages = []; // vuelco mensajes
+
+socketServer.on('connection', (socket) => {
+  console.log(`# Conected User: ${socket.id}`);
+
+  socket.on('disconnected', (msg) => {
+    console.log('# Desconnected User.');
+  });
+
+  socket.on('newUser', (usuario) => {
+    socket.broadcast.emit('broadcast', usuario); // emite a todos menos al nuevo
+  });
+
+  socket.on('mensaje', (info) => {
+    infoMessages.push(info);
+    socketServer.emit('chat', infoMessages);
+  });
+
+  socket.on('userFile', (esto) => {
+    console.log(esto);
+  });
 });

@@ -29,13 +29,12 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/add', /* userPermision, */ async (req, res) => {
-    console.log(userPermision);
-    
+    // console.log(userPermision);
     const prod = req.body;
     try {
         const newProduct = await productManager.addProduct(prod);
         // res.render('agregarProducto')
-        res.redirect('/products/todos'); //luego de que lo cargo redirecciono a productos
+        res.redirect('/products/all'); //luego de que lo cargo redirecciono a productos
     } catch (error) {
         res.redirect('error');
     }
