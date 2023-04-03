@@ -34,7 +34,7 @@ app.use(
     secret: 'seccionKey',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60000 }, //seteo las cookies para guardar el sessionId en cookies x ej
+    cookie: { maxAge: 600000 }, //seteo las cookies para guardar el sessionId en cookies x ej
     store: new mongoStore({
       // store: para guardar en BBDD
       mongoUrl:

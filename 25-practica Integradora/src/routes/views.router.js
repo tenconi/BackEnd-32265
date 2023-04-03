@@ -5,7 +5,7 @@ import { isAuthenticated } from '../middlewares/authenticated.middleware.js';
 const router = Router();
 
 router.get('/', (req, res) => {
-  res.render('home');
+  res.render('home', {req});
 });
 
 router.get('/user/register', (req, res) => {
@@ -17,7 +17,9 @@ router.get('/user/login', (req, res) => {
 });
 
 router.get('/user/profile', isAuthenticated, (req, res) => { //middleware
-  res.render('profile');
+  const userData = req.user
+  console.log(userData)
+  res.render('profile', {userData});
 });
 
 router.get('/user/error', (req, res) => {

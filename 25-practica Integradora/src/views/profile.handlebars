@@ -1,3 +1,28 @@
-<h2>Perfil</h2>
-<br>
+<h2 style='color:royalblue'>Bienvenid@ nuevamente
+  {{#each userData}}
+    {{#if first_name}}
+      {{this.first_name}}
+    {{/if}}
+  {{/each}}</h2>
+<br />
+<br />
+
+<div class='card'>
+  <div class='card__info'>
+    {{#each userData}}
+      {{#if first_name}}
+        <p>name: {{this.first_name}}</p>
+      {{/if}}
+      {{#if last_name}}
+        <p>surname: {{this.last_name}}</p>
+      {{/if}}
+      {{#if email}}
+        <p>email: {{this.email}}</p>
+      {{/if}}
+    {{/each}}
+    </div>
+</div>
+<br />
+<br />
+
 <button onclick="location.href='/user/logout'">LOGOUT</button>
