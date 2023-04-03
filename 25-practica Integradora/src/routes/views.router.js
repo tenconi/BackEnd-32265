@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { jwtValidation } from '../middlewares/jwt.middleware.js';
 import { isAuthenticated } from '../middlewares/authenticated.middleware.js';
+import { isAuthorized } from '../middlewares/authorizedRol.middleware.js';
 
 const router = Router();
 
@@ -16,9 +17,9 @@ router.get('/user/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/user/profile', isAuthenticated, (req, res) => { //middleware
+router.get('/user/profile', isAuthenticated, (req, res) => { //middleware: solo ingresa si esta logueado
   const userData = req.user
-  console.log(userData)
+  // console.log(userData)
   res.render('profile', {userData});
 });
 
@@ -34,7 +35,7 @@ router.get('/user/errorLogin', (req, res) => {
   res.render('errorLogin');
 });
 
-router.get('/user/errorAuthorization', (req, res) => {
+router.get('/errorAuthorization', (req, res) => {
   res.render('errorAuthorization');
 });
 
@@ -43,7 +44,7 @@ router.get('/user/errorAuthorization', (req, res) => {
   res.render('products')
 }) */
 
-router.get('/products/add', (req, res)=>{
+router.get('/products/add', isAuthorized, (req, res)=>{
   res.render('addProduct')
 })
 

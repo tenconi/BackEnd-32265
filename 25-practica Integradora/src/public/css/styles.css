@@ -416,3 +416,24 @@ button:hover, .btn_comprar:hover {
 .swal2-styled.swal2-confirm {
   background: green!important;
 }
+/* admin acces */
+.admin{
+  position: relative;
+}
+.admin::after{
+  content: 'ADMIN';
+  font-size: 8px;
+  display: block;
+  font-weight: 600;
+  letter-spacing: 1px;
+  position: absolute;
+  top:2px;
+  right:3px;
+  color: orangered;
+  animation: tilt 1s infinite;
+}
+@keyframes tilt {
+  0%{opacity: 0;}
+  70%{opacity: 1;}
+  100%{opacity: 0;}
+}
