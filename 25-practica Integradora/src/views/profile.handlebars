@@ -7,22 +7,26 @@
 <br />
 <br />
 
-<div class='card'>
-  <div class='card__info'>
+<div class='profile__card'>
+  <div class='profile__card--info'>
     {{#each userData}}
       {{#if first_name}}
-        <p>name: {{this.first_name}}</p>
+        <p>name: <span>{{this.first_name}}</span></p>
       {{/if}}
       {{#if last_name}}
-        <p>surname: {{this.last_name}}</p>
+        <p>surname: <span>{{this.last_name}}</span></p>
       {{/if}}
       {{#if email}}
-        <p>email: {{this.email}}</p>
+        <p>email: <span>{{this.email}}</span></p>
+      {{/if}}
+      {{#if rol}}
+        <p>rol: <span>{{this.rol}}</span></p>
       {{/if}}
     {{/each}}
     </div>
+
+<button onclick="location.href='/user/logout'">LOGOUT</button>
+
 </div>
 <br />
 <br />
-
-<button onclick="location.href='/user/logout'">LOGOUT</button>

@@ -222,7 +222,7 @@ button:hover, .btn_comprar:hover {
 .single-card,
 .cart__card,
 .purch__card,
-.card__user {
+.card__user, .profile__card {
   overflow: hidden;
   background: whitesmoke;
   border-radius: 0.5rem;
@@ -286,7 +286,24 @@ button:hover, .btn_comprar:hover {
     text-transform: uppercase;
     margin-bottom: 1rem;
 }
-
+/* profile card */
+.profile__card{
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile__card--info{
+  line-height: 1.5;
+  font-size: 18px;
+}
+.profile__card--info p span{
+  color:royalblue;
+  font-weight: 500;  
+}
+.profile__card button{
+  align-self: flex-end;
+}
 .sigle__stock{
     font-size: 10px;
     color:grey;
