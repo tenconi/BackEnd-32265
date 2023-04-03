@@ -187,6 +187,12 @@ button:hover, .btn_comprar:hover {
   justify-content: center;
   align-items: center;
 }
+.errorLogin{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:2rem;
+  place-items: center;
+}
 .notification {
   display: flex;
   flex-direction: column;

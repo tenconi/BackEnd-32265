@@ -23,21 +23,19 @@ router.post(
   })
 );
 
-router.get('/profile', (req, res) => {
-    console.log('aca tamos');
+/* router.get('/profile', (req, res) => {
 });
-
-router.get('/logout', (req, res) => {
-  res.clearCookie('userInfo');
-
-  req.session.destroy((error) => {
+ */
+router.get('/logout', (req, res, next) => {
+  req.logout((error)=>{
     if (error) {
-      console.log(error);
+      res.redirect('/user/error');
+      next();
     } else {
-      res.redirect('/user/login');
+      res.redirect('/user/login')
+      next()
     }
-  });
-  res.redirect('/user/login');
+  })
 });
 
 export default router;

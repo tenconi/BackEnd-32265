@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { jwtValidation } from '../middlewares/jwt.middleware.js';
+import { isAuthenticated } from '../middlewares/authenticated.middleware.js';
 
 const router = Router();
 
@@ -15,9 +16,12 @@ router.get('/user/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/user/profile', jwtValidation, (req, res) => {
-  // console.log(res);
+router.get('/user/profile', isAuthenticated, (req, res) => { //middleware
   res.render('profile');
+});
+
+router.get('/user/error', (req, res) => {
+  res.render('errorGral');
 });
 
 router.get('/user/errorRegistro', (req, res) => {
