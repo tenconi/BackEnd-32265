@@ -1,0 +1,37 @@
+<div class='container__registros'>
+
+  <form {{!-- action='/user/registro' --}}  method='post' class='form__reg'>
+    <h3>Registrese con su email</h3>
+    <input type='text' placeholder='nombre' id='first_name' name='first_name' />
+    <input type='text' placeholder='apellido' id='last_name' name='last_name' />
+    <input type='email' placeholder='email' id='email' name='email' />
+    <input type='password' placeholder='contraseña' id='password' name='password' />
+
+    <div class='form__reg--option'>
+      <label for='rol_a'>
+        <p>admin</p>
+        <input type='radio' name='rol' id='rol_a' value='admin' />
+      </label>
+
+      <label for='rol_u'>
+        <p>user</p>
+        <input type='radio' name='rol' id='rol_u' value='user' checked />
+      </label>
+    </div>
+
+    <input type='submit' value='registrarme' />
+  </form>
+
+  <div class='form__op'>
+    <div class='form__op--option'>
+      <h3>Registrese con G-Mail</h3>
+      <button onclick="location.href='/user/registroGoogle'">G-Mail</button>
+    </div>
+
+    <div class='form__op--option'>
+      <h3>Registrese con GitHub</h3>
+      <button onclick="location.href='/user/registroGitHub'">Git Hub</button>
+    </div>
+  </div>
+
+</div>
