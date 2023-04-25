@@ -10,21 +10,21 @@ import CartMongoManger from './cartsDAOs/cartMongo.js';
 import UserFileManager from './usersDAOs/usersFile.js';
 import UserMongoManger from './usersDAOs/usersMongo.js';
 
-let usersDao;
+let usersDAO;
 let productsDAO;
 let cartsDAOs;
 switch (config.Persistencia) {
   case 'MONGO':
     await import('./../mongo/configDB.js'); // conecto BD
-    usersDao = new UserMongoManger();
+    usersDAO = new UserMongoManger();
     productsDAO = new ProductsMongoManager();
     cartsDAOs = new CartMongoManger();
     break;
   case 'FILE':
-    usersDao = new UserFileManager();
+    usersDAO = new UserFileManager();
     productsDAO = new ProductsFileManager();
     cartsDAOs = new CartFileManager();
     break;
 }
 
-export default usersDao; productsDAO; cartsDAOs; // ¿?¿?
+export default usersDAO; productsDAO; cartsDAOs; // ¿?
