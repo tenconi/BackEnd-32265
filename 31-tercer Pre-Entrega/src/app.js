@@ -6,7 +6,7 @@ import cartRouter from './routes/cart.router.js';
 import viewsRouter from './routes/views.router.js';
 import userRouter from './routes/user.router.js';
 import productsRouter from './routes/products.router.js';
-// import './dao/dbConfig.js'; // Data Base XXX inicializo de persistencia
+// import './dao/dbConfig.js'; // Data Base XXX inicializo de persistencia - FACTORY
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import './passport/passportStrategies.js';
@@ -30,14 +30,13 @@ app.set('view engine', 'handlebars');
 // session / connect-mongo
 app.use(
   session({
-    secret: 'seccionKey',
+    secret: config.sessions_key,
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 600000 }, //seteo las cookies para guardar el sessionId en cookies x ej
     store: new mongoStore({
       // store: para guardar en BBDD
-      mongoUrl:
-        'mongodb+srv://tenco:Bonetaso16@cluster0.5xmnrmy.mongodb.net/ecommerce?retryWrites=true&w=majority', // dnd se van a guardar las sesiones de los usuarios === configConect
+      mongoUrl: config.uri_mongo, // dnd se van a guardar las sesiones de los usuarios === configConect
     }),
   })
 );
