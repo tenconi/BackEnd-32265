@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import ProductsManager from '../dao/mongoManagers/productsManager.js';
+// import ProductsManager from '../dao/mongoManagers/productsManager.js';
+import ProductsMongoManager from '../persistence/DAOs/productsDAOs/productsMongo.js'
 
 const router = Router();
 
-const productManager = new ProductsManager();
+const productManager = new ProductsMongoManager(); // *** debiera levantar resultado de factory
 
 router.get('/all', async (req, res) => { // → si dejo solo el "/" No levanta la pag.
     const { limit = 10, page = 1 } = req.query; // x ej:  http://localhost:8080/products?limit=2&page=1

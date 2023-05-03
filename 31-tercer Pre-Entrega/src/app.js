@@ -51,9 +51,11 @@ app.use('/cart', cartRouter);
 app.use('/products', productsRouter);
 app.use('/user', userRouter);
 
-app.listen(PORT, () => {
-  console.log(`Listening ${PORT}`);
-});
+
+// server
+const httpServer = app.listen(PORT, ()=>{
+  console.log(`Escuchando puerto : ${PORT}`);
+})
 
 // websockets
 export const socketServer = new Server(httpServer);

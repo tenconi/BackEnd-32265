@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import CartManager from '../dao/mongoManagers/CartManager.js';
+// import CartManager from '../dao/mongoManagers/CartManager.js';
+import CartMongoManager from '../persistence/DAOs/cartsDAOs/cartMongo.js'
 import { isAuthorized } from '../middlewares/authorizedRol.middleware.js';
 
 const router = Router();
-const cartManager = new CartManager();
+const cartManager = new CartMongoManager(); // *** debiera levantar resultado de factory
 
 router.post('/', async (req, res) => {
   const createNewCart = await cartManager.createCart();

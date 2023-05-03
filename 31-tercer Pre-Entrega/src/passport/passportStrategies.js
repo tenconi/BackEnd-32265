@@ -1,8 +1,9 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
-import { Strategy as jwtStrategy, ExtractJwt } from 'passport-jwt';
+import { ExtractJwt, Strategy as jwtStrategy, } from 'passport-jwt';
 // import { Strategy as jwtStrategy} from 'passport-jwt';
-import { userModel } from '../dao/models/user.model.js';
+// import { userModel } from '../dao/models/user.model.js';
+import { userModel } from '../persistence/mongo/models/user.model.js'; 
 import { hashData, compareHashedData } from '../utils.js';
 import { generateToken, authToken } from '../utils.js';
 // import { jwtValidation } from '../middlewares/jwt.middleware.js';
@@ -72,8 +73,16 @@ passport.use(
   )
 );
 
+
+const cookieExtractor = (req) => {
+  let token = null;
+  if (req && req.cookies) {
+    token = req.cookies['cookieToken'];
+  }
+  return token;
+};
+
 passport.use(
-  passport(
     'jwt',
     new jwtStrategy(
       {
@@ -89,15 +98,8 @@ passport.use(
       }
     )
   )
-);
 
-const cookieExtractor = (req) => {
-  let token = null;
-  if (req && req.cookies) {
-    token = req.cookies['cookieToken'];
-  }
-  return token;
-};
+
 
 /* 
 // JWT STRATEGY

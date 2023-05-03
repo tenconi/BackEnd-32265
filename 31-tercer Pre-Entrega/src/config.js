@@ -4,7 +4,7 @@ dotenv.config();
 
 export default {
   Port: process.env.PORT,
-  uri_mongo: process.env.MONGO,
+  uri_mongo: process.env.URLMONGO,
   Persistencia: process.env.PERSISTENCIA || 'FILE',
   sessions_key: process.env.SESSIONS_KEY
 };
