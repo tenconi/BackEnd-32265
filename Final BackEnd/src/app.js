@@ -7,6 +7,7 @@ import mongoStore from 'connect-mongo'; // could be FfleStore
 import handlebars from 'express-handlebars';
 import viewsRouter from './routes/views.router.js';
 import usersRouter from './routes/users.router.js';
+import  './persistences/mongo/mongoConfig.js'
 
 const app = express();
 
