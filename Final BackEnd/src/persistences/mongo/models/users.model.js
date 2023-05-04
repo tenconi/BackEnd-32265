@@ -19,12 +19,13 @@ const UsersSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // cart: [
-  //   {
-  //     type: mongoose.SchemaType.ObjectID,
-  //     ref: 'Orders',
-  //   }
-  // ],
+  cart: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Orders',
+      default: [],
+    },
+  ],
 });
 
 export const UsersModel = mongoose.model('Users', UsersSchema);
