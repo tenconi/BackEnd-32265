@@ -38,7 +38,9 @@ app.use(
 
 // ROUTES
 app.use('/', viewsRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
+// app.use('/cart', cartRouter);
+// app.use('/products', productsRouter);
 
 // SERVER
 const PORT = config.PORT;

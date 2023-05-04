@@ -1,9 +1,10 @@
+// MODEL
 import mongoose from 'mongoose';
 
-const usersSchema = new mongoose.Schema({
+const UsersSchema = new mongoose.Schema({
   name: {
     type: String,
-    requiredd: true,
+    required: true,
   },
   surName: {
     type: String,
@@ -18,12 +19,12 @@ const usersSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  cart: [
-    {
-      type: mongoose.SchemaType.ObjectID,
-      ref: 'Orders',
-    },
-  ],
+  // cart: [
+  //   {
+  //     type: mongoose.SchemaType.ObjectID,
+  //     ref: 'Orders',
+  //   }
+  // ],
 });
 
-export const usersModel = mongoose.model('Users', usersSchema);
+export const UsersModel = mongoose.model('Users', UsersSchema);

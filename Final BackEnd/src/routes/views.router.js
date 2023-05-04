@@ -3,11 +3,13 @@ import { Router } from 'express';
 const router = Router();
 
 router.get('/', (req, res) => {
-  res.render('home');
+  res.json({ mesagge: 'Home' });
+  // res.render('home');
 });
 
 router.get('/users', (req, res) => {
-    res.render('users');
-  });
+  res.json({ mesagge: 'Users' });
+  // res.render('users');
+});
 
 export default router;

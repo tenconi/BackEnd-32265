@@ -1,13 +1,15 @@
+// ROUTES : consume "controlls"
 import { Router } from 'express';
+import UsersController from './../controllers/users.controller.js';
 
 const router = Router();
 
-router.get('/users', (req, res)=>{
+router.post('/', () => {
+  UsersController.createOne;
+});
 
-})
-
-router.post('/users', (req, res)=>{
-    
-})
+router.get('/:idUser', () => {
+  UsersController;
+});
 
 export default router;

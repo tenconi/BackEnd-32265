@@ -1,24 +1,68 @@
-<html lang='en'>
-  <head>
-    <meta charset='UTF-8' />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>eCom | Tenconi</title>
-    <link rel="stylesheet" href="/css/styles.css">
-  </head>
-  <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PE31 | Tenconi</title>
+    <link
+      rel='stylesheet'
+      type='text/css'
+      href='https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css'
+    />
+    <link rel='stylesheet' href='/css/styles.css' />
+    <link rel='shortcut icon' href='/img/favicon.png' type='image/x-icon' />
+</head>
+<body>
+
     <header>
-        <h2>eCom</h2>
+      <h1>BackEnd Final</h1>
+      <ul class='userNav'>
+        <li>
+          <div class='userNav__avatar'>
+            <p>user</p>
+          </div>
+
+          <ul>
+            <li><a href='/user/register'>registro</a></li>
+            <li><a href='/user/login'>login</a></li>
+            <li><a href='/user/profile'>perfil</a></li>
+            <li><a href='/user/logout'>logout</a></li>
+          </ul>
+        </li>
+      </ul>
     </header>
 
-    <div class='container'>
-      {{{body}}}
+    <nav>
+      <ul>
+        <li><a href='/'>home</a></li>
+        <li><a href=''>productos</a>
+          <ul>
+            <li><a href='/products/all'>todos</a></li>
+            <li class="admin"><a href='/products/add'>agregar</a></li>
+          </ul>
+        </li>
+        <li><a href=''>carts</a>
+          <ul>
+            <li><a href='/cart/miCart'>mi cart</a></li>
+            <li class="admin"><a href='/cart/all'>todos</a></li>
+          </ul>
+        </li>
+
+        <li><a href='/chat'>chat room</a></li>
+      </ul>
+    </nav>
+
+
+    <div class="container">
+        {{{body}}}
     </div>
 
-    <footer>
+     <footer>
       <p><strong>Daniel Tenconi</strong>
-        | <em>BackEnd Proyect 2023</em></p>
+        | clase 31:
+        <em>Tercer Pre-Entrega</em></p>
     </footer>
-
-  </body>
+    
+</body>
 </html>
