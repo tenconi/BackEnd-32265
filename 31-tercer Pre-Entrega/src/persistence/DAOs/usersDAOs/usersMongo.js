@@ -1,21 +1,22 @@
 import { userModel } from '../../mongo/models/user.model.js';
 import UsersDTO from '../../DTOs/users.dto.js';
-import UsersRespDTO from '../../DTOs/usersResp.dto.js';
+// import UsersRespDTO from '../../DTOs/usersResp.dto.js';
 
 export default class UserMongoManger {
-  async createUser(objUser) {
+  async getAllUsers() {
     try {
-      const newUser = await userModel.create(objUser);
-      return newUser;
+      const users = await userModel.find();
+      return users;
     } catch (error) {
       console.log(error);
     }
   }
 
-  async getAllUsers() {
+  async createUser(objUser) {
     try {
-      const users = await usersModel.find();
-      return users;
+      const userDTO = new UsersDTO(objUser); // => le paso el obj al DTO
+      const newUser = await userModel.create(userDTO);
+      return newUser;
     } catch (error) {
       console.log(error);
     }
