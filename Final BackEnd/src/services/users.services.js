@@ -1,6 +1,6 @@
 // SERVICE : recibe lo que especificamente envia el controlador (no el objeto req completo)
 import UsersMongo from '../persistences/DAOs/usersDAO/usersMongo.js';
-import { hashData } from '../utils.js';
+// import { hashData } from '../utils.js';
 
 class UsersServices {
   constructor(dao) {
@@ -8,19 +8,22 @@ class UsersServices {
   }
 
   createUser = async (obj) => {
-    const hashPassword = hashData(obj.password);
-    const newObj = { ...obj, hashPassword };
-    const newUser = this.dao.create(newObj); // levanto fx de "dao"
+    // const hashPassword = hashData(obj.password);
+    // const newObj = { ...obj, hashPassword };
+    const newUser = this.dao.create(obj); // levanto fx de "dao"
     return newUser;
   };
 
   findUser = async (id) => {
+    // console.log(`SERVICE : findOne`, id);
     const user = await this.dao.findOne(id); // levanto fx de "dao"
     return user;
   };
 
   findAllUsers = async () => {
-    const user = await this.dao.findOne(); // levanto fx de "dao"
+    // console.log(`SERVICE : findAllUsers`);
+    const user = await this.dao.findAll(); // levanto fx de "dao"
+    // console.log(user); // *** OK
     return user;
   };
 

@@ -3,9 +3,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default {
-  PORT: process.env.PORT,
-  URI_MONGO: process.env.URI_MONGO,
-  COOKIE_KEY: process.env.COOKIE_KEY,
-  SESSION_KEY: process.env.SESSION_KEY,
-  JWT_KEY: process.env.JWT_KEY,
+  _PORT_: process.env.PORT,
+  _URI_MONGO_: process.env.URI_MONGO,
+  _COOKIE_KEY_: process.env.COOKIE_KEY,
+  _SESSION_KEY_: process.env.SESSION_KEY,
+  _JWT_KEY_: process.env.JWT_KEY,
 };

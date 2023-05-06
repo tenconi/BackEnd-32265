@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import config from '../../config.js';
 
-let URI = config.URI_MONGO;
+let URI = config._URI_MONGO_;
 
 try {
   mongoose.connect(URI);

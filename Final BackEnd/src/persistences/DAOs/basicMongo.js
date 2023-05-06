@@ -1,15 +1,13 @@
-/*  
-basicMongo.js = es una "clase" que continene las funcionalidades mas básicas, mas repetidas dentro de un CRUD.
- */
+// basicMongo.js = es una "clase" que continene las funcionalidades mas básicas, mas repetidas dentro de un CRUD.
 
 export default class BasicMongo {
   constructor(model) {
     this.model = model;
   }
   
-  async create(obj) {
+  async create(obj) {    
     try {
-      const response = await this.model.create();
+      const response = await this.model.create(obj);
       return response;
     } catch (error) {
       return error;
@@ -19,15 +17,17 @@ export default class BasicMongo {
   async findAll() {
     try {
       const response = await this.model.find();
+      // console.log(`BASIC MONGO : ${response}`)
       return response;
     } catch (error) {
       return error;
     }
   }
-
+  
   async findOne(id) {
     try {
-      const response = await this.model.find(id);
+      const response = await this.model.findById(id);
+      // console.log(`BASIC MONGO : ${response}`)
       return response;
     } catch (error) {
       return error;
