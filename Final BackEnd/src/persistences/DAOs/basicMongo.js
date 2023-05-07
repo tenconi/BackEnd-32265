@@ -4,8 +4,8 @@ export default class BasicMongo {
   constructor(model) {
     this.model = model;
   }
-  
-  async create(obj) {    
+
+  async create(obj) {
     try {
       const response = await this.model.create(obj);
       return response;
@@ -17,35 +17,35 @@ export default class BasicMongo {
   async findAll() {
     try {
       const response = await this.model.find();
-      // console.log(`BASIC MONGO : ${response}`)
       return response;
     } catch (error) {
       return error;
     }
   }
-  
+
   async findOne(id) {
     try {
       const response = await this.model.findById(id);
-      // console.log(`BASIC MONGO : ${response}`)
       return response;
     } catch (error) {
       return error;
     }
   }
 
-  async updateOne(id, obj) {
-    try {
-      const response = await this.model.update(id, obj);
-      return response;
-    } catch (error) {
-      return error;
-    }
-  }
+  // async updateOne(id, obj) {
+  //   try {
+  //     const response = await this.model.update(id, obj);
+  //     return response;
+  //   } catch (error) {
+  //     return error;
+  //   }
+  // }
 
   async deleteOne(id) {
+    // console.log(`BASIC MONGO : deleteUser ${id}`);
     try {
-      const response = await this.model.deleteOne(id);
+      const response = await this.model.deleteOne({ _id: id });
+      // console.log(response);
       return response;
     } catch (error) {
       return error;

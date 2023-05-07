@@ -27,7 +27,14 @@ class UsersServices {
     return user;
   };
 
+  edit = async (id, field, value) => {
+    console.log(id, field, value);
+    const user = await this.dao.updateOne(id, field, value);
+    return user;
+  };
+
   deleteUser = async (id) => {
+    // console.log('SERVICE', id);
     const user = await this.dao.deleteOne(id); // levanto fx de "dao"
     return user;
   };

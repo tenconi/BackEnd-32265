@@ -10,7 +10,7 @@ import UsersController from './../controllers/users.controller.js';
 
 // router.get('/', (req, res) => {
 //   console.log(`Ruta GET : findAllUsers`);
-  
+
 //   UsersController.allTheUsers;
 //   // res.json({ message: 'Todos los usuarios' , constante })
 // });
@@ -22,16 +22,18 @@ import UsersController from './../controllers/users.controller.js';
 
 // export default router;
 
-class UsersRouter{
-  constructor(){
-    this.router = Router()
-    this.router.post('/', UsersController.createOne)
-    this.router.get('/', UsersController.allTheUsers)
-    this.router.get('/:id', UsersController.findOne)
+class UsersRouter {
+  constructor() {
+    this.router = Router();
+    this.router.post('/', UsersController.createOne);
+    this.router.get('/', UsersController.allTheUsers);
+    this.router.get('/:id', UsersController.findOne);
+    this.router.put('/:id', UsersController.editUser);
+    this.router.delete('/:id', UsersController.delUser); // Error: Route.delete() requires a callback function but got a [object Undefined]
   }
 
   // creo metodo INIT(){} para "prender"/ activar el router
-  getRouter() {
+  initRouter() {
     return this.router;
   }
 }

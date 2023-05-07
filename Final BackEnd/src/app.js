@@ -39,7 +39,7 @@ app.use(
 // ROUTES
 app.use('/', viewsRouter);
 // app.use('/user', usersRouter);
-app.use('/user', usersRouter.getRouter()); // con Clase
+app.use('/user', usersRouter.initRouter()); // con Clase
 // app.use('/cart', cartRouter);
 // app.use('/products', productsRouter);
 

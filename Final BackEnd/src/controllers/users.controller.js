@@ -4,13 +4,12 @@ import UsersServices from './../services/users.services.js';
 class UsersController {
   createOne = async (req, res) => {
     const obj = req.body;
-    console.log(`CONTROLLER : ${obj}`);
-
+    // console.log(`CONTROLLER : ${obj}`);
     try {
       const newUser = await UsersServices.createUser(obj);
       res.json({ message: 'Usuario creado exitosamente', user: newUser });
     } catch (error) {
-      res.json({ message: 'Error',  error: error });
+      res.json({ message: 'Error', error: error });
     }
   };
 
@@ -24,7 +23,9 @@ class UsersController {
       // console.log(findUser);
     } catch (error) {
       // console.log(error);
-      res.json({ message: ' No se ha encontrado el usuario especificado', error: error,
+      res.json({
+        message: ' No se ha encontrado el usuario especificado',
+        error: error,
       });
     }
   };
@@ -38,16 +39,37 @@ class UsersController {
       res.json({ message: error });
       // return error;
     }
-
-    // try {
-    //   const allUsers = await UsersServices.findAllUsers();
-    // //   res.json({ message: 'Usuario creado exitosamente', allUsers });
-    // console.log(allUsers);
-    // } catch (error) {
-    // //   res.json({ message: 'Error', error});
-    // console.log(error);
-    // }
   };
+
+  editUser = async (req, res) => {
+    const {id} = req.params
+    const newData = req.body
+
+    const field = Object.keys(newData).toString(); // lo paso a string xq me llega como array
+    const value = Object.values(newData).toString(); // lo paso a string xq me llega como array
+
+    console.log(`CONTROLLER : editUser `, id, field, value);
+    try {
+      const updateUser = await UsersServices.edit(id, field, value)
+      res.json({ message: 'Usuario editado correctamente', user: updateUser });
+    } catch (error) {
+      res.json({ message: error });
+    }
+  }
+
+  delUser = async (req, res) => {
+    // console.log(`CONTROLLER : deleteUser `);
+    const { id } = req.params;
+    // console.log(`CONTROLL ${id}`);
+    try {
+      const deleteUser = await UsersServices.deleteUser(id);
+      res.json({ message: 'Usuario Eliminado:', user: deleteUser });
+      return deleteUser;
+    } catch (error) {
+      res.json({ message: error });
+    }
+  };
+
 }
 
 export default new UsersController();
