@@ -32,4 +32,14 @@ export default class UserMongoManger {
       console.log(error);
     }
   }
+
+  async editUser(id, field, value){
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
+
+  
 }

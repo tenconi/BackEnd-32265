@@ -1,28 +1,28 @@
 import { productModel } from '../../mongo/models/product.models.js';
+import aggregatePaginate  from 'mongoose-aggregate-paginate-v2'
 
 export default class ProductsMongoManager {
-  async getAllProducts(limit, page) {
+  async allProducts(limit, page) {
     try {
       const getProds = await productModel.aggregatePaginate( {}, { limit, page } );
       // const getProds = await productModel.find({})
-      // console.log(getProds);
+      // console.log('manager',getProds);
       return getProds;
     } catch (error) {
       return error;
     }
   }
 
-  async getProductById(id) {
+  async productById(id) {
     try {
-      const getProdById = await productModel.find({ _id: id });
-      // console.log(getProdById);
+      const getProdById = await productModel.find({_id:id});
       return getProdById;
     } catch (error) {
       return error;
     }
   }
 
-  async addProduct(prod) {
+  async add(prod) {
     try {
       const newProd = await productModel.create(prod);
       return newProd;

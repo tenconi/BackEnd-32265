@@ -12,8 +12,8 @@ class viewControlls {
   };
 
   user_profile = async (req, res) => {
-    const { userData } = req.user;
-    res.render('profile', userData);
+    const userData = req.user;
+    res.render('profile', {userData});
   };
 
   user_error = async (req, res) => {
