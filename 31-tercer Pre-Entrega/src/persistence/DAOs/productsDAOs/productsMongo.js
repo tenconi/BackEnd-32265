@@ -5,8 +5,6 @@ export default class ProductsMongoManager {
   async allProducts(limit, page) {
     try {
       const getProds = await productModel.aggregatePaginate( {}, { limit, page } );
-      // const getProds = await productModel.find({})
-      // console.log('manager',getProds);
       return getProds;
     } catch (error) {
       return error;

@@ -16,8 +16,10 @@ http://localhost:8080/user/errorAuthorization : error de autorización
 
 ♣ Rutas de Productos:
 http://localhost:8080/products/all : listado de productos
+http://localhost:8080/products/:id : productos seleccionado
 http://localhost:8080/products/add : agregar products - acceso con middleware "isAuthorized"
 
+♥ Rutas de Carts:
 
 ☺ Ruta de Chat:
 http://localhost:8080/chat : sala de chat

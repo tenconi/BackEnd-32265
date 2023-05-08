@@ -5,19 +5,22 @@ import {
   addProductsToCart,
 } from '../services/carts.services.js';
 
-export const createCart = async (req, res) => {
+export const createNewCart = async (req, res) => {
   const cart = await createCart();
 };
 
-export const getAllCarts = async (req, res) => {
+export const getListCarts = async (req, res) => {
   const cart = await getAllCarts();
 };
 
-export const getCartById = async (req, res) => {
+export const getCartId = async (req, res) => {
   const id = req.query;
   const cart = await getCartById(id);
 };
 
-export const addProductsToCart = async (req, res) => {
+export const productsToCart = async (req, res) => {
+  const { cid, pid } = req.params;
+  const { quantity } = req.body;
+  console.log('ctrl', cid, pid, quantity)
   const cart = await addProductsToCart(cid, pid, quantity);
 };

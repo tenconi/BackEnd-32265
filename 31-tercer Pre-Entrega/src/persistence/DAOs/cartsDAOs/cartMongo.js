@@ -1,8 +1,8 @@
 import { cartModel } from '../../mongo/models/cart.model.js';
-import { productModel } from '../../mongo/models/product.models.js';
+// import { productModel } from '../../mongo/models/product.models.js';
 
 export default class CartMongoManager {
-  async createCart() {
+  async create() {
     try {
       const createCart = await cartModel.create({
         cart: [],
@@ -14,7 +14,7 @@ export default class CartMongoManager {
   }
 
   // listo todo los carros creados solo para ver
-  async getAllCarts() {
+  async getAll() {
     try {
       const allCarts = await cartModel.find().lean();
       // console.log(allCarts);
@@ -24,7 +24,7 @@ export default class CartMongoManager {
     }
   }
 
-  async getCartById(id) {
+  async getCart(id) {
     try {
       const getCart = await cartModel.findById(id);
       // console.log(getCart.productList);
@@ -34,7 +34,9 @@ export default class CartMongoManager {
     }
   }
 
-  async addProductsToCart(cid, pid, quantity) {
+  async addToCart(cid, pid, quantity) {
+    console.log('manager', cid, pid, quantity)
+    
     try {
       const getCart = await cartModel.findById(cid); // Busco el Cart
       const getProd = await productModel.findById(pid); // Traigo Productos

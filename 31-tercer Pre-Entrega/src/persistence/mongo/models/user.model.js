@@ -34,4 +34,12 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// populate
+
+userSchema.pre('find', function (next) {
+    this.populate('cart._id')
+    next()
+})
+
+
 export const usersModel = mongoose.model('Users', userSchema);

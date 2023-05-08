@@ -51,8 +51,12 @@
                 <p>{{description}}</p>
                 <p class="sigle__stock">stock: <strong>{{stock}}</strong> unidades</p>
                 <p class="price">&euro; {{price}}</p>
-
+                <form action="" method="post">
+                    <br>
+                   <label for="quantity"> Cantidad/es: <input type="number" name="quantity" id="quantity" value="1" style="width:80px"></label>
                 <button class="btn__add">add to Carrito</button>
+
+                </form>
             </div>
     </div>
    {{/each}}

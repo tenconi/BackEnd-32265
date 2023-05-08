@@ -3,11 +3,13 @@ import { Router } from 'express';
 import CartMongoManager from '../persistence/DAOs/cartsDAOs/cartMongo.js'
 import { isAuthorized } from '../middlewares/authorizedRol.middleware.js';
 
+import {productsToCart} from './../controllers/cart.controllers.js'
+
 const router = Router();
 const cartManager = new CartMongoManager(); // *** debiera levantar resultado de factory
 
 router.post('/', async (req, res) => {
-  const createNewCart = await cartManager.createCart();
+  const createNewCart = await cartManager.createNewCart();
   // res.status(200).json({ message : 'Carrito creado exitosamente.', createNewCart })
   // res.status(200).render('cart', {createNewCart})
   res.redirect('/cart/all');
@@ -34,23 +36,25 @@ router.get('/:cid', async (req, res) => {
   }
 });
 
-router.post('/:cid/products/:pid', async (req, res) => {
-  const { cid, pid } = req.params;
-  const { quantity } = req.body;
+router.post('/:cid/products/:pid', productsToCart)
 
-  const purch = await cartManager.addProductsToCart(
-    cid,
-    pid,
-    parseInt(quantity)
-  );
-  res
-    .status(200)
-    .json({
-      message: `Has agregado ${quantity} ${
-        quantity > 1 ? 'productos' : 'producto'
-      } correctamente.`,
-      cart: purch,
-    });
-});
+// router.post('/:cid/products/:pid', async (req, res) => {
+//   const { cid, pid } = req.params;
+//   const { quantity } = req.body;
+
+//   const purch = await cartManager.addProductsToCart(
+//     cid,
+//     pid,
+//     parseInt(quantity)
+//   );
+//   res
+//     .status(200)
+//     .json({
+//       message: `Has agregado ${quantity} ${
+//         quantity > 1 ? 'productos' : 'producto'
+//       } correctamente.`,
+//       cart: purch,
+//     });
+// });
 
 export default router;
