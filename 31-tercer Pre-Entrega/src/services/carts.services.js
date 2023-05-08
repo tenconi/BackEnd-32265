@@ -12,8 +12,8 @@ export const getAllCarts = async () => {
   return cart;
 };
 
-export const getCartById = async (id) => {
-  const cart = await CartDAOS.getCart(id); // se llama igual en todos los DAOs
+export const getCartById = async (cid) => {
+  const cart = await CartDAOS.getCart(cid); // se llama igual en todos los DAOs
   return cart;
 };
 
