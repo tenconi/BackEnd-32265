@@ -14,7 +14,7 @@ router.get('/', viewControlls.home);
 router.get('/user', viewControlls.user_register)
 router.get('/user/register', viewControlls.user_register)
 router.get('/user/login', viewControlls.user_login)
-router.get('/user/profile', viewControlls.user_profile)
+router.get('/user/profile', isAuthenticated, viewControlls.user_profile)
 
 // Errores de Usuarios
 router.get('/user/error', viewControlls.user_error)
