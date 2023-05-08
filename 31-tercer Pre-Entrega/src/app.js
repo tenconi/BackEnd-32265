@@ -36,7 +36,7 @@ app.use(
     cookie: { maxAge: 6300000 }, //seteo las cookies para guardar el sessionId en cookies x ej
     store: new mongoStore({
       // store: para guardar en BBDD
-      mongoUrl: config.uri_mongo, // dnd se van a guardar las sesiones de los usuarios === configConect
+      mongoUrl: config._uri_mongo_, // dnd se van a guardar las sesiones de los usuarios === configConect
     }),
   })
 );
@@ -54,7 +54,7 @@ app.use('/user', userRouter);
 
 // server
 const httpServer = app.listen(PORT, ()=>{
-  console.log(`Escuchando puerto : ${PORT}`);
+  console.log(`♦ Escuchando puerto : ${PORT}`);
 })
 
 // websockets

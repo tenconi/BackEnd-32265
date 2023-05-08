@@ -3,60 +3,30 @@ import { jwtValidation } from '../middlewares/jwt.middleware.js';
 import { isAuthenticated } from '../middlewares/authenticated.middleware.js';
 import { isAuthorized } from '../middlewares/authorizedRol.middleware.js';
 
+import viewControlls from './../controllers/views.controllers.js'
+
 const router = Router();
 
-router.get('/', (req, res) => {
-   res.json({message:'home'});
-});
 
+router.get('/', viewControlls.home);
 
-// router.get('/', (req, res) => {
-//   res.render('home', {req});
-// });
+// Usuarios
+router.get('/user', viewControlls.user_register)
+router.get('/user/register', viewControlls.user_register)
+router.get('/user/login', viewControlls.user_login)
+router.get('/user/profile', viewControlls.user_profile)
 
-// router.get('/user/register', (req, res) => {
-//   res.render('register');
-// });
+// Errores de Usuarios
+router.get('/user/error', viewControlls.user_error)
+router.get('/user/errorRegistro', viewControlls.user_error_registro)
+router.get('/user/errorLogin', viewControlls.user_error_login)
+router.get('/user/errorAuthorization', viewControlls.user_error_authorization)
 
-// router.get('/user/login', (req, res) => {
-//   res.render('login');
-// });
+// Productos
+// router.get('/products/all', viewControlls.products_all) // ESTA EN PRODUCTOS
+router.get('/products/add' , isAuthorized , viewControlls.products_add)
 
-// router.get('/user/profile', isAuthenticated, (req, res) => { //middleware: solo ingresa si esta logueado
-//   const userData = req.user
-//   // console.log(userData)
-//   res.render('profile', {userData});
-// });
-
-// router.get('/user/error', (req, res) => {
-//   res.render('errorGral');
-// });
-
-// router.get('/user/errorRegistro', (req, res) => {
-//   res.render('errorRegistro');
-// });
-
-// router.get('/user/errorLogin', (req, res) => {
-//   res.render('errorLogin');
-// });
-
-// router.get('/errorAuthorization', (req, res) => {
-//   res.render('errorAuthorization');
-// });
-
-
-// /* router.get('/products/all', (req, res)=>{
-//   res.render('products')
-// }) */
-
-// router.get('/products/add', isAuthorized, (req, res)=>{
-//   res.render('addProduct')
-// })
-
-// router.get('/chat', (req, res)=>{
-//   res.render('chat')
-// })
-
-
+// Chat Room
+router.get('/chat', viewControlls.chat_room)
 
 export default router;

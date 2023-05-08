@@ -2,8 +2,8 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { ExtractJwt, Strategy as jwtStrategy, } from 'passport-jwt';
 // import { Strategy as jwtStrategy} from 'passport-jwt';
-// import { userModel } from '../dao/models/user.model.js';
-import { userModel } from '../persistence/mongo/models/user.model.js'; 
+// import { usersModel } from '../dao/models/user.model.js';
+import { usersModel } from '../persistence/mongo/models/user.model.js'; 
 import { hashData, compareHashedData } from '../utils.js';
 import { generateToken, authToken } from '../utils.js';
 // import { jwtValidation } from '../middlewares/jwt.middleware.js';
@@ -22,7 +22,7 @@ passport.use(
         if (!first_name || !last_name || !email || !password || !rol) {
           return done(null, false);
         }
-        const userDB = await userModel.findOne({ email });
+        const userDB = await usersModel.findOne({ email });
         if (userDB) {
           return done(null, false);
         } else {
@@ -32,7 +32,7 @@ passport.use(
             password: hashPassword,
             cart: [],
           };
-          const newUserDB = await userModel.create(newUser); // creo usuario
+          const newUserDB = await usersModel.create(newUser); // creo usuario
           const token = generateToken(newUserDB); //genero el token del obj que le paso
           // console.log('token', req);
           done(null, newUserDB);
@@ -54,7 +54,7 @@ passport.use(
     },
     async (req, email, password, done) => {
       try {
-        const userDB = await userModel.findOne({ email });
+        const userDB = await usersModel.findOne({ email });
         if (!userDB) {
           return done(null, false);
         }
@@ -118,7 +118,7 @@ passport.use(
         if (!first_name || !last_name || !email || !password || !rol) {
           return done(null, false);
         }
-        const userDB = await userModel.findOne({ email });
+        const userDB = await usersModel.findOne({ email });
         if (userDB) {
           return done(null, false);
         } else {
@@ -128,7 +128,7 @@ passport.use(
             password: hashPassword,
             cart: [],
           };
-          const newUserDB = await userModel.create(newUser); // creo usuario
+          const newUserDB = await usersModel.create(newUser); // creo usuario
           // const token = generateToken(newUserDB); //genero el token del obj que le paso
           // console.log('token', req);
           done(null, newUserDB);
@@ -146,7 +146,7 @@ passport.use(
     { usernameField: 'email', passReqToCallback: true },
     async (req, email, password, done) => {
       try {
-        const userDB = await userModel.findOne({ email });
+        const userDB = await usersModel.findOne({ email });
         if (!userDB) {
           return done(null, false);
         }
@@ -173,6 +173,6 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-  const user = await userModel.findById(id); //personalizo
+  const user = await usersModel.findById(id); //personalizo
   done(null, user);
 });

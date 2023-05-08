@@ -1,8 +1,12 @@
+// ROUTES : Levanta Controladores
 import { Router } from 'express';
 import passport from 'passport';
+import UsersControlls from './../controllers/users.controller.js'
 
 
 const router = Router();
+
+// router.get('/', UsersControlls.getAllUsers)
 
 // registro con passport
 router.post(
