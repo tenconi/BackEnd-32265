@@ -3,14 +3,16 @@ import { Router } from 'express';
 import CartMongoManager from '../persistence/DAOs/cartsDAOs/cartMongo.js'
 import { isAuthorized } from '../middlewares/authorizedRol.middleware.js';
 
-import {createNewCart,
-  getListCarts,
-  getCartId,productsToCart} from './../controllers/cart.controllers.js'
+// import {createNewCart,
+//   getListCarts,
+//   getCartId,productsToCart} from './../controllers/cart.controllers.js'
 
 const router = Router();
-const cartManager = new CartMongoManager(); // *** debiera levantar resultado de factory
+// const cartManager = new CartMongoManager(); // *** debiera levantar resultado de factory
 
-router.post('/',createNewCart)
+import cartControllers from '../controllers/cart.controllers.js';
+
+router.post('/',cartControllers.newCart)
 // router.post('/', async (req, res) => {
 //   const createNewCart = await cartManager.createNewCart();
 //   // res.status(200).json({ message : 'Carrito creado exitosamente.', createNewCart })
@@ -18,7 +20,7 @@ router.post('/',createNewCart)
 //   res.redirect('/cart/all');
 // });
 
-router.get('/',getListCarts)
+router.get('/',cartControllers.getAll)
 // router.get(
 //   '/all', isAuthorized, async (req, res) => { // middleware de rol    
 //     // const allCarts = await cartManager.getListCarts({});
@@ -28,7 +30,7 @@ router.get('/',getListCarts)
 //   }
 // );
 
-router.get('/:cid', getCartId)
+router.get('/:cid', cartControllers.getCart)
 // router.get('/:cid', async (req, res) => {
 //   const { cid } = req.params;
 //   const getCart = await cartManager.getCartId(id);
@@ -42,7 +44,7 @@ router.get('/:cid', getCartId)
 //   }
 // });
 
-router.post('/:cid/products/:pid', productsToCart)
+router.post('/:cid/products', cartControllers.toCart)
 
 // router.post('/:cid/products/:pid', async (req, res) => {
 //   const { cid, pid } = req.params;

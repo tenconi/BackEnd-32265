@@ -14,6 +14,6 @@ export const isAuthorized = (req, res, next) => {
     }
     return next(); // puede continuar
   }
-  return res.redirect('/errorAuthorization');
+  return res.redirect('/user/errorAuthorization');
   //   next();
 };

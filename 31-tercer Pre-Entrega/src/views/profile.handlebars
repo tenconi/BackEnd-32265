@@ -19,15 +19,15 @@
       {{#if email}}
         <p>email: <span>{{this.email}}</span></p>
       {{/if}}
-      {{#if rol}}
+      {{#if rol }}
         <p>rol: <span>{{this.rol}}</span></p>
       {{/if}}
-      {{#if cart}}
+      {{!-- {{#if cart}}
         <p>cart: <span>{{this.cart}}</span></p>
-      {{/if}}
+      {{/if}} --}}
     {{/each}}
     </div>
-
+<button onclick="location.href='/cart/:cid'" style="background: lightblue;">My Cart</button>
 <button onclick="location.href='/user/logout'">LOGOUT</button>
 
 </div>
