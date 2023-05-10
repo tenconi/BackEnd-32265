@@ -2,6 +2,7 @@ import { Router } from 'express';
 // import CartManager from '../dao/mongoManagers/CartManager.js';
 import CartMongoManager from '../persistence/DAOs/cartsDAOs/cartMongo.js'
 import { isAuthorized } from '../middlewares/authorizedRol.middleware.js';
+import { isAuthenticated } from '../middlewares/authenticated.middleware.js';
 
 // import {createNewCart,
 //   getListCarts,
@@ -30,7 +31,7 @@ router.get('/',cartControllers.getAll)
 //   }
 // );
 
-router.get('/:cid', cartControllers.getCart)
+router.get('/:cid', isAuthenticated, cartControllers.getCart); // middleware de autenticación
 // router.get('/:cid', async (req, res) => {
 //   const { cid } = req.params;
 //   const getCart = await cartManager.getCartId(id);
@@ -44,7 +45,8 @@ router.get('/:cid', cartControllers.getCart)
 //   }
 // });
 
-router.post('/:cid/products', cartControllers.toCart)
+router.post('/:pid', cartControllers.toCart)
+// router.post('/:pid/products/:cid', cartControllers.toCart)
 
 // router.post('/:cid/products/:pid', async (req, res) => {
 //   const { cid, pid } = req.params;

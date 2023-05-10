@@ -96,7 +96,7 @@ export default class CartMongoManager {
 
   async getCart(cid) {
     try {
-      const getCart = await cartModel.findById(cid).lean();
+      const getCart = await cartModel.findById(cid);//.lean();
       // console.log(getCart.productList);
       // const listaProducts = getCart.productList;
       return getCart;

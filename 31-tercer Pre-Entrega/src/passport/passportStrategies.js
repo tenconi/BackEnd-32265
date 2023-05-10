@@ -22,7 +22,7 @@ passport.use(
         if (!first_name || !last_name || !email || !password || !rol) {
           return done(null, false);
         }
-        const userDB = await usersModel.findOne({ email });
+        const userDB = await usersModel.findOne({ email });//.populate('cart'); //populate('cart', { puedo elgir que quiero em muestre con 1=si y 0=no}); x ej .populate('cart', nombre:1, description:0)
         if (userDB) {
           return done(null, false);
         } else {

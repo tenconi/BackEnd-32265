@@ -32,6 +32,10 @@ class viewControlls {
     res.render('errorAuthorization');
   };
 
+ /*  cart = async (req, res)=>{
+    res.render('cart')
+  } */
+
   products_all = async (req, res) => {
     res.render('products');
   };

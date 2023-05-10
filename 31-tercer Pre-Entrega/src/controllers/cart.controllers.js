@@ -1,3 +1,111 @@
+import cartsServices from '../services/carts.services.js';
+import { usersModel } from '../persistence/mongo/models/user.model.js';
+
+class CartsControlls {
+  newCart = async (req, res) => {
+    try {
+      const newCart = await cartsServices.createCart();
+      res.render('cart', { newCart });
+    } catch (error) {
+      console.log(error)
+      res.json({ message: 'Error', error });
+    }
+  };
+
+  getAll = async (req, res) => {
+    try {
+      const carts = cartsServices.getAllCarts();
+      if (carts) {
+        res.render('cart', { cartProducts });
+      } else {
+        res.json({ message: 'No existe Cart' });
+      }
+    } catch (error) {
+      res.json({ message: 'Error', error });
+    }
+  };
+
+  getCart = async (req, res) => {
+    const { cid } = req.params;
+    try {
+      const cart = cartsServices.getCartById(cid);
+
+      if (cart) {
+        // const cartProducts = cart[0].products;
+        res.render('cart', { cartProducts });
+      } else {
+        res.json({ message: 'No existe Cart' });
+      }
+    } catch (error) {
+      res.json({ message: 'Error', error });
+    }
+  };
+
+  toCart = async (req, res) => {
+    // console.log(req.user);
+    const { cid, pid } = req.params;
+    const { quantity } = req.body;
+    // const sessionID = req.sessionID;
+    // console.log( 'sesionId =', reqsessionID);
+    console.log(cid, pid, quantity, req);
+
+    const user = await usersModel.findById(req.user._id); // busco user
+
+
+    
+    // // accion de nuevoCart y asignacion a usuario
+    // const createNewCart = await cartsServices.createCart(); // creo cart
+    // user.cart.push(createNewCart._id); // push _id de cart a user.cart
+    // user.save(); // salvo cambios sobre el usuario
+
+
+    // const newPurch = { pid, quantity }; 
+
+    // let purchases = {
+    //   user: user._id,
+    //   allPurchases: [],
+    // };
+
+    // // purchases.allPurchases.push({pid, quantity})
+    // purchases.allPurchases.push(...purchases.allPurchases, newPurch); // a lo que tenia le agrego el nuevo
+
+
+    // console.log(purchases);
+
+    // const newCart = this.newCart()
+    // console.log(newCart._id);
+
+    // user.cart.push(pid)
+    // user.save()
+    console.log('salvado');
+
+    // const makeCart = cartsServices.createCart() // creo CArt
+
+    // const userId = req.user._id;
+    // const userCart = req.user.cart;
+    // console.log('CONTROL', cid, pid, quantity, /* userId */);
+
+    // console.log('req.user',req.user.cart);
+
+    // try {
+    //   const purch = await cartManager.addProductsToCart( cid, pid, parseInt(quantity) );
+
+    //   if (!purch) {
+    //     res.json({ mensage: "Carrito no encontrado" })
+    // }
+    // else {
+    //     res.json(purch)
+    // }
+    // } catch (error) {
+    //   res.json({ message: 'Error', error });
+    // }
+  };
+}
+
+export default new CartsControlls();
+
+// otro User
+
 // import {
 //   createCart,
 //   getAllCarts,
@@ -97,66 +205,3 @@
 //   );
 //   res.json(updatedProduct);
 // });
-
-import cartsServices from '../services/carts.services.js';
-
-class CartsControlls {
-  newCart = async (req, res) => {
-    try {
-      const newCart = cartsServices.createCart();
-      res.render('cart', { newCart });
-    } catch (error) {
-      res.json({ message: 'Error', error });
-    }
-  };
-
-  getAll = async (req, res) => {
-    try {
-      const carts = cartsServices.getAllCarts();
-      if (carts) {
-        res.render('cart', { cartProducts });
-      } else {
-        res.json({ message: 'No existe Cart' });
-      }
-    } catch (error) {
-      res.json({ message: 'Error', error });
-    }
-  };
-
-  getCart = async (req, res) => {
-    const { cid } = req.params;
-    try {
-      const cart = cartsServices.getCartById(cid);
-
-      if (cart) {
-        // const cartProducts = cart[0].products;
-        res.render('cart', { cartProducts });
-      } else {
-        res.json({ message: 'No existe Cart' });
-      }
-    } catch (error) {
-      res.json({ message: 'Error', error });
-    }
-  };
-
-  toCart = async (req, res) => {
-    console.log(req.user);
-    const { cid, pid } = req.params;
-    const { quantity } = req.body;
-    console.log('CTRL', cid, pid, quantity);
-
-    try {
-      const purch = await cartManager.addProductsToCart( cid, pid, parseInt(quantity) );
-      if (!purch) {
-        res.json({ mensage: "Carrito no encontrado" })
-    }
-    else {
-        res.json(purch)
-    }
-    } catch (error) {
-      res.json({ message: 'Error', error });
-    }
-  };
-}
-
-export default new CartsControlls();

@@ -25,10 +25,17 @@
       {{!-- {{#if cart}}
         <p>cart: <span>{{this.cart}}</span></p>
       {{/if}} --}}
+
+        <button onclick="location.href='/cart/{{cart._id}}'" style="background: lightblue;">My Cart</button>
+      <button onclick="location.href='/user/logout'" style="background: orange;">LOGOUT</button>
+
     {{/each}}
+
+
+    
     </div>
-<button onclick="location.href='/cart/:cid'" style="background: lightblue;">My Cart</button>
-<button onclick="location.href='/user/logout'">LOGOUT</button>
+
+<button onclick="location.href='/user/login'">LOGIN</button>
 
 </div>
 <br />

@@ -125,6 +125,7 @@ footer {
 }
 input,
 button,
+select,
 .btn_comprar {
   padding: 7px 15px;
   border-radius: 3px;

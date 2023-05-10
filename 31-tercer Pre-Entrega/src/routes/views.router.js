@@ -4,6 +4,7 @@ import { isAuthenticated } from '../middlewares/authenticated.middleware.js';
 import { isAuthorized } from '../middlewares/authorizedRol.middleware.js';
 
 import viewControlls from './../controllers/views.controllers.js';
+import cartControllers from '../controllers/cart.controllers.js';
 
 const router = Router();
 
@@ -15,6 +16,9 @@ router.get('/user/register', viewControlls.user_register);
 router.get('/user/login', viewControlls.user_login);
 router.get('/user/profile', isAuthenticated, viewControlls.user_profile); // ruta con Middleware
 
+// Cart
+// router.get('/cart/:cid', isAuthenticated, cartControllers.getCart)
+
 // Errores de Usuarios
 router.get('/user/error', viewControlls.user_error);
 router.get('/user/errorRegistro', viewControlls.user_error_registro);
@@ -24,6 +28,7 @@ router.get('/user/errorAuthorization', viewControlls.user_error_authorization);
 // Productos
 // router.get('/products/all', viewControlls.products_all) // ESTA EN PRODUCTOS
 router.get('/products/add', isAuthorized, viewControlls.products_add); // ruta con Middleware
+
 
 // Chat Room
 router.get('/chat', viewControlls.chat_room);

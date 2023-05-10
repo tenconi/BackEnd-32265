@@ -15,6 +15,7 @@
 import UsersServices from './../services/users.services.js';
 
 class UsersControlls {
+  
 
   getAllUsers = async (req, res) => {
     try {
