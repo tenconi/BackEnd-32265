@@ -17,7 +17,7 @@ router.get('/user/login', viewControlls.user_login);
 router.get('/user/profile', isAuthenticated, viewControlls.user_profile); // ruta con Middleware
 
 // Cart
-// router.get('/cart/:cid', isAuthenticated, cartControllers.getCart)
+router.get('/cart/:cid', isAuthenticated, cartControllers.getCart)
 
 // Errores de Usuarios
 router.get('/user/error', viewControlls.user_error);

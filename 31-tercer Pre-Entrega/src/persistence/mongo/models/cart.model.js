@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const cartSchema = mongoose.Schema({
     productList: [
+        
         {
             productId:{
                 type: mongoose.Schema.Types.ObjectId,
@@ -18,10 +19,10 @@ const cartSchema = mongoose.Schema({
 
 // populate
 
-cartSchema.pre("find",function(next){
-    this.populate("products.productId");
-    next()
-})
+// cartSchema.pre("find",function(next){
+//     this.populate("products.productId");
+//     next()
+// })
 
 
 

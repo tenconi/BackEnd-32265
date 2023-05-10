@@ -20,6 +20,7 @@ http://localhost:8080/products/:id : productos seleccionado
 http://localhost:8080/products/add : agregar products - acceso con middleware "isAuthorized"
 
 ♥ Rutas de Carts:
+http://localhost:8080/cart/:cid' : cart correspondiente a usuario
 
 
 ☺ Ruta de Chat:

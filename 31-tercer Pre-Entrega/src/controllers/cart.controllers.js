@@ -1,5 +1,6 @@
 import cartsServices from '../services/carts.services.js';
-import { usersModel } from '../persistence/mongo/models/user.model.js';
+import { usersModel } from '../persistence/mongo/models/user.model.js'; // completar con services
+import usersServices from '../services/users.services.js';
 
 class CartsControlls {
   newCart = async (req, res) => {
@@ -7,7 +8,7 @@ class CartsControlls {
       const newCart = await cartsServices.createCart();
       res.render('cart', { newCart });
     } catch (error) {
-      console.log(error)
+      console.log(error);
       res.json({ message: 'Error', error });
     }
   };
@@ -27,11 +28,15 @@ class CartsControlls {
 
   getCart = async (req, res) => {
     const { cid } = req.params;
+    // console.log(usersModel)
+
+    // console.log(usersServices);
+
     try {
-      const cart = cartsServices.getCartById(cid);
+      const cart = cartsServices.getCartById(cid);//.populate('products');
 
       if (cart) {
-        // const cartProducts = cart[0].products;
+        const cartProducts = cart.productList;
         res.render('cart', { cartProducts });
       } else {
         res.json({ message: 'No existe Cart' });
@@ -47,36 +52,49 @@ class CartsControlls {
     const { quantity } = req.body;
     // const sessionID = req.sessionID;
     // console.log( 'sesionId =', reqsessionID);
-    console.log(cid, pid, quantity, req);
+    console.log(cid, pid, quantity /* , req */);
 
-    const user = await usersModel.findById(req.user._id); // busco user
+    const uid = req.user._id; // consigo _id de user desde la session
 
+    const user = await usersModel.findById(uid); // busco user
+    // console.log(req.user.cart);
+
+    // objeto compra
+    const newPurch = { pid, quantity };
+    let purchases = []
 
     
-    // // accion de nuevoCart y asignacion a usuario
-    // const createNewCart = await cartsServices.createCart(); // creo cart
-    // user.cart.push(createNewCart._id); // push _id de cart a user.cart
-    // user.save(); // salvo cambios sobre el usuario
 
 
-    // const newPurch = { pid, quantity }; 
 
-    // let purchases = {
-    //   user: user._id,
-    //   allPurchases: [],
-    // };
+    // SI NO TIENE CARRITO --- LO CREO
+    if (req.user.cart.length === 0) {
+      // accion de nuevoCart y asignacion a usuario
+      console.log('no tiene carro, l creo');
+      const createNewCart = await cartsServices.createCart(); // creo cart
+      user.cart.push(createNewCart._id); // push _id de cart a user.cart
+      user.save(); // salvo cambios sobre el usuario
+      console.log('lo salvo');
+      //guardo producto
+      // purchases.push(newPurch); // genero objeto con prodId y cantidad
+      purchases.push(
+        ...purchases, newPurch ); // a lo que tenia le agrego el nuevo
 
-    // // purchases.allPurchases.push({pid, quantity})
-    // purchases.allPurchases.push(...purchases.allPurchases, newPurch); // a lo que tenia le agrego el nuevo
+        
+    } else {
+      console.log('TTTiene carro, l creo');
+      // SI TIENE CARRITO --- AGREGO OBJETOS
+      const getCart = await cartsServices.getCartById(cid);
 
+      // guardo producto
+      // purchases.push(newPurch); // genero objeto con prodId y cantidad
+      purchases.push(
+        ...purchases, newPurch ); // a lo que tenia le agrego el nuevo
 
-    // console.log(purchases);
+        // lo paso a cart
+        getCart.push(purchases)
+    }
 
-    // const newCart = this.newCart()
-    // console.log(newCart._id);
-
-    // user.cart.push(pid)
-    // user.save()
     console.log('salvado');
 
     // const makeCart = cartsServices.createCart() // creo CArt

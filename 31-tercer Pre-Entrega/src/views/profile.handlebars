@@ -7,6 +7,7 @@
 <br />
 <br />
 
+    <p>{{userData}}</p>
 <div class='profile__card'>
   <div class='profile__card--info'>
     {{#each userData}}
@@ -22,11 +23,11 @@
       {{#if rol }}
         <p>rol: <span>{{this.rol}}</span></p>
       {{/if}}
-      {{!-- {{#if cart}}
+      {{#if cart}}
         <p>cart: <span>{{this.cart}}</span></p>
-      {{/if}} --}}
+        <button onclick="location.href='/cart/{{cart.[0]}}'" style="background: lightblue;">My Cart</button>
+      {{/if}}
 
-        <button onclick="location.href='/cart/{{cart._id}}'" style="background: lightblue;">My Cart</button>
       <button onclick="location.href='/user/logout'" style="background: orange;">LOGOUT</button>
 
     {{/each}}
