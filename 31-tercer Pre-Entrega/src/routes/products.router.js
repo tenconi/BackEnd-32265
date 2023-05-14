@@ -2,6 +2,7 @@ import { Router } from 'express';
 // import ProductsManager from '../dao/mongoManagers/productsManager.js';
 // import ProductsMongoManager from '../persistence/DAOs/productsDAOs/productsMongo.js'
 import ProductsControlls from '../controllers/products.controllers.js';
+import { isAuthorized } from '../middlewares/authorized.middleware.js';
 
 const router = Router();
 
@@ -9,7 +10,7 @@ const router = Router();
 
 router.get('/all', ProductsControlls.getAllProducts)
 router.get('/:id', ProductsControlls.productById)
-router.post('/add', ProductsControlls.addNewProduct)
+// router.post('/add', isAuthorized, ProductsControlls.addNewProduct) // NNo leantamiddleware desde aqui ??????
 
 
 // router.post('/add', /* userPermision, */ async (req, res) => {

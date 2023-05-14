@@ -1,21 +1,23 @@
 import mongoose from 'mongoose';
 
 const cartSchema = mongoose.Schema({
-    productList: [
-        
-        {
-            productId:{
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Products"
-            },
-            quantity: {
-                Type: Number,
-            }
-        }
-    ],
-
-})
-
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Users',
+    required: true,
+  },
+  productList: [
+    {
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Products',
+      },
+      quantity: {
+        Type: Number,
+      },
+    },
+  ],
+});
 
 // populate
 
@@ -24,6 +26,4 @@ const cartSchema = mongoose.Schema({
 //     next()
 // })
 
-
-
-export const cartModel = mongoose.model('Cart', cartSchema)
+export const cartModel = mongoose.model('Cart', cartSchema);

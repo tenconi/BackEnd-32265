@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { jwtValidation } from '../middlewares/jwt.middleware.js';
 import { isAuthenticated } from '../middlewares/authenticated.middleware.js';
-import { isAuthorized } from '../middlewares/authorizedRol.middleware.js';
+import { isAuthorized } from '../middlewares/authorized.middleware.js';
 
 import viewControlls from './../controllers/views.controllers.js';
 import cartControllers from '../controllers/cart.controllers.js';
@@ -26,8 +26,8 @@ router.get('/user/errorLogin', viewControlls.user_error_login);
 router.get('/user/errorAuthorization', viewControlls.user_error_authorization);
 
 // Productos
-// router.get('/products/all', viewControlls.products_all) // ESTA EN PRODUCTOS
 router.get('/products/add', isAuthorized, viewControlls.products_add); // ruta con Middleware
+// router.get('/products/all', viewControlls.products_all) // ESTA EN PRODUCTOS
 
 
 // Chat Room

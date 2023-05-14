@@ -52,10 +52,10 @@
                 <p class="sigle__stock">stock: <strong>{{stock}}</strong> unidades</p>
                 <p class="price">&euro; {{price}}</p>
 
-                <form action='/cart/{{_id}}' method="post">
+                <form action='/products/' method="">
                     <br>
                    <label for="quantity"> Cantidad/es: <input type="number" name="quantity" id="quantity" value="1" style="width:80px"></label>
-                <button class="btn__add">add to Carrito </button>
+                <button class="btn__add"  {{!-- onclick="location.href='/{{req.user}}/products/{{_id}}'" --}}>add to Carrito </button>
 
                 </form>
             </div>

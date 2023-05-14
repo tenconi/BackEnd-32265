@@ -1,4 +1,4 @@
-<h2 style='color:royalblue'>Bienvenid@ 
+<h2 style='color:royalblue'>Bienvenid@
   {{#each userData}}
     {{#if first_name}}
       {{this.first_name}}
@@ -7,7 +7,7 @@
 <br />
 <br />
 
-    <p>{{userData}}</p>
+{{!-- <p>{{userData}}</p> --}}
 <div class='profile__card'>
   <div class='profile__card--info'>
     {{#each userData}}
@@ -20,23 +20,32 @@
       {{#if email}}
         <p>email: <span>{{this.email}}</span></p>
       {{/if}}
-      {{#if rol }}
+      {{#if rol}}
         <p>rol: <span>{{this.rol}}</span></p>
       {{/if}}
       {{#if cart}}
-        <p>cart: <span>{{this.cart}}</span></p>
-        <button onclick="location.href='/cart/{{cart.[0]}}'" style="background: lightblue;">My Cart</button>
+        <br />
+        {{!-- <p>cart: <span>{{this.cart}}</span></p> --}}
+        <button
+          onclick="location.href='/cart/{{cart.0}}'"
+          style='background: lightblue;'
+        >My Cart</button>
       {{/if}}
-
-      <button onclick="location.href='/user/logout'" style="background: orange;">LOGOUT</button>
 
     {{/each}}
 
+  </div>
 
-    
-    </div>
+  {{#if userData}}
 
-<button onclick="location.href='/user/login'">LOGIN</button>
+    <button
+      onclick="location.href='/user/logout'"
+      style='background: orange;'
+    >LOGOUT</button>
+
+  {{else}}
+    <button onclick="location.href='/user/login'">LOGIN</button>
+  {{/if}}
 
 </div>
 <br />
