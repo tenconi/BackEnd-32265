@@ -18,6 +18,7 @@ router.get('/user/profile', isAuthenticated, viewControlls.user_profile); // rut
 
 // Cart
 router.get('/cart/:cid', isAuthenticated, cartControllers.getCart)
+//router.get('/cart/:cid/product/:pid', /* isAuthenticated,  */cartControllers.toCart)
 
 // Errores de Usuarios
 router.get('/user/error', viewControlls.user_error);

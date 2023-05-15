@@ -22,8 +22,8 @@ class CartsService {
   };
 
   addProductsToCart = async (cid, pid, quantity) => {
-    const cart = await CartDAOS.toCart(cid, pid, quantity); // se llama igual en todos los DAOs
-    console.log('SERVICE: ', 'cid: ',cid, 'pid:', pid);
+    const cart = await CartDAOS.addToCart(cid, pid, quantity); // se llama igual en todos los DAOs
+    console.log('2 - SERVICE: ', 'cid: ',cid, 'pid:', pid);
     return cart;
   };
 }

@@ -37,7 +37,7 @@ export default class CartMongoManager {
 
   async addToCart(cid, pid, quantity) {
     // console.log('manager', cid, pid, quantity)
-    console.log('MANAGER: ', 'cid: ',cid, 'pid:', pid);
+    console.log('3 - MANAGER: ', 'cid: ',cid, 'pid:', pid);
 
     try {
       //chequeo si tiene cart

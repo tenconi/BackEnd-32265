@@ -1,5 +1,5 @@
-<div class="portaCards">
 {{#if products}}
+<div class="portaCards">
     {{#each products.docs}}
         <div class="card">
             <div class="card__img">
@@ -19,7 +19,7 @@
 
     {{!-- {{else}}
     <p>Lamentablemente no hay productos listados.</p> --}}
-{{/if}}</div>
+</div>{{/if}}
 
 
 
@@ -38,29 +38,52 @@
 {{/if}}
 
 
-{{#if singleProduct.[0]}}
+
 {{!-- En todos los casos me repite  // lo "resolvi / emparche " con CSS--}}
-<div class="portaCards">
-   {{#each singleProduct.[0]}}
+{{#if newInfo}}
+
+<div class="portaCards__single">
+
+   {{#each newInfo.singleProduct.[0]}}
     <div class="single-card">
             <img src={{thumbnail.[0]}} alt="">
 
             <div class="single-card__info">
                 <p class="sigle__category">category: {{category}}</p>
-                <h3>{{name}}</h3>
+                <h2>{{name}}</h2>
                 <p>{{description}}</p>
                 <p class="sigle__stock">stock: <strong>{{stock}}</strong> unidades</p>
                 <p class="price">&euro; {{price}}</p>
 
-                <form action='/products/' method="">
+                 {{!-- <form action='/{{_id}}/to-cart/{{newInfo.idCart}}' method="post">
                     <br>
-                   <label for="quantity"> Cantidad/es: <input type="number" name="quantity" id="quantity" value="1" style="width:80px"></label>
-                <button class="btn__add"  {{!-- onclick="location.href='/{{req.user}}/products/{{_id}}'" --}}>add to Carrito </button>
-
-                </form>
+                    <label for="quantity"> Cantidad/es: <input type="number" name="quantity" id="quantity" value="1" style="width:80px"></label>
+                    <button class="btn__add"  >add to Carrito </button>
+                </form>  --}}
             </div>
     </div>
    {{/each}}
-   
-{{/if}}
+
+    <div class="single-card__form-add">
+        <h3>Listo para llevartelo?</h3>
+        <br>
+        <form action='/cart/{{newInfo.idCart}}/product/{{newInfo.idProd}}' method="post">
+
+            <label for="quantity"> Cantidad/es: <input type="number" name="quantity" id="quantity" value="1" style="width:75px" min="1"></label>
+            <button class="btn__add"  >add to Carrito </button>
+        </form>
     </div>
+    
+
+ {{!-- 
+<form action='' method="">
+                    <br>
+                    <label for="quantity"> Cantidad/es: <input type="number" name="quantity" id="quantity" value="1" style="width:80px"></label>
+                    <button class="btn__add"  onclick="location.href='/{{req.user}}/products/{{_id}}'" >add to Carrito </button>
+                </form> 
+ --}}
+
+    </div>
+{{/if}}
+
+    

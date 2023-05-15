@@ -1,12 +1,12 @@
-import cartsServices from '../services/carts.services.js';
+import CartsService from '../services/carts.services.js';
 // import { usersModel } from '../persistence/mongo/models/user.model.js'; // completar con services
-import usersServices from '../services/users.services.js';
+// import usersServices from '../services/users.services.js';
 
 class CartsControlls {
 
   newCart = async (req, res) => {
     try {
-      const newCart = await cartsServices.createCart();
+      const newCart = await CartsService.createCart();
       res.status(200).render('cart', { newCart });
     } catch (error) {
       res.status(500).json({ message: 'Error', error });
@@ -15,7 +15,7 @@ class CartsControlls {
 
   getAll = async (req, res) => {
     try {
-      const carts = cartsServices.getAllCarts();
+      const carts = await CartsService.getAllCarts();
       if (carts) {
         res.status(200).render('cart', { cartProducts });
       } else {
@@ -30,7 +30,7 @@ class CartsControlls {
     const { cid } = req.params;
 
     try {
-      const cart = cartsServices.getCartById(cid); //.populate('products');
+      const cart = await CartsService.getCartById(cid); //.populate('products');
 
       if (cart) {
         const cartProducts = cart.productList;
@@ -44,17 +44,28 @@ class CartsControlls {
   };
 
   toCart = async (req, res) => {
+    
     const { cid, pid } = req.params;
     const { quantity } = req.body;
-    console.log('CONTROL: ', 'cid: ',cid, 'pid:', pid);
-    
-    
+    console.log('1 - CONTROL: ', 'cid: ',cid, 'pid:', pid);
 
     try {
-      const {pid, quantity} = req.body
+      const cart =  await CartsService.addProductsToCart(cid, pid, quantity);
+      if (cart) {
+        res.status(200).json({ message: 'agReGAdO' });
+      } else {
+        res.status(404).json({ message: 'No se pudo agregar al carrto' });
+      }
     } catch (error) {
       res.status(500).json({ message: 'Error', error });
     }
+    
+
+    /* try {
+      await usersServices.addProductsToCart(cid, pid, quantity)
+    } catch (error) {
+      res.status(500).json({ message: 'Error', error });
+    } */
 
   };
 }

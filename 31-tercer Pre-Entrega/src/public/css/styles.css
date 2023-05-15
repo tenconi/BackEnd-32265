@@ -220,7 +220,6 @@ button:hover, .btn_comprar:hover {
   gap: 2rem;
 }
 .card,
-.single-card,
 .cart__card,
 .purch__card,
 .card__user, .profile__card {
@@ -261,10 +260,22 @@ button:hover, .btn_comprar:hover {
   justify-content: center;
   padding: 2rem;
   margin-top: 1.5rem;
-  background: silver;
+  background: whitesmoke;
 }
 .cards__pagination a {
   margin: 0 1rem;
+}
+/* .single-card, */
+.portaCards__single {
+  display: grid;
+  grid-template-columns: 70% auto;
+  gap: 2rem;
+}
+.single-card{
+  display: flex;
+}
+.single-card img{
+  max-height: 50vh;
 }
 /* single card */
 .single-card:nth-child(1),
@@ -277,6 +288,7 @@ button:hover, .btn_comprar:hover {
 }
 .single-card__info {
     padding: 1.5rem;
+    width: 100%;
 }
 .single-card__info  h3{
     margin-bottom: 1rem;
@@ -287,6 +299,20 @@ button:hover, .btn_comprar:hover {
     text-transform: uppercase;
     margin-bottom: 1rem;
 }
+.single-card__form-add{
+  padding:1.5rem 1.5rem 2rem;
+  border-radius: 0.5rem;
+  background: whitesmoke;
+}
+.single-card__form-add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.single-card__form-add .btn__add{
+  margin: 2rem auto 0
+}
+
 /* profile card */
 .profile__card{
   padding: 2rem 3rem;
