@@ -15,6 +15,10 @@ const UsersSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  thumbnail:{
+    type: String,
+    default: 'https://tenco.com.ar/img/iso1920x1080-bn.jpg',
+  },
   password: {
     type: String,
     required: true,
@@ -26,6 +30,11 @@ const UsersSchema = new mongoose.Schema({
       default: [],
     },
   ],
+  rol: {
+    type: String,
+    required: true,
+    default: 'user',
+  },
 });
 
 export const UsersModel = mongoose.model('Users', UsersSchema);

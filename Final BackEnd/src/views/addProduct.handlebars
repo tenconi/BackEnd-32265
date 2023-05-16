@@ -1,4 +1,6 @@
 <h2>Agregar producto:</h2>
+
+
 <form action="/products/add" method="post" class="form__add">
   <div>
     Nombre:<br />
@@ -22,7 +24,14 @@
 
   <div>
     Categoria:<br />
-    <input type="text" name="category" id="category" /><br />
+  <select name="category" id="category">
+    <option selected disabled>seleccione una:</option>
+    <option value="tech">tech</option>
+    <option value="hogar">hogar</option>
+    <option value="sport">sport</option>
+    <option value="sport">varias</option>
+  </select>
+
   </div>
 
   <div>

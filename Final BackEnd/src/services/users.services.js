@@ -8,10 +8,18 @@ class UsersServices {
   }
 
   createUser = async (obj) => {
-    // const hashPassword = hashData(obj.password);
-    // const newObj = { ...obj, hashPassword };
     const newUser = this.dao.create(obj); // levanto fx de "dao"
     return newUser;
+  };
+
+  logUser = async (obj) => {
+    const logUser = this.dao.login(obj);
+    return logUser;
+  };
+
+  logExit = async (session) => {
+    const shutDown = this.dao.logout(session);
+    return shutDown;
   };
 
   findUser = async (id) => {

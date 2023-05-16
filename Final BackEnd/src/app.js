@@ -7,6 +7,7 @@ import mongoStore from 'connect-mongo'; // could be FfleStore
 import handlebars from 'express-handlebars';
 import viewsRouter from './routes/views.router.js';
 import usersRouter from './routes/users.router.js';
+import productsRouter from './routes/products.router.js';
 import  './persistences/mongo/mongoConfig.js'
 
 const app = express();
@@ -40,6 +41,7 @@ app.use(
 app.use('/', viewsRouter);
 // app.use('/user', usersRouter);
 app.use('/user', usersRouter.initRouter()); // con Clase
+app.use('/products', productsRouter.initRouter()); // con Clase
 // app.use('/cart', cartRouter);
 // app.use('/products', productsRouter);
 

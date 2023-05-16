@@ -36,7 +36,8 @@ const productsSchema = new mongoose.Schema({
   status: {
     type: Boolean,
     required: true,
+    default: true,
   },
 });
 
-export const productsModel = mongoose.model('Products', productsSchema);
+export const ProductsModel = mongoose.model('Products', productsSchema);

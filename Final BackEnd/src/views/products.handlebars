@@ -1,5 +1,35 @@
-<div class="portaCards">
+
+<h2>Productos</h2>
 {{#if products}}
+    <div>
+    {{#each products}}
+        <div style="border:1px solid silver; margin:10px">
+            <div class="card__img">
+                <img src={{thumbnail}} alt={{name}}>
+            </div>
+
+            <div class="card__info">
+                <h3>{{name}}</h3>
+                <p>{{description}}</p>
+                <p><strong>&euro; {{price}}</strong></p>
+
+            </div>
+            <div class="caard__btn">
+                <a class="btn_comprar" href=/products/{{_id}} >Ver Producto</a>
+            </div>
+        </div> 
+    {{/each}}
+    </div>
+
+{{else}}
+    <p>No hay productos para listar</p>
+{{/if}}
+
+
+
+{{#if products}}
+<div class="portaCards">
+
     {{#each products.docs}}
         <div class="card">
             <div class="card__img">
@@ -19,7 +49,8 @@
 
     {{!-- {{else}}
     <p>Lamentablemente no hay productos listados.</p> --}}
-{{/if}}</div>
+</div>
+{{/if}}
 
 
 

@@ -6,8 +6,8 @@ import bcrypt from 'bcrypt';
 export const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // # bcrypt
-export const hashData = async (password) => {
-  return bcrypt.hash(password, 10);
+export const hashData = async (data) => {
+  return bcrypt.hash(data, 10);
 };
 
 export const compareHashedData = async (password, passwordBD) => {

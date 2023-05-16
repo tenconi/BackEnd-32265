@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export default class UsersFile {
+export default class ProductsFile {
   constructor() {}
   async create(obj) {}
   async findAll() {}

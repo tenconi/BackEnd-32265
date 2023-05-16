@@ -4,28 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PE31 | Tenconi</title>
+    <title>BE | Tenconi</title>
     <link
       rel='stylesheet'
       type='text/css'
       href='https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css'
     />
-    <link rel='stylesheet' href='/css/styles.css' />
+    {{!-- <link rel='stylesheet' href='/css/styles.css' /> --}}
     <link rel='shortcut icon' href='/img/favicon.png' type='image/x-icon' />
 </head>
 <body>
 
     <header>
-      <h1>BackEnd Final</h1>
-      <ul class='userNav'>
+      <h1>backEnd e-Commerce</h1>
+      {{>welcome}}
+    <div>
+      <a href='/user/register'>registro</a>
+      <a href='/user/login'>login</a>
+    </div>
+    
+      <a href="/cart/miCart">mi cart</a>
+      
+      
+      <ul class='userNav' style="border:1px solid grey; padding:10px">
         <li>
           <div class='userNav__avatar'>
             <p>user</p>
-          </div>
+          </div>          
 
           <ul>
-            <li><a href='/user/register'>registro</a></li>
-            <li><a href='/user/login'>login</a></li>
+            {{!-- <li><a href='/user/todos'>todos</a></li> --}}
+            {{!-- <li><a href='/user/register'>registro</a></li>
+            <li><a href='/user/login'>login</a></li> --}}
             <li><a href='/user/profile'>perfil</a></li>
             <li><a href='/user/logout'>logout</a></li>
           </ul>
@@ -33,21 +43,28 @@
       </ul>
     </header>
 
-    <nav>
+
+    <nav style="border:1px solid grey; padding:10px">
       <ul>
         <li><a href='/'>home</a></li>
-        <li><a href=''>productos</a>
+
+        <li><a href='/products'>productos</a>
           <ul>
-            <li><a href='/products/all'>todos</a></li>
-            <li class="admin"><a href='/products/add'>agregar</a></li>
-          </ul>
+              <li><a href="">tech</a></li>
+              <li><a href="">hogar</a></li>
+              <li><a href="">sport</a></li>
+              <li><a href="">varias</a></li>
+            </ul>
+          </li>
+
+          <li class="admin">
+            <a href='/products/add'>agregar productos</a>
+          </li>
         </li>
-        <li><a href=''>carts</a>
-          <ul>
-            <li><a href='/cart/miCart'>mi cart</a></li>
-            <li class="admin"><a href='/cart/all'>todos</a></li>
-          </ul>
-        </li>
+
+        <li class="admin"><a href='/cart/all'>all carts</a></li>
+
+        
 
         <li><a href='/chat'>chat room</a></li>
       </ul>
@@ -58,9 +75,9 @@
         {{{body}}}
     </div>
 
-     <footer>
+     <footer style="border:1px solid grey; padding:10px">
       <p><strong>Daniel Tenconi</strong>
-        | clase 31:
+        | Entrega Final Coderhouse:
         <em>Tercer Pre-Entrega</em></p>
     </footer>
     
