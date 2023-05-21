@@ -2,7 +2,7 @@
 import { UsersModel } from './../../mongo/models/users.model.js';
 import BasicMongo from './../basicMongo.js';
 import bcrypt from 'bcrypt';
-import { compareHashedData, hashData } from '../../../utils.js';
+import { hashData, compareHashedData } from '../../../utils.js';
 
 class UsersMongo extends BasicMongo {
   constructor(model) {
@@ -15,40 +15,49 @@ class UsersMongo extends BasicMongo {
       const checkExistence = await UsersModel.find({ email });
       if (checkExistence.length === 0) {
         const hashPassword = await hashData(password);
-        const newUser = { ...obj, password: hashPassword };
+        const newUser = {
+          ...obj,
+          thumbnail: 'https://tenco.com.ar/img/iso1920x1080-bn.jpg',
+          password: hashPassword,
+        };
         await UsersModel.create(newUser);
         return newUser;
       }
       return null;
     } catch (error) {
-      return error;
+      // return error;
+      throw new Error(error);
     }
   }
 
   async login(obj) {
     // luego se pasará con Passport
     const { email, password } = obj;
-    try {
-      const user = await UsersModel.find({ email });
-      if (user.length !== 0) {
-        const checkPass = await compareHashedData(password, user.password);
-        if (checkPass) {
-          console.log('pass Aprobado', user);
-          return user;
-        }
-      } else {
-        return null;
+    let user = await UsersModel.findOne({ email });
+
+    if (user && user.length !== 0) {
+      const checkPass = await compareHashedData(password, user.password);
+      if (checkPass) {
+        console.log('MNG',user)
+        return user;
       }
-    } catch (error) {
-      return error;
+    } else {
+      return null;
     }
   }
 
-  async logout(session){
-    session.destroy()
-  }
+  // async logout(session){
+  //   session.destroy()
+  // }
 
-  async findAll() {}
+  async findAll() {
+    try {
+      let users = await UsersModel.find().lean();
+      return users      
+    } catch (error) {
+      return error
+    }
+  }
 
   async findOne(id) {}
 

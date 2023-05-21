@@ -10,9 +10,7 @@ class ProductsMongo extends BasicMongo {
   async create(obj) {
     const { name, description, category, code, thumbnail, price, stock, status } = obj;
     try {
-        console.log('MNG', obj);
         const checkExistence = await ProductsModel.find({ name});
-        console.log('checkExistence', checkExistence);
         if(checkExistence.length === 0){
             const newObj = {...obj, code: new Date().getTime()};
             const newProd = await ProductsModel.create(newObj);

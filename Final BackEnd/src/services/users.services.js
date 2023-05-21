@@ -7,6 +7,7 @@ class UsersServices {
     this.dao = dao;
   }
 
+  // se paso con passport
   createUser = async (obj) => {
     const newUser = this.dao.create(obj); // levanto fx de "dao"
     return newUser;
@@ -17,10 +18,10 @@ class UsersServices {
     return logUser;
   };
 
-  logExit = async (session) => {
-    const shutDown = this.dao.logout(session);
-    return shutDown;
-  };
+  // logExit = async (session) => {
+  //   const shutDown = this.dao.logout(session);
+  //   return shutDown;
+  // };
 
   findUser = async (id) => {
     // console.log(`SERVICE : findOne`, id);
@@ -29,10 +30,12 @@ class UsersServices {
   };
 
   findAllUsers = async () => {
-    // console.log(`SERVICE : findAllUsers`);
-    const user = await this.dao.findAll(); // levanto fx de "dao"
-    // console.log(user); // *** OK
-    return user;
+    try {
+      const users = await this.dao.findAll(); // levanto fx de "dao"
+      return users;
+    } catch (error) {
+      return error;
+    }
   };
 
   edit = async (id, field, value) => {

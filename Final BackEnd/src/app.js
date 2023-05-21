@@ -8,7 +8,9 @@ import handlebars from 'express-handlebars';
 import viewsRouter from './routes/views.router.js';
 import usersRouter from './routes/users.router.js';
 import productsRouter from './routes/products.router.js';
-import  './persistences/mongo/mongoConfig.js'
+import './persistences/mongo/mongoConfig.js';
+import passport from 'passport';
+import './passport/passportStrategies.js'
 
 const app = express();
 
@@ -36,6 +38,10 @@ app.use(
     }),
   })
 );
+
+// PASSPORT
+app.use(passport.initialize());
+app.use(passport.session());
 
 // ROUTES
 app.use('/', viewsRouter);

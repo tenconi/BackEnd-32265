@@ -1,8 +1,2 @@
-{{#if req}}
-<p>Hola Usuario</p>
+{{#if req.session.user}}Hola {{req.session.user.name}}
 {{/if}}
-<script>
-    const rec = window
-    console.log(rec)
-    'headline':'Headline'
-</script>

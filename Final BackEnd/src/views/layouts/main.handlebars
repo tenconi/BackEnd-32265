@@ -10,41 +10,48 @@
       type='text/css'
       href='https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css'
     />
-    {{!-- <link rel='stylesheet' href='/css/styles.css' /> --}}
+    <link rel='stylesheet' href='/css/styles.css' />
     <link rel='shortcut icon' href='/img/favicon.png' type='image/x-icon' />
 </head>
 <body>
 
     <header>
       <h1>backEnd e-Commerce</h1>
-      {{>welcome}}
+      
     <div>
       <a href='/user/register'>registro</a>
       <a href='/user/login'>login</a>
     </div>
     
-      <a href="/cart/miCart">mi cart</a>
+      {{!-- <a href="/cart/miCart">mi cart</a> --}}
       
       
       <ul class='userNav' style="border:1px solid grey; padding:10px">
         <li>
           <div class='userNav__avatar'>
-            <p>user</p>
+            <p>hello user</p>
           </div>          
 
           <ul>
-            {{!-- <li><a href='/user/todos'>todos</a></li> --}}
             {{!-- <li><a href='/user/register'>registro</a></li>
             <li><a href='/user/login'>login</a></li> --}}
             <li><a href='/user/profile'>perfil</a></li>
+            <li><a href='/cart/:id'>mi cart</a></li>
             <li><a href='/user/logout'>logout</a></li>
           </ul>
         </li>
       </ul>
     </header>
 
+  {{>navBarAdmin}}
+{{!-- {{#if req.session.user.rol}}
+    {{>navBarUsers}}
+{{else}}
+    {{>navBarAdmin}}
+{{/if}} --}}
 
-    <nav style="border:1px solid grey; padding:10px">
+
+   {{!--  <nav style="border:1px solid grey; padding:10px">
       <ul>
         <li><a href='/'>home</a></li>
 
@@ -69,16 +76,15 @@
         <li><a href='/chat'>chat room</a></li>
       </ul>
     </nav>
-
+ --}}
 
     <div class="container">
         {{{body}}}
     </div>
 
-     <footer style="border:1px solid grey; padding:10px">
+     <footer>
       <p><strong>Daniel Tenconi</strong>
-        | Entrega Final Coderhouse:
-        <em>Tercer Pre-Entrega</em></p>
+        | Entrega Final Coderhouse</em></p>
     </footer>
     
 </body>

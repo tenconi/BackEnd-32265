@@ -1,0 +1,34 @@
+<h2>Listado de usuarios</h2>
+{{#if findUsers}}
+
+    {{#each findUsers}}
+    <div class="card__user" style="display:flex">
+        <div class="card__user--img">
+            {{#if this.thumbnail}}
+            <img src={{thumbnail}} alt="" width="100">
+            {{/if}}
+        </div>
+        <div class="card__user--info">
+            {{#if this.email}}
+            <p>{{email}}</p>
+            {{/if}}
+
+            {{#if this.surname}}
+                <p>{{surname}}</p>
+            {{/if}}
+            {{#if this.name}}
+                <p>{{name}}</p>
+            {{/if}}
+            {{#if this.rol}}
+                <p>{{rol}}</p>
+            {{/if}}
+        </div>
+
+    </div>
+
+    {{/each }}
+
+    {{else}}
+    <p>No hay usuarios para listar</p>
+{{/if}}
+

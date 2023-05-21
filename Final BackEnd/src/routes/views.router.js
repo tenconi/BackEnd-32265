@@ -16,8 +16,9 @@ router.get('/products/add', viewsController.prods_add); // solo render
 
 // errores
 router.get('/error', viewsController.error);
-router.get('/error-login', viewsController.err_log);
 router.get('/error-authorization', viewsController.err_aut);
+router.get('/error-login', viewsController.err_log);
+router.get('/error-oops', viewsController.err_ups);
 
 export default router;
 

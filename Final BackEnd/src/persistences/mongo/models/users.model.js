@@ -18,6 +18,7 @@ const UsersSchema = new mongoose.Schema({
   thumbnail:{
     type: String,
     default: 'https://tenco.com.ar/img/iso1920x1080-bn.jpg',
+    required: true,
   },
   password: {
     type: String,

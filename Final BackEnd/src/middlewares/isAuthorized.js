@@ -15,7 +15,7 @@ export const isAuthorized = (req, res, next) => {
       }
       return next(); // puede continuar
     }
-    // return res.json({message:'No tiene credenciales suficientes.'});
-    return res.redirect('/user/errorAuthorization');
+    return res.json({message:'No tiene credenciales suficientes.'});
+    // return res.redirect('/user/errorAuthorization');
     //   next();
   };

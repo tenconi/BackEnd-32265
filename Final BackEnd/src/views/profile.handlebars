@@ -1,17 +1,42 @@
-<h2 style='color:royalblue'>Bienvenid@ nuevamente
-  {{#each userData}}
-    {{#if first_name}}
-      {{this.first_name}}
-    {{/if}}
-  {{/each}}</h2>
+<h2 style='color:royalblue'>¡Hola {{user.name}}!  
+</h2>
 <br />
 <br />
 
 <div class='profile__card'>
+
+  <div class='profile__card--img'>
+    <img src={{user.thumbnail}} alt={{user.name}} />
+  </div>
+
   <div class='profile__card--info'>
-    {{#each userData}}
-      {{#if first_name}}
-        <p>name: <span>{{this.first_name}}</span></p>
+    <p>name: <span>{{user.name}}</span></p>
+    <p>surname: <span>{{user.surname}}</span></p>
+    <p>email: <span>{{user.email}}</span></p>
+    <p>rol: <span>{{user.rol}}</span></p>
+    <p>cart: <span>{{user.cart}}</span></p>
+  </div>
+
+  <div class="profile__card--buttons">
+    <button onclick="location.href='/cart/{{user.cart}}'">My CART</button>
+  <button onclick="location.href='/user/logout'">LOGOUT</button>
+
+  </div>
+
+  
+</div>
+
+{{!-- {{#if user}}
+      {{this.name}}
+      {{else}}
+      no name
+    {{/if}}
+
+<div class='profile__card'>
+  <div class='profile__card--info'>
+    {{#each user}}
+      {{#if name}}
+        <p>name: <span>{{this.name}}</span></p>
       {{/if}}
       {{#if last_name}}
         <p>surname: <span>{{this.last_name}}</span></p>
@@ -27,6 +52,6 @@
 
 <button onclick="location.href='/user/logout'">LOGOUT</button>
 
-</div>
+</div> --}}
 <br />
 <br />

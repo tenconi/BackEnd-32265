@@ -2,8 +2,10 @@
 import UsersServices from './../services/users.services.js';
 
 class UsersController {
+  
   createOne = async (req, res) => {
     const obj = req.body;
+    console.log('CTRL create', obj)
     try {
       await UsersServices.createUser(obj);
       res.status(201).redirect('/user/login');
@@ -15,30 +17,59 @@ class UsersController {
   logIn = async (req, res) => {
     const obj = req.body;
     try {
-      await UsersServices.logUser(obj);
+      const userData = await UsersServices.logUser(obj);
+      const newUserData = {
+        name:userData.name,
+        surname:userData.surname,
+        email:userData.email,
+        thumbnail:userData.thumbnail,
+        rol:userData.rol,
+      }
+      req.session.user = newUserData
+      console.log(req.session)
+      // console.log('userData', userData)
       res.status(200).redirect('/user/profile');
     } catch (error) {
-      res.status(500).json({ message: 'Error', error: error });
+      // console.log(error)
+      res.status(500).redirect('/error-login');
+      // res.status(500).json({ message: 'Error', error: error });
     }
   };
 
   logOut = async (req, res) => {
-    const userSession = req.session;
-    try {
-      await UsersServices.logExit(userSession)
-      res.status(200).redirect('/')
-    } catch (error) {
-      res.status(500).json({ message: 'Error', error: error });
-    }
+
+    // try {
+    //   res.clearCookie('userInfo'); // elimino la cookie con los datos de la sesion
+
+    //   req.session.destroy((error) => {
+    //     if (error) {
+    //       res.status(500).redirect('/error-oops')
+    //     } else {
+    //       res.status(200).redirect('/user/login');
+    //     }
+    //   });
+    //   res.redirect('/user/login');
+    // } catch (error) {
+    //   res.status(500).redirect('/error');
+    // }
+
+    // const userSession = req.session;
+    // try {
+    //   await UsersServices.logExit(userSession);
+    //   res.status(200).redirect('/');
+    // } catch (error) {
+    //   res.status(500).redirect('/error', error);
+    // }
 
     // console.log(req.session);
-    // try {
-    //   await req.session.destroy(()=>{
-    //     res.redirect('/')
-    //   })
-    // } catch (error) {
-    //   res.status(500).json({ message: 'Error', error: error });
-    // }   
+    try {
+      await req.session.destroy(()=>{
+        res.redirect('/')
+      })
+    } catch (error) {
+      res.status(500).redirect('error');
+      // res.status(500).json({ message: 'Error', error: error });
+    }
   };
 
   findOne = async (req, res) => {
@@ -57,12 +88,13 @@ class UsersController {
   };
 
   allTheUsers = async (req, res) => {
-    // console.log(`CONTROLLER : findAllUsers `);
-    try {
+    try {      
       const findUsers = await UsersServices.findAllUsers();
-      res.json({ message: 'Usuarios:', users: findUsers });
+      res.status(200).render('allUsers', {findUsers});
+      // res.json({ message: 'Usuarios:', users: findUsers });
     } catch (error) {
-      res.status(500).json({ message: error });
+      res.status(500).redirect('error');
+      // res.status(500).json({ message: error });
       // return error;
     }
   };

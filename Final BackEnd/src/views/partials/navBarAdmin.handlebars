@@ -1,0 +1,41 @@
+<nav style="border:1px solid grey; padding:10px; background: lightblue;">
+      <ul style="display:flex; justify-content: space-around;">
+        <li><a href='/'>home</a></li>
+
+
+        <li><a href='/products'>productos</a>
+          <ul>
+              <li><a href="">tech</a></li>
+              <li><a href="">hogar</a></li>
+              <li><a href="">sport</a></li>
+              <li><a href="">varias</a></li>
+            </ul>
+          </li>
+
+
+          <li class="admin">
+            <a href='/products/add'>agregar productos</a>
+          </li>
+        </li>
+
+        <li>users
+            <ul>
+                <li>
+                    <a href="/user/create">crear usuarios</a>{{!-- desde aqui se crearían los Admins --}}
+                </li>
+
+                <li>
+                    <a href="/user/all">lista usuarios</a>
+                </li>
+                
+            </ul>
+        </li>
+
+        <li class="admin"><a href='/cart/all'>all carts</a></li>
+
+        
+
+        <li><a href='/chat'>chat room</a></li>
+      </ul>
+      <p>nav-bar para Admin</p>
+</nav>
